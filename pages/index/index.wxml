@@ -1,0 +1,93 @@
+<!-- 搜索框 -->
+<van-search
+  value="{{ valueInput }}"
+  placeholder="{{inputInside}}"
+  shape="round"
+  input-class="inputCla"
+  custom-class="customCla"
+  background="rgba(0,0,0,0)"
+  bind:search="onSearch"
+  bind:change="onChange"
+/>
+<!-- 轮播图 -->
+<view>
+  <swiper class='lunbo' indicator-dots='true' autoplay='true' interval='4000' style="height:{{Hei}}">
+    <swiper-item bindtap="toInfoLB" wx:for="{{ lunboImages }}" wx:key="index" data-url="{{ item.navtourl }}">
+      <image src='{{item.imgurl}}' mode="widthFix" bindload='imgH'></image> <!-- bindload图片显示成功后的处理 -->
+      <image src='../../images/lunbo.png' mode="widthFix" class="lunboImageLogo" hidden="{{ item.imgurl }}"></image>
+    </swiper-item>
+  </swiper>  
+</view>
+<!-- 分区 -->
+<view class="classify ">
+  <view class="onlyClass" wx:for="{{classify}}" wx:key="index" bindtap="toPage" data-title="{{item.title}}">
+    <image src="../../images/{{item.img}}" mode="widthFix"></image>
+    <view class="classifyTitle">{{item.title}}</view>
+  </view>
+</view>
+<!-- 排行和新品 -->
+<view class="allTwo">
+  <view class="rankingList">拍品排行榜</view>
+  <view class="newProduct">每日上新品</view>
+</view>
+<!-- 芯意快报 -->
+<view class="message">
+  <view class="messageInside">芯意<text>快报：</text>{{news}}</view>
+</view>
+<!-- 极限秒拍、品牌秒拍 -->
+<view class="secondBeats">
+  <view class="beatsOne">
+    <view class="beatsTop">
+      <text>极限秒拍</text>
+      <!-- <text>更多</text> -->
+    </view>
+    <view class="beatsBottom">
+      <view class="bottomOnly" wx:for="{{secondBeats}}" wx:key="index" bindtap="toInfo" data-id="{{ item.goods_id }}">
+        <view class="commodity">
+          <image src="{{item.goods_image}}" mode="widthFix"></image>
+          <image src="../../images/lunbo.png" mode="widthFix" class="logo" hidden="{{item.goods_image}}"></image>
+          <view class="time">剩余时间：{{item.time}}</view>
+        </view>
+        <view class="money">当前价：<text class="yuan">{{item.goods_price}}元</text></view>
+      </view>
+    </view>
+  </view>
+  <view class="beatsOne">
+    <view class="beatsTop">
+      <text>品牌秒拍</text>
+      <!-- <text>更多</text> -->
+    </view>
+    <view class="beatsBottom">
+      <view class="bottomOnly" wx:for="{{secondBeats2}}" wx:key="index" bindtap="toInfo" data-id="{{ item.goods_id }}">
+        <view class="commodity">
+          <image src="{{item.goods_image}}" mode="widthFix"></image>
+          <image src="../../images/lunbo.png" mode="widthFix" class="logo" hidden="{{item.goods_image}}"></image>
+          <view class="time">剩余时间：{{item.time}}</view>
+        </view>
+        <view class="money">当前价：<text class="yuan">{{item.goods_price}}元</text></view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 推荐拍品/全部拍品 -->
+<view class="threeClass">
+  <view wx:for="{{auctionItems}}" bindtap="changeStrong" wx:key="index" data-item="{{item}}" class="{{strong===item?'strong':'small'}}">{{item}}</view>
+</view>
+<!-- 具体拍品 -->
+<view class="paipinOuter">
+  <view class="paipin" wx:for="{{secondBeats3}}" wx:key="index" bindtap="toInfo" data-id="{{ item.goods_id }}">
+    <view class="paipinImg">
+      <image src="{{item.goods_image}}" mode="widthFix"></image>
+      <image src="../../images/lunbo.png" mode="widthFix" class="paipinLogo" hidden="{{item.goods_image}}"></image>
+    </view>
+    <view class="paipinTitle">{{item.goods_name}}</view>
+    <view class="paipinTitle2">当前价：<text class="yuan">{{item.goods_price}}</text></view>
+  </view>
+</view>
+<view hidden="{{ isHidden }}">
+  <van-divider contentPosition="center" customStyle="font-size: 24rpx;line-height:32rpx">暂无数据</van-divider>
+</view>
+<!-- 回到顶部 -->
+<view class="go_top" hidden='{{!floorstatus}}' bindtap="goTop">
+  <van-icon name="upgrade" size="90rpx" color="#E60012"/>
+</view>

@@ -1,0 +1,266 @@
+/**index.wxss**/
+page {
+  background: #F5F5F5;
+}
+.inputCla{
+  font-size: 28rpx;
+  line-height: 60rpx;
+  height: 60rpx!important;
+}
+.van-search{
+  padding: 24rpx!important;
+}
+.van-search__content{
+  padding-left: 0rpx!important;
+  border-radius: 60rpx!important;
+}
+.customCla .field-index--van-field{
+  background-color: white!important;
+  border-radius: 60rpx;
+}
+.customCla .van-cell__left-icon-wrap{
+  font-size: 36rpx!important;
+  height: 60rpx!important;
+  margin-left: 15rpx!important;
+}
+.customCla .van-field__clear-root{
+  font-size: 36rpx!important;
+  height: 60rpx!important;
+}
+/* 轮播图 */
+.lunbo{
+  width: calc(100% - 48rpx);
+  border-radius: 30rpx;
+  margin-left: 24rpx;
+  background-color: white;
+  text-align: center;
+}
+.lunbo image{
+  width: 100%;
+  border-radius: 30rpx;
+}
+.lunboImageLogo{
+  width: 150rpx!important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+/* 分类专区 */
+.classify{
+  width: 100%;
+  padding: 24rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+.onlyClass{
+  text-align: center;
+  width: 104rpx;
+}
+.classifyTitle{
+  font-size: 26rpx;
+} 
+.onlyClass image{
+  width: 58rpx;
+  height: auto;
+}
+/* 排行和新品 */
+.allTwo{
+  width: 100%;
+  padding: 24rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+.rankingList,.newProduct{
+  padding: 28rpx 90rpx;
+  border-radius: 16rpx;
+  color: white;
+  font-size: 32rpx;
+}
+.rankingList{
+  background:-moz-linear-gradient(left,#F5AF19 25%,#F12711);
+  background:-webkit-linear-gradient(left,#F5AF19 25%,#F12711);
+  background:-o-linear-gradient(left,#F5AF19 25%,#F12711);
+  background:-ms-linear-gradient(left,#F5AF19 25%,#F12711);
+  background:linear-gradient(left,#F5AF19 25%,#F12711);
+}
+.newProduct{
+  background:-moz-linear-gradient(left,#9AF0BF 25%,#20BDFF);
+  background:-webkit-linear-gradient(left,#9AF0BF 25%,#20BDFF);
+  background:-o-linear-gradient(left,#9AF0BF 25%,#20BDFF);
+  background:-ms-linear-gradient(left,#9AF0BF 25%,#20BDFF);
+  background:linear-gradient(left,#9AF0BF 25%,#20BDFF);
+}
+/* 芯意快报 */
+.message{
+  padding: 24rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+}
+.messageInside text{
+  color: #E7260A;
+}
+.messageInside{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* 极限秒拍 */
+.secondBeats{
+  width: 100%;
+  border-radius: 20rpx;
+  background-color: white;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.beatsTop{
+  display: flex;
+  justify-content: space-between;
+}
+.beatsTop text:first-child{
+  font-size: 36rpx;
+}
+/* .beatsTop text:last-child{
+  font-size: 20rpx;
+  border: 1px solid #333333;
+  display: inline-block;
+  width: 72rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  border-radius: 16rpx;
+} */
+.beatsBottom{
+  display: flex;
+  justify-content: space-between;
+}
+.bottomOnly{
+  text-align: center;
+  width: 210rpx;
+}
+.commodity{
+  width: 100%;
+  height: 210rpx;
+  margin: 12rpx 0rpx;
+  border-radius: 6rpx;
+  background-color: #F5F5F5;
+  text-align: center;
+  position: relative;
+}
+.commodity image{
+  width: 100%;
+  height: auto;
+}
+.logo{
+  width: 100rpx!important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.time{
+  font-size: 22rpx;
+  line-height: 40rpx;
+  position: absolute;
+  left: 0rpx;
+  right: 0rpx;
+  bottom: 0rpx;
+  background-color: #333333;
+  color: white;
+  border-radius: 0rpx 0rpx 6rpx 6rpx;
+}
+.money{
+  font-size: 20rpx;
+}
+.money text{
+  font-size: 24rpx;
+}
+.jifen{
+  color: #DBA759;
+}
+.yuan{
+  color: #E7260A;
+}
+/* 品牌秒拍 */
+.beatsOne{
+  margin-top: 22rpx;
+}
+.threeClass{
+  display: flex;
+  padding: 12px;
+}
+.strong{
+  font-size: 50rpx;
+  width: 240rpx;
+  color: #333333;
+  line-height: 62rpx;
+}
+.small{
+  font-size: 42rpx;
+  width: 240rpx;
+  color: #999999;
+  line-height: 62rpx;
+}
+/* 具体拍品 */
+.paipinOuter{
+  width: 100%;
+  padding: 24rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+.paipin{
+  width: calc(50% - 13rpx);
+  background-color: white;
+  border-radius: 10rpx;
+  margin-bottom: 24rpx;
+}
+.paipin:nth-child(2n-1){
+  margin-right: 24rpx;
+}
+.paipinImg{
+  width: 100%;
+  /* height: 304rpx; */
+  text-align: center;
+}
+.paipinImg image{
+  width: 100%;
+  height: auto;
+}
+.paipinTitle{
+  font-size: 28rpx;
+  letter-spacing: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;  /*要显示的行数*/
+  -webkit-box-orient: vertical;
+  padding: 0rpx 12rpx;
+}
+.paipinTitle2{
+  font-size: 24rpx;
+  padding: 12rpx;
+}
+.paipinTitle2 text{
+  font-size: 32rpx;
+}
+.paipinLogo{
+  width: 40%!important;
+  margin: 30% 0rpx;
+}
+/* 回到顶部 */
+.go_top{
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0rpx 0rpx 20rpx rgba(0,0,0,1);
+  position: fixed;
+  right: 0rpx;
+  bottom: 150rpx;
+  width: 90rpx;
+  height: 90rpx;
+  opacity: 0.5;
+}
+/* 暂无数据 */

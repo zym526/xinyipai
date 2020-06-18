@@ -1,0 +1,234 @@
+page{
+  background-color: #F0F2F5;
+}
+/* 顶部状态 */
+.order-outer{
+  background-color: rgba(255, 0, 0, 0.15);
+  padding: 26rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order-top-left{
+  width: calc(100% - 100rpx);
+}
+.order-top-left-one{
+  font-size: 28rpx;
+  color: #FF0000;
+}
+.order-top-left-two{
+  font-size: 24rpx;
+  color: #333333;
+}
+.order-top-right{
+  font-size: 40rpx;
+  color: #FF0000;
+  font-weight: bold;
+}
+/* 地址和物流信息 */
+.address-log{
+  margin: 20rpx 24rpx;
+  background-color: white;
+  border-radius: 10rpx;
+  padding: 0rpx 20rpx;
+  box-sizing: border-box;
+  box-shadow: 0rpx 0rpx 20rpx rgba(0,0,0,0.1);
+}
+.address{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0rpx;
+  box-sizing: border-box;
+}
+.address-image,.logistics-image{
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 56rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:-moz-linear-gradient(top,#E7770A 25%,#E7260A);
+  background:-webkit-linear-gradient(top,#E7770A 25%,#E7260A);
+  background:-o-linear-gradient(top,#E7770A 25%,#E7260A);
+  background:-ms-linear-gradient(top,#E7770A 25%,#E7260A);
+  background:linear-gradient(top,#E7770A 25%,#E7260A);
+  margin-right: 20rpx;
+}
+.address-image .icon-dizhi,.logistics-image .icon-swticonkuaidi2{
+  font-size: 32rpx;
+  color: white;
+}
+.address-left-text{
+  width: calc(100% - 77rpx);
+}
+.address-left-text-two{
+  font-size: 30rpx;
+  line-height: 60rpx;
+  display: flex;
+}
+.address-name{
+  color: #333333;
+  margin-right: 22rpx;
+}
+.address-phone{
+  color: #666666;
+  font-size: 26rpx;
+}
+.address-left-text-three{
+  font-size: 26rpx;
+  line-height: 40rpx;
+  color: #666666;
+}
+/* 物流 */
+.logistics{
+  padding: 30rpx 0rpx;
+  box-sizing: border-box;
+  border-top: 3rpx solid #E1E1E1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logistics-left{
+  width: calc(100% - 30rpx);
+  display: flex;
+  align-items: center;
+}
+.logistics-image{
+  background:-moz-linear-gradient(top,#0AE7DF 25%,#0A39E7);
+  background:-webkit-linear-gradient(top,#0AE7DF 25%,#0A39E7);
+  background:-o-linear-gradient(top,#0AE7DF 25%,#0A39E7);
+  background:-ms-linear-gradient(top,#0AE7DF 25%,#0A39E7);
+  background:linear-gradient(top,#0AE7DF 25%,#0A39E7);
+}
+.logistics-text{
+  width: calc(100% - 77rpx);
+}
+.logistics-text-one{
+  font-size: 30rpx;
+  color: #333333;
+}
+.logistics-text-two{
+  font-size: 26rpx;
+  color: #666666;
+}
+.logistics .icon-youjiantou{
+  color: #999999;
+  font-size: 30rpx;
+}
+/* 店铺名称 */
+.info,.serial{
+  margin: 0rpx 24rpx 20rpx;
+  background-color: white;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 0rpx 20rpx rgba(0,0,0,0.1);
+}
+.info-top{
+  padding: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.info-top image{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  margin-right: 24rpx;
+}
+.info-top-text{
+  font-size: 32rpx;
+  color: #666666;
+}
+/* 商品信息 */
+.info-content{
+  padding: 30rpx 20rpx;
+  box-sizing: border-box;
+  border-top: 3rpx solid #E1E1E1;
+  display: flex;
+  align-items: center;
+}
+.info-content image{
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+.info-content-right{
+  width: calc(100% - 160rpx);
+  height: 140rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.info-content-right-top{
+  font-size: 28rpx;
+  color: #333333;
+}
+.info-content-right-bottom{
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #333333;
+}
+.info-text-left{
+  color: #E7260A;
+  font-weight: bold;
+}
+.freight,.remark{
+  margin: 0rpx 24rpx;
+  padding: 30rpx 0rpx;
+  box-sizing: border-box;
+  border-top: 3rpx solid #E1E1E1;
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+}
+.freight-left,.remark-left{
+  color: #666666;
+}
+.subtotal{
+  margin: 0rpx 24rpx;
+  padding: 30rpx 0rpx;
+  box-sizing: border-box;
+  text-align: right;
+  border-top: 3rpx solid #E1E1E1;
+  font-size: 30rpx;
+  color: #E7260A;
+}
+.subtotal text{
+  font-size: 26rpx;
+  color: #999999;
+  margin-right: 20rpx;
+}
+/* 编号和下单支付时间 */
+.serial-one{
+  padding: 30rpx 0rpx;
+  margin: 0rpx 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  border-top: 3rpx solid #E1E1E1;
+  font-size: 30rpx;
+  color: #666666;
+}
+.serial-right{
+  font-size: 26rpx;
+  color: #333333;
+}
+.serial-one:first-child{
+  border-top: 0rpx;
+}
+/* 按钮 */
+.btn-bottom{
+  margin: 20rpx 24rpx 30rpx;
+}
+.btn{
+  width: 100%;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  color: white;
+  background-color: #E7260A;
+  border-radius: 10rpx;
+  text-align: center;
+}

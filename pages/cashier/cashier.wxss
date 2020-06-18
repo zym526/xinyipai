@@ -1,0 +1,59 @@
+/* pages/cashier/cashier.wxss */
+.messageTop{
+  height: 350rpx;
+}
+.messageTop image{
+  width: 100%;
+  height: auto;
+  position: absolute;
+  left: 0rpx;
+  top: 0rpx;
+}
+.insideTop{
+  position: absolute;
+  left: 0rpx;
+  right: 0rpx;
+  top: 0rpx;
+  text-align: center;
+  color: white;
+  padding: 50rpx 0rpx;
+}
+.inside1{
+  font-size: 28rpx;
+}
+.inside2{
+  font-size: 40rpx;
+  margin: 20rpx 0rpx 0rpx;
+}
+.inside2 text{
+  font-size: 60rpx
+}
+.inside3{
+  font-size: 24rpx;
+}
+.weui-cell__bd{
+  font-size: 32rpx;
+}
+.weui-cell__bd image{
+  width: 45rpx;
+  height: auto;
+  vertical-align: text-bottom;
+}
+page{
+  width: 100%;
+  height: 100%;
+}
+.outerOnly{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.weui-btn{
+  width: calc(100% - 48rpx);
+  margin: 0rpx 24rpx;
+  position: absolute;
+  bottom: 30rpx;
+  background-color: #E7260A;
+  line-height: 92rpx;
+  font-size: 32rpx;
+}

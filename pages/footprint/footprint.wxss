@@ -1,0 +1,134 @@
+page{
+  background-color: #ececec;
+}
+/* 顶部日期 */
+.topOut{
+  background-color: white;
+}
+.outWeek{
+  padding: 24rpx 24rpx;
+  border-bottom: 1rpx solid #cfcfcf;
+}
+.week{
+  display: flex;
+  justify-content: space-between;
+}
+.oneDay text{
+  display: block;
+  text-align: center;
+  font-size: 34rpx;
+  color: #999999;
+}
+.oneDay text:last-child{
+  font-size: 30rpx;
+  color: #333333;
+}
+.nowDay{
+  width: 47rpx;
+  height: 47rpx;
+  background-color: #E60012;
+  border-radius: 47rpx;
+  position: relative;
+  color: white!important;
+}
+.nowDay::before{
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 10rpx;
+  height: 10rpx;
+  background-color: #E60012;
+  border-radius: 10rpx;
+  bottom: -20rpx;
+  left: 18.5rpx;
+}
+/* 保留七天记录 */
+.jilu{
+  padding: 24rpx 24rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.jilu text,.rightJL{
+  font-size: 30rpx;
+  color: #666666;
+}
+.rightJL{
+  display: flex;
+}
+/* 时间 */
+.bottomTime{
+  padding: 24rpx 24rpx;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.divider{
+  display: inline-block;
+  width: calc(100% - 130rpx);
+  height: 2rpx;
+  background-color: rgba(0,0,0,0.03);
+}
+/* 推荐商品 */
+.paipinOuter{
+  width: 100%;
+  padding: 0rpx 24rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+.paipin{
+  width: calc(50% - 12rpx);
+  background-color: white;
+  border-radius: 10rpx;
+  margin-bottom: 24rpx;
+}
+.paipin:nth-child(2n-1){
+  margin-right: 24rpx;
+}
+.paipinImg{
+  width: 100%;
+  height: 340rpx;
+  background-color: #D2D2D2;
+  text-align: center;
+  border-radius: 10rpx 10rpx 0rpx 0rpx;
+}
+.paipinImg image{
+  width: 215rpx;
+  height: auto;
+  margin-top: 62.5rpx;
+}
+.paipinTitle{
+  font-size: 28rpx;
+  letter-spacing: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;  /*要显示的行数*/
+  -webkit-box-orient: vertical;
+  padding: 0rpx 12rpx;
+}
+.paipinTitle2{
+  padding: 0rpx 12rpx 12rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dangqianjia{
+  font-size: 26rpx;
+  color: #666666;
+}
+.jiage{
+  font-size: 30rpx;
+  color: #E7260A;
+}
+.zhaoxiangsi{
+  width: 65rpx;
+  height: 25rpx;
+  border: 1rpx solid #666666;
+  color: #666666;
+  font-size: 16rpx;
+  line-height: 25rpx;
+  text-align: center;
+  border-radius: 25rpx;
+}

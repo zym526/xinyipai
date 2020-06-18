@@ -1,0 +1,33 @@
+.outerOnly{
+  text-align: center;
+}
+image{
+  width: 280rpx;
+  height: auto;
+}
+.title1{
+  margin-top: -20rpx;
+  font-size: 40rpx;
+}
+.title2{
+  font-size: 28rpx;
+}
+.title2 text{
+  color: #E7260A;
+}
+.buttonTwo{
+  margin-top: 162rpx;
+}
+.buttonTwo a:first-child{
+  background-color: #E7260A;
+  color: white;
+  font-weight: 200;
+  font-size: 28rpx;
+}
+.buttonTwo a:last-child{
+  background-color: white;
+  border:2rpx solid #E7260A;
+  color: #333333;
+  font-weight: 200;
+  font-size: 28rpx;
+}

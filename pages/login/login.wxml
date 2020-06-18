@@ -1,0 +1,10 @@
+<!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
+<!-- <open-data type="userAvatarUrl" class="images"></open-data> -->
+<!-- <open-data type="userNickName" class="youName"></open-data> -->
+<view class="xinyipai">
+  <image src="../../images/lunbo.png" mode="widthFix"></image>
+  <view class="logo">芯意拍</view>
+</view>
+<!-- 需要使用 button 来授权登录 -->
+<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+<view wx:else>请升级微信版本</view>

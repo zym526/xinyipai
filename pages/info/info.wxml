@@ -1,0 +1,304 @@
+<view>
+  <!-- 轮播图 -->
+  <view class="outerLunbo">
+    <swiper class='lunbo' autoplay='true' interval='4000' style='height:{{Hei}}'>
+      <swiper-item wx:for="{{shotdetail.imgarr}}" wx:key="index"> <image src='{{item}}' mode="widthFix" bindload='imgH'></image> <view class="page"><text>{{index+1}}</text>/4</view></swiper-item>
+    </swiper>  
+    <view class="lunboBottom">{{time=='拍卖已结束'?'':'距离拍卖结束：'}}{{time}}</view>
+  </view>
+  <!-- 商品信息/介绍/竞价 -->
+  <view class="threeInfo">
+    <!-- 商品信息 -->
+    <view class="shoucangTitle">
+      <view class="title">{{shotdetail.goods_name}}</view>
+      <view class="rightSC" bindtap="changeSC">
+        <van-icon name="{{attention}}" size="40rpx" color="{{color}}"/>
+        <text>收藏</text>
+      </view>
+    </view>
+    <!-- 商品介绍 -->
+    <view class="{{zhanshou==='展开'?'introduce':'introduce-zhan'}}">
+      <view class="introduceDuan {{zhanshou==='展开'?'duan':''}}">{{shotdetail.goods_advword}}</view>
+      <view class="shouzhan" bindtap="changeSZ">{{zhanshou}}</view>
+    </view>
+  </view>
+  <view class="plan">
+    <!-- 竞价进度 -->
+    <view class="bidding">
+      <!-- <image src="../../images/chuizi.png" mode='widthFix'></image> -->
+      <view class="chuiAll">
+        <view class="one-chui" wx:for="{{chuiziAll}}" wx:key="index">
+          <view class="now-money" hidden="{{index!=(dataLength+1)}}">￥{{minimum}}</view>
+          <image src="{{item}}" mode="widthFix" class="{{item!='/images/chuizi3.png'&&item!='/images/chuizi2.png'?'bigImage':''}} {{item!='/images/chuizi.png'&&item!='/images/chuizi1.png'&&item!='/images/chuizi2.png'&&item!='/images/chuizi3.png'&&item!='/images/chuizi4.png'?'youImage':''}}"></image>
+        </view>
+      </view>
+      <view class="bottomBidding">
+        <text>￥{{shotdetail.goods_price}}</text>
+        <!-- <view class="centerBidding">
+          <image src="../../images/dui.png" mode='widthFix'></image>{{auctionporce[0].price?auctionporce[0].price:shotdetail.goods_price}}
+        </view> -->
+        <text>￥{{shotdetail.goods_promotion_price}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 竞价人员 -->
+  <view class="personnel">
+    <!-- 浏览人员/市场价/库存 -->
+    <view class="threeAndF">
+      <view class="portrait">
+        <view wx:for="{{broeseavatars}}" wx:key="index" class="imagesAll">
+          <image src="{{item.member_avatar}}" mode="widthFix"></image>
+        </view>
+        <view class="headcount"><text hidden="{{ broesecont<=7 }}">...</text>{{broesecont}}人浏览</view>
+      </view>
+      <view>市场价：{{shotdetail.goods_marketprice}}</view>
+      <view>库存：{{inventory}}/{{shotdetail.goods_storage}}</view>
+    </view>
+    <!-- 竞价人员 -->
+    <view class="forPeo" wx:for="{{isShow?auctionporce:allAuctionporce}}" wx:key="index" hidden="{{auctionporce.length==0}}">
+      <view class="forPeo-left-outer">
+        <image src="{{item.member_avatar}}" mode="widthFix" class="forPeo-left-image {{item.member_id==user_id?'myImage':''}}"></image>
+        <view class="forPeo-left-text">
+          <view class="forPeo-left-top">
+            <text class="{{index==0?'text1':'text2'}}">{{item.member_nickname}}</text>
+            <!-- <image src="../../images/v.png" mode="widthFix" style="width:20rpx;margin-left:10rpx"></image>
+            <text class="dengji">{{item.member_exppoints}}</text> -->
+          </view>
+          <view class="forPeo-left-bottom {{index==0?'text1':'text2'}}">{{item.create_time}}</view>
+        </view>
+      </view>
+      <view class="rightJL">
+        <view class="JG">
+          <!-- <image src="../../images/{{index==0?'dui.png':'duihui.png'}}" mode="widthFix"></image> -->
+          <view class="iconfont icon-gerenzhongxin-duihuanzhongxin" style="font-size:26rpx;color:{{index==0?'#E7260A':'#999999'}}"></view>
+          <text class="{{index==0?'text1':'text2'}}">{{item.price}}</text>
+        </view>
+        <view class="xianchu {{index==0?'lingxian':'chuju'}}">{{index===0?'领先':'出局'}}</view>
+      </view>
+    </view>
+    <!-- 查看更多 -->
+    <view class="more" hidden="{{auctionporce.length<=2}}">
+      <button class="moreInside" bindtap="lookAllCJ">{{isShow?'查看更多':'点击收起'}}</button>
+    </view>
+    <view class="noPeople" hidden="{{auctionporce.length!=0}}">暂无人出价</view>
+  </view>
+  <!-- 拍卖评价/拍卖流程 -->
+  <view class="evaluationProcedure" style="background:white;margin-top:24rpx">
+    <!-- 评价 -->
+    <!-- <view class="evaluation">
+      <view class="weui-cells weui-cells_after-title" style="margin-top:0px">
+        <view class="weui-cell">
+          <view class="weui-cell__bd" style="font-size:28rpx;color:#333333">拍品评价（{{commontotal}}条）</view>
+        </view>
+      </view> -->
+      <!-- 评价 -->
+      <!-- <view class="weui-cell weui-cell_example" style="background:white;padding:24rpx 24rpx" hidden="{{isHidden}}">
+        <view class="weui-cell__hd">
+          <image src="{{shotcommon.member_avatar}}" mode="widthFix" style="margin-right: 16px;vertical-align: middle;width:50rpx; height: 50rpx;border-radius:50rpx"></image>
+        </view>
+        <view class="weui-cell__bd evaluationName">
+          {{shotcommon.member_name}}
+          <van-rate readonly value="{{ shotcommon.geval_scores }}" size="18rpx"/>
+        </view>
+        <view class="weui-cell__ft evaluationTime">{{shotcommon.geval_addtime}}</view>
+      </view>
+      <view class="evaluationText" hidden="{{isHidden}}">{{shotcommon.geval_content}}</view> -->
+      <!-- 查看全部评价 -->
+      <!-- <view class="more" hidden="{{isHidden}}">
+        <button class="moreInside moreTwo" bindtap="toAllPJ">查看全部评价</button>
+      </view>
+    </view> -->
+    <!-- 流程 -->
+    <view class="procedure">
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd" style="font-size:28rpx;color:#333333">拍买流程</view>
+        </view>
+      </view>
+      <!-- 流程图 -->
+      <view class="outerRow">
+        <view class="one-flow">
+          <view class="rowImage">
+            <view class="iconfont icon-chuizi" style="font-size:38rpx;color:black"></view>
+          </view>
+          <view>出价竞拍</view>
+        </view>
+        <image src="../../images/next.png" class="next" mode="widthFix"></image>
+        <view class="one-flow">
+          <view class="rowImage">
+            <view class="iconfont icon-baozhengjin" style="font-size:38rpx;color:black"></view>
+          </view>
+          <view>缴纳保证金</view>
+        </view>
+        <image src="../../images/next.png" class="next" mode="widthFix"></image>
+        <view class="one-flow">
+          <view class="rowImage">
+            <view class="iconfont icon-lianxiaolianmanyi-" style="font-size:38rpx;color:black"></view>
+          </view>
+          <view>竞拍成功</view>
+        </view>
+        <image src="../../images/next.png" class="next" mode="widthFix"></image>
+        <view class="one-flow">
+          <view class="rowImage">
+            <view class="iconfont icon-dingdan" style="font-size:38rpx;color:black"></view>
+          </view>
+          <view>查看订单</view>
+        </view>
+      </view>      
+    </view>
+  </view>
+  <!-- 商店 -->
+  <view class="shop">
+    <!-- 商店名称 -->
+    <view class="shop-detail shopOuter">
+      <view class="left-shop">
+        <image src="{{store.logo}}" mode="widthFix"></image>
+        <view class="left-top-text">
+          <view class="shop-name">{{shotdetail.store_name}}</view>
+          <view class="shop-sec">{{store.store_description!=""?store.store_description:"店主没有留下描述~~~"}}</view>
+        </view>
+      </view>
+      <view class="right-shop">
+        <view class="go-shop" bindtap="toShop">进入店铺</view>
+      </view>
+    </view>
+    <view class="shopBottom">
+      <view class="left-shop-bottom">
+        <view class="bottomNum">¥{{store.store_avaliable_deposit}}</view>
+        <view class="bottomTex">保证金</view>
+      </view>
+      <view class="bian"></view>
+      <view class="right-shop-bottom">
+        <view class="bottomNum">{{store.goods_count}}</view>
+        <view class="bottomTex">商品数量</view>
+      </view>
+    </view>
+  </view>
+  <!-- 产品描述 -->
+  <view class="endTitle">
+    <view class="endTop">
+      <image src="../../images/endtitle.png" mode="widthFix"></image>
+    </view>
+    <view class="endBot" hidden="{{!shotbody.goods_body}}">
+      <image src="{{shotbody.goods_body}}" mode="widthFix"></image>
+    </view>
+  </view>
+  <!-- 购买 -->
+  <view class="buy">
+    <view class="leftShop">
+      <view class="insideShopO" bindtap="toShop">
+        <van-icon name="shop-o" size="44rpx" style="margin-right:50rpx"/>
+        <view class="leftShopInside">店铺</view>
+      </view>
+      <view class="insideChatO">
+        <van-icon name="chat-o" size="44rpx"/>
+        <view class="chat">客服</view>
+      </view>   
+    </view>
+    <view class="rightShop">
+      <button class="zhijiegm" bindtap="toBuy">直接购买</button>
+      <button class="lijiqp" bindtap="toDepositpayment" style="opacity: {{isPat?'1':'0.5'}};">
+        {{depositPayment}}
+        <view class="pledge" hidden="{{depositPayment!='立即参拍'}}">保证金：￥{{shotdetail.bond_price}}</view>
+      </button>
+    </view>
+  </view>
+</view>
+
+<!-- 出价弹窗 -->
+<van-popup show="{{ isBid }}" position="bottom" bind:close="onClose" custom-style="height:60%;" round ><!-- isBid -->
+  <view class="iconfont icon-fork" bindtap="onClose"></view>
+  <!-- 出价 -->
+  <view class="popup-top">
+    <view class="popup-minus-add">
+      <view class="popup-add" bindtap="reduce" style="color:{{reduceColor}}">-</view>
+      <view class="popup-number">{{nowBidToPopup}}</view>
+      <view class="popup-minus" bindtap="increase" style="color:{{increaseColor}}">+</view>
+    </view>
+    <!-- <view class="popup-top-text">您将出价{{nowBidToPopup}}元</view> -->
+    <view class="popup-top-btn" bindtap="toOfferPrice">立即出价{{minimum==shotdetail.goods_promotion_price?'(成交)':''}}</view>
+  </view>
+  <!-- 出价人信息 -->
+  <view class="forPeo-outer">
+    <!-- 下一步出价 -->
+    <view class="forPeo forPeo-popup">
+      <view class="forPeo-left-outer">
+        <!-- 线条 -->
+        <view class="line-left-long"></view>
+        <!-- 初始价 -->
+        <image src="/images/chuizi4.png" mode="widthFix" class="forPeo-left-image"></image>
+        <view class="forPeo-left-text">
+          <view class="forPeo-left-top">
+            <text class="text3">{{userInfo.nickName}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="rightJL">
+        <text class="text1">￥{{minimum}}</text>
+        <view class="xianchu guding">{{minimum!=shotdetail.goods_promotion_price?'当前':'成交'}}</view>
+      </view>
+    </view>
+    <!-- 出价人信息 -->
+    <view class="forPeo forPeo-popup" wx:for="{{allAuctionporce}}" wx:key="index" hidden="{{allAuctionporce.length==0}}">
+      <view class="forPeo-left-outer">
+        <!-- 线条 -->
+        <view class="line-left-long"></view>
+        <!-- 最高价 -->
+        <image src="/images/chuizi.png" mode="widthFix" class="forPeo-left-image" hidden="{{index!=0}}"></image>
+        <!-- 出局 -->
+        <view class="left-hui-yuan-outer" hidden="{{index==0}}"><view class="left-hui-yuan {{item.member_id==user_id?'left-org-yuan':''}}"></view></view>
+        <view class="forPeo-left-text">
+          <view class="forPeo-left-top">
+            <text class="{{index==0?'text3':'text2'}}">{{item.member_nickname}}</text>
+          </view>
+          <view class="forPeo-left-bottom {{index==0?'text3':'text2'}}">{{item.create_time}}</view>
+        </view>
+      </view>
+      <view class="rightJL">
+        <view class="JG">
+          <text class="{{index==0?'text1':'text2'}}">￥{{item.price}}</text>
+        </view>
+        <view class="xianchu {{index==0?'lingxian':'chuju'}}">{{index===0?'领先':'出局'}}</view>
+      </view>
+    </view>
+    <!-- 低价起拍 -->
+    <view class="forPeo forPeo-popup">
+      <view class="forPeo-left-outer">
+        <!-- 线条 -->
+        <view class="line-left-long"></view>
+        <!-- 初始价 -->
+        <image src="/images/chuizi4.png" mode="widthFix" class="forPeo-left-image"></image>
+        <view class="forPeo-left-text">
+          <view class="forPeo-left-top">
+            <text class="text2">底价</text>
+          </view>
+        </view>
+      </view>
+      <view class="rightJL">
+        <text class="text2">￥{{shotdetail.goods_price}}</text>
+        <view class="xianchu guding">起拍</view>
+      </view>
+    </view>
+  </view>
+</van-popup>
+<!-- 保证金弹窗 -->
+<van-popup show="{{ isCash }}" position="bottom" bind:close="onClose" custom-style="height:500rpx" round><!-- isCash -->
+  <view class="cash-top">
+    <view class="iconfont icon-jinggao"></view>
+    <text>竞拍不成功，缴纳保证金将退回原支付渠道</text>
+    <view class="iconfont icon-fork" bindtap="onClose"></view>
+  </view>
+  <view class="cash-money">保证金：￥{{shotdetail.bond_price}}</view>
+  <view class="cash-group-outer">
+    <van-radio-group value="{{ radio }}" bind:change="onChange">
+      <van-radio name="1" label-class="cash-radio-text" icon-size="30rpx">竞拍需要同意芯意拍<text style="color:#0078FF">《用户竞拍协议》</text>和<text style="color:#0078FF">《保证金协议》</text></van-radio>
+    </van-radio-group>
+  </view>  
+  <view class="yesAndBuy" bindtap="yesAndBuy">同意并支付</view>
+</van-popup>
+<!-- 分享悬浮框 -->
+<view class="share">
+  <view class="iconfont icon-fenxiang" style="color:#333333;font-size:42rpx"></view>
+</view>
+<!-- 提示弹框 -->
+<van-dialog id="van-dialog" />

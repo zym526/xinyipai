@@ -1,0 +1,9 @@
+<view class="indent-outer">
+  <view class="indent-top">
+    <view class="indent-top-left">
+      <view class="indent-top-left-one">等待您的付款</view>
+      <view class="indent-top-left-two">剩23小时55分自动关闭</view>
+    </view>
+    <view class="indent-top-right">拍卖</view>
+  </view>
+</view>

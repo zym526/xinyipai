@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-icon": "../../dist/icon/index",
+    "van-cell": "../../dist/cell/index"
+  },
+  "navigationBarTitleText": "买家订单"
+}

@@ -1,0 +1,53 @@
+/* pages/login/login.wxss */
+page{
+  border: 1px solid rgba(0,0,0,0);
+  height: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+.topTitle{
+  margin-top: 200rpx;
+}
+.title1{
+  color: #F5B049;
+  font-size: 60rpx;
+  font-weight: bolder;
+}
+.title2,.title3{
+  color: #F5B049;
+  font-size: 36rpx;
+}
+.centerImg{
+  width: calc(100% - 48rpx);
+  height: auto;
+  margin-top: 104rpx;
+}
+.bottomTo{
+  position: absolute;
+  bottom: 80rpx;
+  left: 0rpx;
+  right: 0rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 0rpx 40rpx;
+}
+.goHome{
+  color: #F5B049;
+  font-size: 36rpx;
+}
+.duan{
+  display: inline-block;
+  width: 30rpx;
+  height: 16rpx;
+  background-color: #ccc;
+  border-radius: 16rpx;
+  margin-right: 10rpx;
+}
+.long{
+  display: inline-block;
+  width: 60rpx;
+  height: 16rpx;
+  background-color: #F5B049;
+  border-radius: 16rpx;
+  margin-right: 10rpx;
+}

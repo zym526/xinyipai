@@ -1,0 +1,27 @@
+<view>
+  <view class="outerLogisics" wx:for="{{allCom}}" wx:key="index">
+    <!-- 商店 -->
+    <van-cell is-link url="/pages/ShopFront/ShopFront" link-type="navigateTo">
+      <view slot="title" style="display:flex">
+        <van-icon name="shop-o" color="red" size="28rpx" style="margin-right:6rpx"/>
+        <view class="van-cell-text" style="font-size:28rpx;font-weight:bold;">{{item.title}}</view>
+      </view>
+    </van-cell>
+    <!-- 订单 -->
+    <view class="qianshou">您的订单已签收</view>
+    <view class="weui-panel__bd outerA" bindtap="toInfo">
+			<a class="weui-media-box weui-media-box_appmsg outerAll">
+				<view class="weui-media-box__hd outerImg">
+					<image class="weui-media-box__thumb" src="../../images/{{item.img}}" mode="widthFix"></image>
+				</view>
+				<view class="weui-media-box__bd rightText">
+					<h4 class="weui-media-box__title topText">{{item.message}}</h4>
+					<view class="weui-media-box__desc bottomText">
+            <text>{{item.user}}</text>
+            <text>{{item.time}}</text>
+          </view>
+				</view>
+			</a>
+    </view>
+  </view>
+</view>

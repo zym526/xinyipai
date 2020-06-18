@@ -1,0 +1,48 @@
+/* pages/allPJ/allPJ.wxss */
+page{
+  background-color: #F0F0F0;
+}
+.action{
+  background-color: #E92C0C;
+  color: white;
+}
+.noAction{
+  background-color: rgba(233,44,12,0.3);
+  color: #333333;
+}
+.fenlei{
+  display: flex;
+  padding: 24rpx 24rpx 0rpx;
+  flex-wrap: wrap;
+  background-color: white;
+}
+.oneFenlei{
+  margin-right: 24rpx;
+  padding: 5rpx 15rpx;
+  font-size: 30rpx;
+  margin-bottom: 24rpx;
+}
+/* 个人评价 */
+/* .pingjia{} */
+.onePingjia{
+  padding: 24rpx;
+  margin: 12rpx 0rpx;
+  background-color: white;
+}
+.topPingjia{
+  display: flex;
+  justify-content: space-between;
+}
+.youName{
+  font-size: 30rpx;
+  margin: 0rpx 12rpx;
+  vertical-align: 5rpx;
+}
+.timeRight{
+  font-size: 24rpx;
+}
+.pingjiaContent{
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 35rpx;
+}

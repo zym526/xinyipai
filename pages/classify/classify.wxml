@@ -1,0 +1,34 @@
+<!-- 搜索框 -->
+<van-search
+  value="{{ valueInput }}"
+  placeholder="{{inputInside}}"
+  shape="round"
+  input-class="inputCla"
+  custom-class="customCla"
+  background="rgba(0,0,0,0)"
+  bind:search="onSearch"
+  bind:change="onChange"
+/>
+<view class="leftRight">
+  <!-- 分类 -->
+  <view class="leftClassify">
+    <view class="{{strong===item.gc_name?'classifyOne':'classifyTwo'}}" wx:for="{{all}}" wx:key="index" data-item="{{item}}" bindtap="changStrong">{{item.gc_name}}</view>
+  </view>
+  <!-- 具体商品 -->
+  <view class="commodity">
+    <view class="topImage">
+      <image src="../../images/lunbo.png" mode="widthFix"></image>
+    </view>
+    <view class="rightBottom" wx:for="{{rightAll}}" wx:for-item="item" wx:key="index">
+      <view class="commodityTitle">{{item.gc_name}}</view>
+      <view class="commodityAll">
+        <view class="commodityOne" wx:for="{{item.gc_parent_id}}" wx:for-item="inside" wx:key="index">
+          <view class="oneImage">
+            <image src="/images/lunbo.png" mode="widthFix"></image>
+          </view>
+          <view>{{inside.gc_name}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

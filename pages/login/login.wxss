@@ -1,0 +1,19 @@
+.xinyipai{
+  text-align: center;
+}
+.xinyipai image{
+  width: 150rpx;
+  height: auto;
+  margin-top: 130rpx;
+  margin-bottom: 20rpx;
+}
+.logo{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+button{
+  margin-top: 50rpx;
+  background-color: #F5B049;
+  color: white;
+  font-size: 24rpx;
+}

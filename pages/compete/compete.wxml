@@ -1,0 +1,80 @@
+<view class="outer">
+  <view class="one-compete">
+    <!-- 顶部图片 -->
+    <view class="one-image">
+      <image src="/images/baozhengjin.png" mode="widthFix"></image>
+      <view class="one-image-text">待开拍</view>
+    </view>
+    <!-- 文字 -->
+    <view class="one-title">钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级</view>
+    <view class="one-bottom">
+      <view class="one-bottom-left">￥200</view>
+      <view class="one-bottom-right">去开价></view>
+    </view>
+  </view>
+  <view class="one-compete">
+    <!-- 顶部图片 -->
+    <view class="one-image">
+      <image src="/images/baozhengjin.png" mode="widthFix"></image>
+      <view class="one-image-text one-image-text-top">领先中</view>
+    </view>
+    <!-- 文字 -->
+    <view class="one-title">钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级</view>
+    <view class="one-bottom">
+      <view class="one-bottom-left">￥200</view>
+      <view class="one-bottom-right">领先中></view>
+    </view>
+  </view>
+  <view class="one-compete">
+    <!-- 顶部图片 -->
+    <view class="one-image">
+      <image src="/images/baozhengjin.png" mode="widthFix"></image>
+      <view class="one-image-text">出局</view>
+    </view>
+    <!-- 文字 -->
+    <view class="one-title">钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级</view>
+    <view class="one-bottom">
+      <view class="one-bottom-left">￥200</view>
+      <view class="one-bottom-right">去开价></view>
+    </view>
+  </view>
+  <view class="one-compete">
+    <!-- 顶部图片 -->
+    <view class="one-image">
+      <image src="/images/baozhengjin.png" mode="widthFix"></image>
+      <view class="one-image-text">出局</view>
+    </view>
+    <!-- 文字 -->
+    <view class="one-title">钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级</view>
+    <view class="one-bottom">
+      <view class="one-bottom-left">￥200</view>
+      <view class="one-bottom-right one-bottom-right-gry">已截拍</view>
+    </view>
+  </view>
+  <view class="one-compete">
+    <!-- 顶部图片 -->
+    <view class="one-image">
+      <image src="/images/baozhengjin.png" mode="widthFix"></image>
+      <view class="one-image-text one-image-text-top">成交</view>
+    </view>
+    <!-- 文字 -->
+    <view class="one-title">钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级</view>
+    <view class="one-bottom">
+      <view class="one-bottom-left">￥200</view>
+      <view class="one-bottom-right">付尾款></view>
+    </view>
+  </view>
+  <view class="one-compete">
+    <!-- 顶部图片 -->
+    <view class="one-image">
+      <image src="/images/baozhengjin.png" mode="widthFix"></image>
+      <view class="one-image-text one-image-text-top">成交</view>
+    </view>
+    <!-- 文字 -->
+    <view class="one-title">钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级钓鱼台礼兵酒珍藏级</view>
+    <view class="one-bottom">
+      <view class="one-bottom-left">￥200</view>
+      <view class="one-bottom-right">查看订单></view>
+    </view>
+  </view>
+</view>

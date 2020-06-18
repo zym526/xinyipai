@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-tag": "../../dist/tag/index",
+    "van-tab": "../../dist/tab/index",
+    "van-tabs": "../../dist/tabs/index"
+  },
+  "navigationBarTitleText": "店铺首页"
+}

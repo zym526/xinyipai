@@ -1,0 +1,14 @@
+<view style="height:100%;border:1px solid rgba(0,0,0,0);box-sizing:border-box" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <view class="topTitle">
+    <view class="title1">{{title1}}</view>
+    <view class="title2">{{title2}}</view>
+    <view class="title3">{{title3}}</view>
+  </view>
+  <image src="../../images/{{centerImg}}" class="centerImg" mode="widthFix"></image>
+  <view class="bottomTo">
+    <view class="leftThree">
+      <text wx:for="{{login}}" wx:key="index" class="{{now===item?'long':'duan'}}"></text>
+    </view>
+    <view class="goHome" bindtap="toHome">跳过</view>
+  </view>
+</view>

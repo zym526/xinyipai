@@ -1,0 +1,50 @@
+/* 背景图 */
+.topBg{
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0rpx;
+}
+/* 三个内容分布 */
+.threeWhite{
+  width: calc(100% - 48rpx);
+  background-color: white;
+  border-radius: 16rpx;
+  position: absolute;
+  left: 24rpx;
+  display: flex;
+  justify-content: space-around;
+  padding: 28rpx 0rpx;
+  top: 144rpx;
+}
+.oneLo{
+  width: 100rpx;
+  font-size: 24rpx;
+  text-align: center;
+}
+.oneLo image{
+  width: 100rpx;
+  height: auto;
+}
+/* 下方聊天 */
+.bottomAll{
+  height: calc(100vh - 340rpx);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-top: 340rpx;
+}
+.bottomAll::-webkit-scrollbar {
+  display: none;
+}
+.weui-panel:after,.weui-panel:before{
+  right: auto;
+}
+.weui-media-box__title{
+  display: flex;
+  justify-content: space-between;
+}
+.tiemMessage{
+  font-size: 22rpx;
+  color: #999999;
+}
+  

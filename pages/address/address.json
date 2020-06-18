@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-checkbox": "../../dist/checkbox/index",
+    "van-icon": "../../dist/icon/index",
+    "van-popup": "../../dist/popup/index",
+    "van-field": "../../dist/field/index"
+  },
+  "navigationBarTitleText": "收货地址"
+}

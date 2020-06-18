@@ -1,0 +1,62 @@
+<view class="topOut">
+  <!-- 七天 -->
+  <view class="outWeek">
+    <view class="week">
+      <view class="oneDay">
+        <text>三</text>
+        <text class="nowDay">27</text>
+      </view>
+      <view class="oneDay">
+        <text>四</text>
+        <text>28</text>
+      </view>
+      <view class="oneDay">
+        <text>五</text>
+        <text>29</text>
+      </view>
+      <view class="oneDay">
+        <text>六</text>
+        <text>30</text>
+      </view>
+      <view class="oneDay">
+        <text>日</text>
+        <text>31</text>
+      </view>
+      <view class="oneDay">
+        <text>一</text>
+        <text>1</text>
+      </view>
+      <view class="oneDay">
+        <text>二</text>
+        <text>2</text>
+      </view>
+    </view>
+  </view>
+  <!-- 保留七天的记录 -->
+  <view class="jilu">
+    <text>为您保留七天的记录</text>
+    <view class="rightJL">
+      <view class="iconfont icon-shanchu" style="font-size:30rpx"></view>清空足迹
+    </view>
+  </view>
+</view>
+<view class="bottomTime">
+  <text>4月1日</text>
+  <text class="divider"></text>
+</view>
+<!-- 推荐商品 -->
+<view class="paipinOuter">
+  <view class="paipin" wx:for="{{anyCom}}" wx:key="index" bindtap="toInfo">
+    <view class="paipinImg">
+      <image src="../../images/{{item.img}}" mode="widthFix"></image>
+    </view>
+    <view class="paipinTitle">{{item.title}}</view>
+    <view class="paipinTitle2">
+      <view class="nowMoney">
+        <text class="dangqianjia">当前价：</text>
+        <text class="jiage">¥{{item.money}}</text>
+      </view>
+      <view class="zhaoxiangsi">找相似</view>
+    </view>
+  </view>
+</view>

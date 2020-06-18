@@ -1,0 +1,111 @@
+<image src="{{base64}}" class="topBg" mode="widthFix"></image>
+
+<view class="weui-panel__bd" style="margin-top: 30rpx">
+	<view class="weui-media-box weui-media-box_appmsg">
+		<view class="weui-media-box__hd" style="background:white;border-radius:50%;width:110rpx;height:110rpx">
+			<image class="weui-media-box__thumb" src="../../images/lunbo.png" alt style="width:100%;height:auto" mode="widthFix"></image>
+		</view>
+		<view class="weui-media-box__bd">
+			<h4 class="weui-media-box__title" style="color:white;font-size:36rpx">张仙仙</h4>
+			<view class="weui-media-box__desc" style="color:white;font-size:32rpx">176****9378</view>
+		</view>
+	</view>
+</view>
+<!-- 会员 -->
+<view class="vip">
+  <view class="vipLeft">
+    <image src="../../images/vip.png" mode="widthFix"></image>
+    <view class="vipText">开通VIP超值抢拍</view>
+  </view>
+  <view class="vipRight">去开通</view>
+</view>
+<!-- 订单 -->
+<view class="indent">
+  <view class="weui-cell" bindtap="toDingdan">
+		<view class="weui-cell__bd">
+			<text style="vertical-align: middle;font-size:32rpx">我的订单</text>
+		</view>
+		<view class="weui-cell__ft" style="font-size:26rpx">全部订单<van-icon name="arrow" size="22rpx"/></view>
+	</view>
+  <view class="weui-flex">
+		<view class="weui-flex__item" bindtap="toDingdan">
+      <view>
+        <image src="../../images/daifukuan.png" mode="widthFix"></image>
+      </view>
+      <view>待付款</view>
+    </view>
+		<view class="weui-flex__item" bindtap="toDingdan">
+      <view>
+        <image src="../../images/fahuo.png" mode="widthFix"></image>
+      </view>
+      <view>待发货</view>
+    </view>
+		<view class="weui-flex__item" bindtap="toDingdan">
+      <view>
+        <image src="../../images/shouhuo.png" mode="widthFix"></image>
+      </view>
+      <view>待收货</view>
+    </view>
+		<view class="weui-flex__item" bindtap="toDingdan">
+      <view>
+        <image src="../../images/pingjia.png" mode="widthFix"></image>
+      </view>
+      <view>待评价</view>
+    </view>
+	</view>
+	<!-- 我的服务 -->
+	<view>
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				<text style="vertical-align: middle;font-size:32rpx">我的服务</text>
+			</view>
+		</view>
+	</view>
+	<view class="weui-flex">
+		<view class="weui-flex__item" bindtap="toAddress">
+      <view>
+        <image src="../../images/shouhuodizhi1.png" mode="widthFix"></image>
+      </view>
+      <view>收货地址</view>
+    </view>
+		<view class="weui-flex__item">
+      <view>
+        <image src="../../images/baozhengjin.png" mode="widthFix"></image>
+      </view>
+      <view>保证金</view>
+    </view>
+		<view class="weui-flex__item">
+      <view>
+        <image src="../../images/shouhuodizhi.png" mode="widthFix"></image>
+      </view>
+      <view>个人信息</view>
+    </view>
+		<view class="weui-flex__item">
+      <view>
+        <image src="../../images/jiangpinjilu.png" mode="widthFix"></image>
+      </view>
+      <view>奖品记录</view>
+    </view>
+	</view>
+	<view class="weui-flex" style="margin: 40rpx 0rpx">
+		<view class="weui-flex__item">
+      <view>
+        <image src="../../images/shouhuodizhi2.png" mode="widthFix"></image>
+      </view>
+      <view>关于我们</view>
+    </view>
+		<view class="weui-flex__item">
+      <view>
+        <image src="../../images/yijianfankui.png" mode="widthFix"></image>
+      </view>
+      <view>意见反馈</view>
+    </view>
+		<view class="weui-flex__item"></view>
+		<view class="weui-flex__item"></view>
+	</view>
+	<!-- 图片 -->
+	<view class="bottomImg">
+		<view>拍卖买卖一起搞</view>
+		<view>就在芯意拍</view>
+	</view>
+</view>

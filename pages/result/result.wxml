@@ -1,0 +1,10 @@
+<!--pages/result/result.wxml-->
+<view class="outerOnly">
+  <image src="../../images/succeed.png" mode="widthFix"></image>
+  <view class="title1">拍卖成功！</view>
+  <view class="title2">本次订单获得积分<text>50</text>积分</view>
+  <view class="buttonTwo">
+    <a class="weui-btn" bindtap="toIndex">回到首页</a>
+    <a class="weui-btn" bindtap="toLineitem">查看订单</a>
+  </view>
+</view>

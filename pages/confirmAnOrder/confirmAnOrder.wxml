@@ -1,0 +1,61 @@
+<view class="address" bindtap="toAddress">
+  <view class="address-left">
+    <view class="address-image">
+      <view class="iconfont icon-dizhi"></view>
+    </view>
+    <view class="address-left-text">
+      <view class="address-left-text-one" hidden="{{isAddress}}">请添加收获地址</view>
+      <view class="address-left-text-two" hidden="{{!isAddress}}">
+        <view class="address-name">张仙仙</view>
+        <view class="address-phone">15555555555</view>
+      </view>
+      <view class="address-left-text-three" hidden="{{!isAddress}}">
+        浙江省杭州市西湖区云栖小镇六合金座五栋501浙江省杭州市西湖区云栖小镇六合金座五栋501浙江省杭州市西湖区云栖小镇六合金座五栋501浙江省杭州市西湖区云栖小镇六合金座五栋501
+      </view>
+    </view>
+  </view>
+  <view class="iconfont icon-youjiantou"></view>
+</view>
+<!-- 商品信息 -->
+<view class="info">
+  <view class="info-top">
+    <image src="../../images/baozhengjin.png" mode="widthFix"></image>
+    <text>店铺名称</text>
+  </view>
+  <!-- 商品 -->
+  <view class="info-center">
+    <image src="../../images/baozhengjin.png" mode="widthFix"></image>
+    <view class="info-center-right">
+      <view class="info-center-text">商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名名</view>
+      <view class="info-center-money">成交价：￥201</view>
+    </view>
+  </view>
+  <!-- 购买数量 -->
+  <view class="info-number">
+    <view class="info-number-left">购买数量</view>
+    <van-stepper value="{{ number }}" integer bind:change="onChange" input-width="57rpx" button-size="57rpx" min="1" max="15"/>
+  </view>
+  <!-- 运费 -->
+  <view class="info-freight">
+    <view class="info-freight-left">运费</view>
+    <view class="info-freight-right">免运费</view>
+  </view>
+  <!-- 备注 -->
+  <view class="info-remark">
+    <view class="info-remark-left">备注</view>
+    <input type="text" class="info-remark-right" placeholder="选填" />
+  </view>
+  <!-- 小计 -->
+  <view class="info-subtotal">
+    <text class="info-subtotal-left">共1件</text>
+    <text class="info-subtotal-right">小计：￥201</text>
+  </view>
+</view>
+<!-- 提交订单 -->
+<view class="sub-bottom">
+  <view class="sub-bottom-left">
+    <text class="sub-bottom-gray">共1件</text>
+    <text class="sub-bottom-red">小计：￥201</text>
+  </view>
+  <view class="sub-bottom-btn">提交订单</view>
+</view>

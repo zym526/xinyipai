@@ -1,0 +1,29 @@
+<view>
+  <!-- 全部/有图/视频 -->
+  <view class="fenlei">
+    <view wx:for="{{allLeibie}}" wx:key="index" data-item="{{item}}" bindtap="changeFenlei" class="oneFenlei {{newItem===item?'action':'noAction'}}">{{item}}</view>
+  </view>
+  <!-- 个人评价 -->
+  <view class="pingjia">
+    <view class="onePingjia" wx:for="{{allPingjia}}" wx:key="index">
+      <view class="topPingjia">
+        <view>
+          <van-image round fit="cover" width="40rpx" height="40rpx" src="../../images/{{item.image}}" />
+          <text class="youName">{{item.name}}</text>
+          <van-rate readonly value="{{ item.value }}" size="20rpx" gutter="0rpx"/>
+        </view>
+        <text class="timeRight">{{item.time}}</text>
+      </view>
+      <view class="pingjiaContent">
+        {{item.content}}
+      </view>
+      <view class="pingjiaImage">
+        <van-grid column-num="3" border="{{ false }}">
+          <van-grid-item use-slot wx:for="{{ item.images }}" wx:for-item="insideItem">
+            <image style="width: 100%; height: auto;" src="../../images/{{insideItem}}" mode="widthFix"/>
+          </van-grid-item>
+        </van-grid>
+      </view>
+    </view>
+  </view>
+</view>

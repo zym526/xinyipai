@@ -1,0 +1,37 @@
+page{
+  background: #ececec;
+}
+.topText{
+  font-size: 26rpx;
+  line-height: 60rpx;
+  background: rgba(230,0,18,0.1);
+  color: #E60012;
+  text-align: center;
+}
+.van-cell{
+  background: rgba(0,0,0,0)!important;
+  border-bottom: 1rpx solid rgba(0,0,0,0.05)
+}
+.but{
+  padding: 5rpx 15rpx; 
+  font-size: 24rpx;
+  border-radius: 10rpx;
+}
+.but1{
+  border: 2rpx solid red; 
+  color:  #E60012;
+}
+.but2{
+  border: 2rpx solid #999999;
+  color: #999999;
+}
+.butBottom{
+  background: #E60012;
+  color: white;
+  font-size: 30rpx;
+  font-weight: 200;
+  padding: 0rpx;
+  line-height: 68rpx;
+  width: calc(100% - 48rpx)!important;
+  margin-top:  50rpx;
+}

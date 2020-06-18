@@ -1,0 +1,133 @@
+page {
+  background: #F5F5F5;
+}
+/* .searchbar-result{
+  margin-top:0;
+  font-size:28rpx
+}
+.searchbar-result .weui-cell__bd{
+  padding:4rpx 0 4rpx 40rpx;
+  color:var(--weui-FG-1)
+}
+.searchbar-result:before{
+  display:none
+} */
+/* 取消背景颜色 */
+/* .weui-search-bar{
+  background-color: rgba(0,0,0,0);
+  padding: 24rpx;
+} */
+/* 搜索框 */
+.inputCla{
+  font-size: 28rpx;
+  line-height: 60rpx;
+  height: 60rpx!important;
+}
+.van-search{
+  padding: 24rpx!important;
+}
+.van-search__content{
+  padding-left: 0rpx!important;
+  border-radius: 60rpx!important;
+}
+.customCla .field-index--van-field{
+  background-color: white!important;
+  border-radius: 60rpx;
+}
+.customCla .van-cell__left-icon-wrap{
+  font-size: 36rpx!important;
+  height: 60rpx!important;
+  margin-left: 15rpx!important;
+}
+.customCla .van-field__clear-root{
+  font-size: 36rpx!important;
+  height: 60rpx!important;
+}
+/* 左右分布 */
+.leftRight{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 24rpx;
+  box-sizing: border-box;
+}
+/* 左侧导航 */
+.leftClassify{
+  width: 200rpx;
+  height: calc(100vh - 65px);
+  font-size: 24rpx;
+  color: #999999;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.leftClassify::-webkit-scrollbar {
+  display: none;
+}
+.classifyOne,.classifyTwo{
+  text-align: center;
+  line-height: 98rpx;
+  margin-bottom: 6rpx;
+}
+.classifyTwo{
+  background-color: white;
+}
+.classifyOne{
+  font-size: 36rpx;
+  color: #333333;
+}
+/* 右侧 */
+.commodity{
+  width: calc(100% - 230rpx);
+  height: calc(100vh - 65px);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.commodity::-webkit-scrollbar {
+  display: none;
+}
+/* 顶部图片 */
+.topImage{
+  width: 100%;
+  background-color: white;
+  border-radius: 10rpx;
+  text-align: center;
+  padding: 60rpx 0rpx;
+}
+.topImage image{
+  width: 120rpx;
+  height: auto;
+}
+/* 标题 */
+.commodityTitle{
+  font-size: 28rpx;
+  margin-top: 60rpx;
+  margin-bottom: 22rpx;
+}
+.commodityAll{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.commodityOne{
+  width: 100rpx;
+  font-size: 24rpx;
+  text-align: center;
+  color: #333333;
+  margin-bottom: 42rpx;
+}
+.commodityOne:nth-child(3n-1){
+  margin-left: calc((100% - 300rpx) / 2);
+  margin-right: calc((100% - 300rpx) / 2);
+}
+.oneImage{
+  width: 100rpx;
+  height: 100rpx;
+  background-color: white;
+  border-radius: 100rpx;
+  margin-bottom: 26rpx;
+}
+.oneImage image{
+  width: 60rpx;
+  height: auto;
+  margin-top: 20rpx;
+}

@@ -1,0 +1,25 @@
+<image src="../../images/topBg.png" class="topBg" mode="widthFix"></image>
+<!-- 物流/精选/通知 -->
+<view class="threeWhite">
+  <view class="oneLo" wx:for="{{threeWhite}}" wx:key="index" bindtap="toNewPage" data-title="{{item.title}}">
+    <image src="../../images/{{item.img}}" mode="widthFix"></image>
+    <view>{{item.title}}</view>
+  </view>
+</view>
+<!-- 聊天 -->
+<view class="weui-panel weui-panel_access bottomAll">
+	<view class="weui-panel__bd">
+	  <a class="weui-media-box weui-media-box_appmsg" wx:for="{{message}}" wx:key="index">
+			<view class="weui-media-box__hd">
+				<image class="weui-media-box__thumb" src="../../images/{{item.img}}" alt  mode="widthFix"></image>
+			</view>
+			<view class="weui-media-box__bd">
+				<h4 class="weui-media-box__title">
+          <text>{{item.title}}</text>
+          <text class="tiemMessage">{{item.time}}</text>
+        </h4>
+				<view class="weui-media-box__desc">{{item.messageOne}}</view>
+			</view>
+		</a>
+	</view>
+</view>

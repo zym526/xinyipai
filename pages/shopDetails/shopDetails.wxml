@@ -1,0 +1,87 @@
+<view>
+  <!-- 店铺信息 -->
+  <view class="weui-cells shangpu">
+    <view class="weui-cell" style="width:50%">
+      <view class="weui-cell__hd" style="margin-right:12rpx">
+        <image src="{{shopAllInfo.logo}}" mode="widthFix" style="width:97rpx;height:auto;"></image>
+      </view>
+      <view class="weui-cell__bd">
+        <view style="font-size:30rpx;line-height:48.5rpx">{{shopAllInfo.store_name}}</view>
+        <view style="font-size:24rpx;line-height:48.5rpx">{{shopAllInfo.store_collect}}人关注</view>
+      </view>
+    </view>
+    <view class="attention">
+      <button bindtap="changeGZ"><image src="../../images/guanzhu.png" mode="widthFix" hidden="{{guanzhuHi}}"></image>{{guanzhu}}</button>
+    </view>
+  </view>
+  <!-- 好评率 -->
+  <view class="reputation">
+    <view class="weui-cells weui-cells_after-title" style="border-radius:10rpx 10rpx 10rpx 10rpx">
+      <view class="weui-cell">
+        <view class="weui-cell__bd" style="font-size:32rpx">好评率</view>
+      </view>
+      <view class="bottomRep">
+        <view class="repOne">
+          <text class="repOneLfet">商品好评率</text>
+          <text>{{haopinglv}}%</text>
+          <!-- <text class="repOneRed">高于行业：19.2%</text> -->
+        </view>
+        <view class="repOne">
+          <text class="repOneLfet">商品服务</text>
+          <text>{{shopAllInfo.store_servicecredit}}分</text>
+          <!-- <text class="repOneOrang">高于行业：19.2%</text> -->
+        </view>
+        <view class="repOne">
+          <text class="repOneLfet">商品发货</text>
+          <text>{{shopAllInfo.store_deliverycredit}}分</text>
+          <!-- <text class="repOneOrang">高于行业：19.2%</text> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 基础信息 -->
+  <view class="information">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd" style="font-size:32rpx">基本信息</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">店铺名称</view>
+        <view class="weui-cell__ft">{{shopAllInfo.store_name?shopAllInfo.store_name:'暂无'}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">服务电话</view>
+        <view class="weui-cell__ft">{{shopAllInfo.store_presales?shopAllInfo.store_presales:'暂无'}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">所在地</view>
+        <view class="weui-cell__ft">{{shopAllInfo.live_store_address?shopAllInfo.live_store_address:'暂无'}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">企业资质</view>
+        <view class="weui-cell__ft">
+          <image src="../../images/zhengjian.png" mode="widthFix"></image>
+          <van-icon name="arrow" size="25rpx" />
+        </view>
+      </view>
+      <view class="weui-cell" bindtap="phoneCall" data-phone="{{shopAllInfo.store_phone}}">
+        <view class="weui-cell__bd">联系卖家</view>
+        <view class="weui-cell__ft">
+          <image src="../../images/kefu1.png" mode="widthFix"></image>
+          <van-icon name="arrow" size="25rpx" />
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">店铺二维码</view>
+        <view class="weui-cell__ft">
+          <image src="../../images/erweima.png" mode="widthFix"></image>
+          <van-icon name="arrow" size="25rpx" />
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">开店时间</view>
+        <view class="weui-cell__ft">{{shopAllInfo.store_addtime}}</view>
+      </view>
+    </view>
+  </view>
+</view>

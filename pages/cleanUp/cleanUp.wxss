@@ -1,0 +1,57 @@
+page{
+  background-color: #F0F2F5;
+}
+.clean-up{
+  background:-moz-linear-gradient(top,#E7260A 15%,#F0F2F5);
+  background:-webkit-linear-gradient(top,#E7260A 15%,#F0F2F5);
+  background:-o-linear-gradient(top,#E7260A 15%,#F0F2F5);
+  background:-ms-linear-gradient(top,#E7260A 15%,#F0F2F5);
+  background:linear-gradient(top,#E7260A 15%,#F0F2F5);
+  padding: 24rpx 24rpx 0rpx;
+  box-sizing: border-box;
+}
+.top-outer{
+  background-color: white;
+  border-radius: 10rpx;
+  padding: 10rpx 20rpx 20rpx;
+  box-sizing: border-box;
+}
+.top-outer .icon-wenhao{
+  text-align: right;
+}
+.top-all-money{
+  text-align: center;
+}
+.top-all-text{
+  font-size: 26rpx;
+  color: #333333;
+}
+.top-all-money-number{
+  font-size: 70rpx;
+  color: #E7280C;
+  font-weight: bold;
+}
+.top-bottom{
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  margin-top: 58rpx;
+  margin-bottom: 20rpx;
+}
+.top-bottom-left,.top-bottom-right{
+  font-size: 26rpx;
+  color: #666666;
+}
+.top-bottom-left-money,.top-bottom-right-money{
+  font-size: 40rpx;
+  color: #333333;
+}
+.line-center{
+  width: 2rpx;
+  height: 60rpx;
+  background-color: #E7260A;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}

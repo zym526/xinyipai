@@ -1,0 +1,208 @@
+page{
+  background-color: #f7f7f7;
+}
+.address{
+  margin: 20rpx 24rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 27rpx 20rpx;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 0rpx 20rpx rgba(0,0,0,0.1);
+}
+.address-left{
+  width: calc(100% - 20rpx);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.address-image{
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 56rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:-moz-linear-gradient(top,#E7770A 25%,#E7260A);
+  background:-webkit-linear-gradient(top,#E7770A 25%,#E7260A);
+  background:-o-linear-gradient(top,#E7770A 25%,#E7260A);
+  background:-ms-linear-gradient(top,#E7770A 25%,#E7260A);
+  background:linear-gradient(top,#E7770A 25%,#E7260A);
+}
+.address-image .icon-dizhi{
+  font-size: 32rpx;
+  color: white;
+}
+.address-left-text{
+  width: calc(100% - 77rpx);
+}
+.address-left-text-one{
+  font-size: 32rpx;
+  line-height: 60rpx;
+  color:#333333;
+}
+.address-left-text-two{
+  font-size: 30rpx;
+  line-height: 60rpx;
+  display: flex;
+}
+.address-name{
+  color: #333333;
+  margin-right: 22rpx;
+}
+.address-phone{
+  color: #666666;
+  font-size: 26rpx;
+}
+.address-left-text-three{
+  font-size: 26rpx;
+  line-height: 40rpx;
+  color: #666666;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.address .icon-youjiantou{
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+}
+/* 商品信息 */
+.info{
+  margin: 0rpx 24rpx;
+  box-shadow: 0rpx 0rpx 20rpx rgba(0,0,0,0.1);
+  border-radius: 10rpx;
+  background-color: white;
+  margin-bottom: 130rpx;
+}
+.info-top{
+  width: 100%;
+  padding: 21rpx 20rpx;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 3rpx solid #E1E1E1;
+}
+.info-top image{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  margin-right: 24rpx;
+}
+.info-top text{
+  font-size: 32rpx;
+  color: #666666;
+}
+/* 商品 */
+.info-center{
+  margin: 0rpx 20rpx;
+  padding: 30rpx 0rpx;
+  display: flex;
+  border-bottom: 3rpx solid #E1E1E1;
+}
+.info-center image{
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+.info-center-right{
+  width: calc(100% - 160rpx);
+  font-size: 28rpx;
+  line-height: 35rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.info-center-text{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.info-center-money{
+  color: #E7260A;
+  font-weight: bold;
+}
+/* 购买数量,运费,备注 */
+.info-number,.info-freight,.info-remark{
+  margin: 0rpx 20rpx;
+  padding: 30rpx 0rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3rpx solid #E1E1E1;
+  font-size: 30rpx;
+  color: #666666;
+}
+.info-freight-right{
+  color: #333333;
+}
+/* 备注 */
+.info-remark-right{
+  width: 60%;
+  text-align: right;
+  font-size: 30rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding-right: 15rpx;
+  box-sizing: border-box;
+  color: #333333;
+}
+/* 小计 */
+.info-subtotal{
+  padding: 30rpx 0rpx;
+  box-sizing: border-box;
+  margin: 0rpx 26rpx;
+  text-align: right;
+  font-size: 30rpx;
+  color: #E7260A;
+}
+.info-subtotal-left{
+  font-size: 26rpx;
+  color: #999999;
+  margin-right: 10rpx;
+}
+/* 提交订单 */
+.sub-bottom{
+  position: fixed;
+  bottom: 30rpx;
+  left: 24rpx;
+  right: 24rpx;
+  background-color: white;
+  box-shadow: 0rpx 0rpx 20rpx rgba(0,0,0,0.1);
+  border-radius: 10rpx;
+  display: flex;
+  font-size: 30rpx;
+  line-height: 90rpx;
+}
+.sub-bottom-left{
+  width: calc(100% - 227.1rpx);
+  text-align: right;
+  padding-right: 37rpx;
+  box-sizing: border-box;
+}
+.sub-bottom-btn{
+  width: 227.1rpx;
+  background-color: #E7260A;
+  color: white;
+  border-radius: 0rpx 10rpx 10rpx 0rpx;
+  text-align: center;
+}
+.sub-bottom-gray{
+  font-size: 26rpx;
+  color: #999999;
+  margin-right: 10rpx;
+}
+.sub-bottom-red{
+  color: #E7260A;
+}

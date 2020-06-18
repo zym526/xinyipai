@@ -1,0 +1,180 @@
+<!--pages/ShopFront/ShopFront.wxml-->
+<view>
+  <!-- 顶部 -->
+  <view class="topBg">
+    <image src="../../images/zhuye.png" mode="widthFix"></image>
+    <!-- 商家 -->
+    <view class="topSJ">
+      <!-- 商店名称 -->
+      <view class="weui-cells mingcheng">
+        <view class="weui-cell MCleft" bindtap="toShopDetails">
+          <view class="weui-cell__hd leftShop">
+            <image src="{{shopAllInfo.logo}}" mode="widthFix" style="width:100%;height:auto"></image>
+          </view>
+          <view class="weui-cell__bd">
+            <view style="font-size:40rpx">{{shopAllInfo.store_name}}</view>
+            <view class="twoRV">
+              <view hidden="{{ !shopAllInfo.store_state }}">
+                <van-tag round style="margin-right:10rpx">{{shopAllInfo.store_state?'已认证':''}}</van-tag>
+              </view>
+              <view>
+                <van-tag round>V{{shopAllInfo.grade_id}}</van-tag>
+              </view> 
+            </view>
+          </view>
+        </view>
+        <view class="attention {{attention==='关注'?'attention1':''}}">
+          <button bindtap="changeAttention">{{attention}}</button>
+        </view>
+      </view>
+      <view class="shopBottom">
+        <view>
+          <view class="bottomNum">¥{{shopAllInfo.store_avaliable_deposit}}</view>
+          <view class="bottomTex">保证金</view>
+        </view>
+        <view class="bian"></view>
+        <view>
+          <view class="bottomNum">{{shopAllInfo.store_collect}}</view>
+          <view class="bottomTex">关注数</view>
+        </view>
+        <view class="bian"></view>
+        <view>
+          <view class="bottomNum">{{haopinglv}}%</view>
+          <view class="bottomTex">好评率</view>
+        </view>
+      </view>
+      <!-- 优良中差 -->
+      <view class="evaluate">
+        <view class="bottomEval">
+          <text class="miaoshu">店铺描述</text>
+          <text class="pingjia">{{shopAllInfo.store_desccredit}}</text>
+        </view>
+        <view class="bottomEval">
+          <text class="miaoshu">店铺服务</text>
+          <text class="pingjia">{{shopAllInfo.store_servicecredit}}</text>
+        </view>
+        <view class="bottomEval">
+          <text class="miaoshu">店铺发货</text>
+          <text class="pingjia">{{shopAllInfo.store_deliverycredit}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 首页/商品/推荐/新品/价格 -->
+  <view class="classify">
+    <view class="ifyOne {{title==='首页'?'bottomBorder':''}}" data-title="首页" bindtap="change">首页</view>
+    <view class="ifyOne {{title==='商品'?'bottomBorder':''}}" data-title="商品" bindtap="change">商品</view>
+    <view class="ifyOne {{title==='推荐'?'bottomBorder':''}}" data-title="推荐" bindtap="change">推荐</view>
+    <view class="ifyOne {{title==='新品'?'bottomBorder':''}}" data-title="新品" bindtap="change">新品</view>
+    <view class="ifyOne {{title==='价格'?'bottomBorder':''}}" data-title="价格" bindtap="change">
+      <text>价格</text>
+      <view class="insideImageSX">
+        <image src="../../images/{{jiage[0]}}" mode="widthFix"></image>
+        <image src="../../images/{{jiage[1]}}" mode="widthFix"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 轮播图 -->
+  <view class="lunbotu" hidden="{{indexHidden}}">
+    <swiper class='lunbo' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(231,28,10,0.3)" indicator-active-color="#E7260A" style="height:{{Hei}}">
+      <swiper-item wx:for="{{shopAllInfo.banners}}" class="outerLunBoSY" wx:key="index"> <image src='{{item}}' mode="widthFix" bindload='imgH'></image> </swiper-item>
+    </swiper>  
+  </view>
+  <view class="recommend" hidden="{{indexHidden}}">
+    <!-- 推荐产品 -->
+    <view class="recommendTop">
+      <view class="reTopLeft">推荐产品</view>
+      <view class="reTopRight" bindtap="lookTuijian"><text>更多</text><view class='arrow'></view></view>
+    </view>
+    <!-- 商品 -->
+    <view class="shangpin">
+      <view class="shangpinLeft" bindtap="toInfo" wx:for="{{allData.recommend}}" wx:key="index">
+        <view class="shangpinTopImg"> 
+          <image src="{{item.imgurl}}" mode="widthFix"></image>
+          <view class="{{item.text==='进行中'?'jinxingzhong':'huisebg'}} tongyi">{{item.text}}</view>
+        </view>
+        <view class="shangpinTitle">{{item.goods_name}}</view>
+        <view class="shangpinCenterImg">
+          <image src="../../images/{{item.text==='进行中'?'jindutiao2.png':item.text==='已结束'?'jindutiao2.png':'jindutiao1.png'}}" mode="widthFix" style="width:22rpx;height:22rpx"></image>
+          <view class="img_style {{item.cont>0?'hong_view':'hui_view'}}"></view>
+          <image src="../../images/{{item.cont>0?'jindutiao2.png':'jindutiao1.png'}}" mode="widthFix" style="width:22rpx;height:22rpx"></image>
+          <view class="img_style hui_view"></view>
+          <image src="../../images/jindutiao1.png" mode="widthFix" style="width:22rpx;height:22rpx"></image>
+        </view>
+        <view class="shangpinMon">
+          当前价<text>¥{{item.goods_price}}</text>
+        </view>
+        <view class="shangpinBottom">
+          <text>出价数：{{item.cont}}</text>
+          <text class="{{item.text==='进行中'?'jxz':'qita'}}">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 图片 -->
+    <view class="baiduImg">
+      <image src="../../images/zhuye2.png" mode="widthFix"></image>
+      <view class="baiduLeftText">
+        <view class="textOne">翡翠彩宝</view>
+        <view class="textTwo">源头直采  低价捡漏</view>
+        <view class="textThree">立即抢购 ></view>
+      </view>
+    </view>
+    <!-- 新品上架 -->
+    <view class="recommendTop">
+      <view class="reTopLeft">新品上架</view>
+      <view class="reTopRight" bindtap="lookNew"><text>更多</text><view class='arrow'></view></view>
+    </view>
+    <!-- 商品 -->
+    <view class="shangpin">
+      <view class="shangpinLeft" bindtap="toInfo" wx:for="{{allData.new}}" wx:key="index">
+        <view class="shangpinTopImg">
+          <image src="{{item.imgurl}}" mode="widthFix"></image>
+          <view class="{{item.text==='进行中'?'jinxingzhong':'huisebg'}} tongyi">{{item.text}}</view>
+        </view>
+        <view class="shangpinTitle">{{item.goods_name}}</view>
+        <view class="shangpinCenterImg">
+          <image src="../../images/{{item.text==='进行中'?'jindutiao2.png':item.text==='已结束'?'jindutiao2.png':'jindutiao1.png'}}" mode="widthFix" style="width:22rpx;height:22rpx"></image>
+          <view class="img_style {{item.cont>0?'hong_view':'hui_view'}}"></view>
+          <image src="../../images/{{item.cont>0?'jindutiao2.png':'jindutiao1.png'}}" mode="widthFix" style="width:22rpx;height:22rpx"></image>
+          <view class="img_style hui_view"></view>
+          <image src="../../images/jindutiao1.png" mode="widthFix" style="width:22rpx;height:22rpx"></image>
+        </view>
+        <view class="shangpinMon">
+          当前价<text>¥{{item.goods_price}}</text>
+        </view>
+        <view class="shangpinBottom">
+          <text>出价数：{{item.cont}}</text>
+          <text class="{{item.text==='进行中'?'jxz':'qita'}}">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 商品/推荐/新品/价格页面 -->
+  <view class="line_commodity" hidden="{{!indexHidden}}">
+    <view class="shangpinLeft" bindtap="toInfo" wx:for="{{qitaData}}" wx:key="index">
+        <view class="shangpinTopImg"> 
+          <image src="{{item.imgurl}}" mode="widthFix"></image>
+          <view class="{{item.text==='进行中'?'jinxingzhong':'huisebg'}} tongyi">{{item.text}}</view>
+        </view>
+        <view class="shangpinTitle">{{item.goods_name}}</view>
+        <view class="shangpinCenterImg">
+          <image src="../../images/{{item.text==='进行中'?'jindutiao2.png':item.text==='已结束'?'jindutiao2.png':'jindutiao1.png'}}" mode="widthFix" style="width:22rpx;height:22rpx"></image>
+          <view class="img_style {{item.cont>0?'hong_view':'hui_view'}}"></view>
+          <image src="../../images/{{item.cont>0?'jindutiao2.png':'jindutiao1.png'}}" mode="widthFix" style="width:22rpx;height:22rpx"></image>
+          <view class="img_style hui_view"></view>
+          <image src="../../images/jindutiao1.png" mode="widthFix" style="width:22rpx;height:22rpx"></image>
+        </view>
+        <view class="shangpinMon">
+          当前价<text>¥{{item.goods_price}}</text>
+        </view>
+        <view class="shangpinBottom">
+          <text>出价数：{{item.cont}}</text>
+          <text class="{{item.text==='进行中'?'jxz':'qita'}}">{{item.text}}</text>
+        </view>
+      </view>
+  </view>
+  <!-- 回到顶部 -->
+  <view class="go_top" hidden='{{!floorstatus}}' bindtap="goTop">
+    <van-icon name="upgrade" size="90rpx" color="#E60012"/>
+  </view>
+</view>

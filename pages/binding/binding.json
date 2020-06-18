@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-field": "../../dist/field/index"
+  },
+  "navigationBarTitleText": "绑定手机号"
+}
