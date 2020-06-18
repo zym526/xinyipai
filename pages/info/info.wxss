@@ -225,6 +225,10 @@ page{
   background-color: white;
   margin-top: 10rpx;
 }
+.noPeople{
+  background-color: white;
+  margin-top: 10rpx;
+}
 /* .forPeo-popup{
   margin: 24rpx;
 } */
@@ -551,22 +555,24 @@ page{
 }
 .zhijiegm,.lijiqp{
   padding: 0rpx;
-  width: 240rpx!important;
+  width: 280rpx!important;
   height: 70rpx;
   border-radius: 0rpx;
   font-size: 28rpx;
   /* line-height: 62rpx; */
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+.zhijiegm{
+  width: 190rpx!important;
+}
 .pledge{
-  font-size: 20rpx;
+  font-size: 24rpx;
 }
 .zhijiegm{
-  border: 4rpx solid #707070;
+  border: 4rpx solid #F54E18;
   border-right: none;
   color: #E7260A;
   border-radius: 10rpx 0rpx 0rpx 10rpx;
@@ -688,7 +694,7 @@ page{
 .share{
   position: fixed;
   right: 17rpx;
-  top: 1000rpx;
+  bottom: 150rpx;
   width: 80rpx;
   height: 80rpx;
   border-radius: 80rpx;

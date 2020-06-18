@@ -196,10 +196,9 @@
       </view>   
     </view>
     <view class="rightShop">
-      <button class="zhijiegm" bindtap="toBuy">直接购买</button>
+      <button class="zhijiegm" bindtap="toBuy" style="opacity:{{isBuyNow?'1':'0.5'}}">直接购买</button>
       <button class="lijiqp" bindtap="toDepositpayment" style="opacity: {{isPat?'1':'0.5'}};">
-        {{depositPayment}}
-        <view class="pledge" hidden="{{depositPayment!='立即参拍'}}">保证金：￥{{shotdetail.bond_price}}</view>
+        {{depositPayment}} <text class="pledge" hidden="{{depositPayment!='立即参拍'}}">(保:{{shotdetail.bond_price}})</text>
       </button>
     </view>
   </view>

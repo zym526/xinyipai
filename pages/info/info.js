@@ -164,6 +164,7 @@ Page({
     if(wx.getStorageSync('userInfo')&&wx.getStorageSync('openId')){
       // 判断库存是否还有库存,如果isBuyNow为true时则库存未达上线,跳转订单页面
       if(that.data.isBuyNow){
+        app.globalData.justAndAuction=1
         wx.navigateTo({
           url: '/pages/confirmAnOrder/confirmAnOrder',
         })
@@ -569,43 +570,60 @@ Page({
         chuiziAll[i]="/images/chuizi3.png"
       }
       // 将出的最高价后面改为大锤子，为下一次出价
-      for(var i=0;i<chuiziAll.length;i++){
-        if((i+1)==dataLength){
-          // 判断用户是否登录
-          if(wx.getStorageSync('userId')){
-            // 如果下一次出价没有超过最高价
-            if(that.data.minimum<=that.data.shotdetail.goods_promotion_price){
-              // 判断自己是否已经出过价格
-              for(var i=0;i<that.data.allAuctionporce.length;i++){
-                // 如果出过价格
-                if(that.data.allAuctionporce[i].member_id==wx.getStorageSync('userId')){
-                  // 判断是否只能出价一次
-                  if(that.data.shotdetail.is_user==0){
-                    chuiziAll[i+2]="/images/chuizi.png"
+      if(dataLength==0){//如果没有人出价则第二个为大锤子
+        chuiziAll[1]="/images/chuizi.png"
+      }else{
+        for(var i=0;i<chuiziAll.length;i++){
+          if((i-1)==dataLength){
+            // 判断用户是否登录
+            if(wx.getStorageSync('userId')){
+              // 如果下一次出价没有超过最高价
+              if(that.data.minimum<=that.data.shotdetail.goods_promotion_price){
+                // 判断自己是否已经出过价格，并出价几次
+                var allJia=[]
+                var oncJia
+                for(var j=0;j<that.data.allAuctionporce.length;j++){
+                  // 如果出过价格
+                  if(that.data.allAuctionporce[j].member_id==wx.getStorageSync('userId')){
+                    allJia.push(that.data.allAuctionporce[j])
+                    oncJia=j//如果只有一次出价则这个为当前出价人位置
+                  }
+                }
+                // 判断是否只能出价一次
+                if(that.data.shotdetail.is_user==0){
+                  that.setData({
+                    depositPayment:"去出价",
+                  })
+                  // 如果数组长为0则有人出价自己未出价
+                  if(allJia.length==0){
+                    chuiziAll[i]=wx.getStorageSync('userInfo').avatarUrl
+                  }else{
+                    chuiziAll[i]="/images/chuizi.png"
                     // 不能再次出价
                     that.setData({
-                      isPat:false,
-                      depositPayment:"去出价",
+                      isPat:false
                     })
                     // 判断自己头像的位置
-                    chuiziAll[dataLength-i]=wx.getStorageSync('userInfo').avatarUrl
-                  }else{
+                    chuiziAll[i-(oncJia+1)]=wx.getStorageSync('userInfo').avatarUrl
+                  }
+                }else{
+                  // 如果可以多次出价，并且自己出了一次或以上
+                  if(allJia.length>=1){
                     // 不能再次出价
                     that.setData({
                       depositPayment:"再出价",
                     })
-                    chuiziAll[i+2]=wx.getStorageSync('userInfo').avatarUrl
+                  }else{
+                    that.setData({
+                      depositPayment:"去出价",
+                    })
                   }
-                // 有人出价但是自己没有出价
-                }else{
-                  that.setData({
-                    depositPayment:"去出价",
-                  })
+                  chuiziAll[i]=wx.getStorageSync('userInfo').avatarUrl
                 }
               }
+            }else{
+              chuiziAll[i]="/images/chuizi.png"
             }
-          }else{
-            chuiziAll[i+2]="/images/chuizi.png"
           }
         }
       }

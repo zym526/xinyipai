@@ -42,6 +42,7 @@ App({
   globalData: {
     userInfo: null,
     gid:"",
+    justAndAuction:"",//1为直购，0为拍卖
   },
   // 时间戳转时分秒
   formatDuring: function(mss) {

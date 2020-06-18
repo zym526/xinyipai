@@ -10,8 +10,8 @@
 		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false,
 		"coverView": true,
+		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
 		"checkInvalidKey": true,
@@ -70,6 +70,13 @@
 					"id": -1,
 					"name": "pages/info/info",
 					"pathName": "pages/info/info",
+					"query": "id=7",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages address/address",
+					"pathName": "pages/address/address",
 					"query": "id=7",
 					"scene": null
 				}
