@@ -120,6 +120,15 @@ Page({
           isPat:false,//不能抢拍了
           depositPayment:"已结束"
         })
+        // 时间结束如果自己出价最高则跳转到订单页面
+        if(that.data.allAuctionporce[0].member_id==wx.getStorageSync("userId")){
+          app.globalData.justAndAuction=0
+          wx.navigateTo({
+            url: '/pages/confirmAnOrder/confirmAnOrder',
+          })
+        }
+        // 清除轮询
+        clearInterval(that.data.setInter)
         console.log("计时器结束")
       }
     },1000)
@@ -171,69 +180,6 @@ Page({
       }else{
         app.showToast("已无库存，暂时不能购买")
       }
-      // wx.showLoading({
-      //   title: "正在加载",
-      //   mask: true
-      // })
-      // 发起请求订单创建
-      // app.http({
-      //   url:"wxorder/ordercreate",
-      //   method:"POST",
-      //   param:{
-      //     uid:wx.getStorageSync('userId'),
-      //     openid:wx.getStorageSync('openId'),
-      //     gid:Number(that.data.id),
-      //     count:1
-      //   }
-      // }).then(res=>{
-      //   console.log(res)
-      //   // 成功获取数据
-      //   let order_sn=res.data.data.order_sn
-      //   wx.requestPayment({  
-      //     nonceStr: res.data.data.nonceStr,
-      //     package: res.data.data.package,
-      //     paySign: res.data.data.paySign,
-      //     timeStamp: res.data.data.timeStamp,
-      //     signType:res.data.data.signType,
-      //     success(res){
-      //       wx.hideLoading()
-      //       app.showToast("支付成功")
-      //       // 支付成功后状态查询
-      //       console.log(order_sn)
-      //       app.http({
-      //         url:"wxapi/orderstatus",
-      //         method:"POST",
-      //         param:{
-      //           order_sn//订单号
-      //         }
-      //       }).then(res=>{
-      //         console.log("支付成功后状态查询：",res)
-      //         // 支付成功后回调
-      //         app.http({
-      //           url:"wxorder/uporder",
-      //           method:"POST",
-      //           param:{
-      //             order_sn:order_sn,//订单号
-      //           }
-      //         }).then(res=>{
-
-      //         }).catch(err=>{
-
-      //         })
-      //       }).catch(err=>{
-      //         app.showToast(err.data.msg)
-      //       })
-      //     },
-      //     fail(error){
-      //       wx.hideLoading()
-      //       app.showToast("取消支付")
-      //     }
-      //   })
-      //   wx.hideLoading()
-      // }).catch(err=>{
-      //   wx.hideLoading()
-      //   app.showToast(err.data.msg)
-      // })
     }else{
       // 未登录情况下跳转登录页面，并保存当前页面
       wx.navigateTo({
@@ -254,7 +200,7 @@ Page({
           that.setData({
             isCash:true
           })
-        }else if(that.data.depositPayment=="去出价"||that.data.depositPayment=="出价领先中"||that.data.depositPayment=="再出价"){
+        }else if(that.data.depositPayment=="去出价"||that.data.depositPayment=="再出价"){
           that.setData({
             isBid:true
           })
@@ -398,9 +344,9 @@ Page({
   // 立即出价 
   toOfferPrice(){
     var that=this
-    if(that.data.depositPayment=="出价领先中"){
-      app.showToast("出价领先中，请稍后")
-    }else{
+    // if(that.data.depositPayment=="出价领先中"){
+    //   app.showToast("出价领先中，请稍后")
+    // }else{
       wx.showModal({
         title: '提示',
         content: '您确定要出价￥'+that.data.nowBidToPopup+'元吗？',
@@ -421,6 +367,12 @@ Page({
                 that.setData({
                   isBid:false
                 })
+                if(that.data.nowBidToPopup==that.data.shotdetail.goods_promotion_price){
+                  app.globalData.justAndAuction=0
+                    wx.navigateTo({
+                      url: '/pages/confirmAnOrder/confirmAnOrder',
+                    })
+                }
               }else{
                 app.showToast(res.data.msg)
               }
@@ -432,7 +384,7 @@ Page({
           }
         }
       })
-    }
+    // }
   },
   // 关闭弹窗
   onClose() {
@@ -640,6 +592,8 @@ Page({
           depositPayment:"已结束",
           endTime:0
         })
+        // 清除轮询
+        clearInterval(that.data.setInter)
       }else{
         that.changeTime()
         // 判断该商品是否需要缴纳保证金,bond为0则该商品不用缴纳保证金，1则缴
@@ -692,6 +646,7 @@ Page({
    */
   onShow: function () {
     var that=this
+    app.globalData.address_id=""//清空地址id
     that.setData({
       user_id:wx.getStorageSync('userId')?wx.getStorageSync('userId'):'',
       userInfo:wx.getStorageSync('userInfo')?wx.getStorageSync('userInfo'):''

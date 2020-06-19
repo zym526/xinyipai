@@ -1,28 +1,36 @@
 <view>
-  <van-radio-group value="{{ radio }}" bind:change="onChange">
-    <view class="outerOne" wx:for="{{messages}}" wx:key="index">
-      <!-- 地址信息 -->
-      <view class="insideTop" bindtap="toDeposit" data-item="{{item}}">
-        <view>{{item.address_realname}},{{item.address_mob_phone}}</view>
-        <view>{{item.provice}} {{item.city}} {{item.area}} {{item.address_detail}}</view>
-      </view>
-      <view class="insideBottom">
-        <!-- 设置为默认地址 -->
-        <van-radio name="{{item.address_id}}" checked-color="#E60012" icon-size="32rpx">{{item.address_id==radio?"已设为默认":"设为默认"}}</van-radio>
-        <!-- 编辑和删除 -->
-        <view class="insideBotRig">
-          <view class="botRigLeft" catchtap="editData" data-item="{{item}}">
-            <van-icon name="edit" color="#999999" size="24rpx"/> 
-            <text class="bianji">编辑</text>
-          </view>
-          <view class="botRigRight" catchtap="delData" data-item="{{item}}">
-            <van-icon name="delete" color="#999999" size="24rpx"/> 
-            <text>删除</text>
+  <!-- 暂无收获地址 -->
+  <view class="no-address" hidden="{{!isAddress}}">
+    <image src="/images/noAddress.png" mode="widthFix"></image>
+    <view class="no-address-text">暂无数据</view>
+  </view>
+  <!-- 地址信息 -->
+  <view class="address-outer" hidden="{{isAddress}}">
+    <van-radio-group value="{{ radio }}" bind:change="onChange">
+      <view class="outerOne" wx:for="{{messages}}" wx:key="index">
+        <!-- 地址信息 -->
+        <view class="insideTop" bindtap="toConfirmAnOrder" data-item="{{item}}">
+          <view>{{item.address_realname}},{{item.address_mob_phone}}</view>
+          <view>{{item.provice}} {{item.city}} {{item.area}} {{item.area_info}} {{item.address_detail}}</view>
+        </view>
+        <view class="insideBottom">
+          <!-- 设置为默认地址 -->
+          <van-radio name="{{item.address_id}}" checked-color="#E60012" icon-size="32rpx">{{item.address_id==radio?"已设为默认":"设为默认"}}</van-radio>
+          <!-- 编辑和删除 -->
+          <view class="insideBotRig">
+            <view class="botRigLeft" catchtap="editData" data-item="{{item}}">
+              <van-icon name="edit" color="#999999" size="24rpx"/> 
+              <text class="bianji">编辑</text>
+            </view>
+            <view class="botRigRight" catchtap="delData" data-item="{{item}}">
+              <van-icon name="delete" color="#999999" size="24rpx"/> 
+              <text>删除</text>
+            </view>
           </view>
         </view>
       </view>
-    </view>
-  </van-radio-group>
+    </van-radio-group>
+  </view>
   <!-- 添加收获地址 -->
   <button class="bottomBtn" bindtap="showPopup">
     <van-icon name="add" color="white" size="35rpx"/>
@@ -30,7 +38,7 @@
   </button>
 </view>
 <!-- 弹出层 -->
-<van-popup show="{{ show }}" bind:close="onClose" custom-style="width:calc(100% - 49rpx);min-height:519rpx;border-radius:10rpx">
+<van-popup show="{{ show }}" bind:close="onClose" custom-style="width:calc(100% - 50rpx);border-radius:20rpx">
   <view class="bjaddress">
     {{addOrEdit}}
     <view class="iconfont icon-fork" bindtap="onClose"></view>
@@ -38,19 +46,20 @@
   <view class="inside_all">
     <view class="line_only">
       <text>收货人</text>
-      <input placeholder="姓名" bind:input="onChangeName" value="{{ username }}"/>
+      <input placeholder="请填写收货人姓名" bind:input="onChangeName" value="{{ username }}"/>
     </view>
     <view class="line_only">
       <text>手机号</text>
-      <input type="number" maxlength="11" placeholder="请输入手机号" bind:input="onChangePhone" value="{{ youPhone }}"/>
+      <input type="number" maxlength="11" placeholder="请填写收货人手机号" bind:input="onChangePhone" value="{{ youPhone }}"/>
     </view>
     <view class="line_only" bindtap="open">
       <text>地区</text>
-      <input disabled placeholder="请选择地区"  value="{{youAddress}}"/>
+      <input disabled placeholder="请选择所在地区"  value="{{youAddress}}"/>
+      <view class="iconfont icon-youjiantou"></view>
     </view>
     <view class="line_only">
       <text>详细地址</text>
-      <input placeholder="请输入详细地址" bind:input="onChangeAddress" value="{{ addressAll }}"/>
+      <input placeholder="街道、楼牌号等" bind:input="onChangeAddress" value="{{ addressAll }}"/>
     </view>
   </view>
   <button class="baocunBtn" bindtap="save">保存</button>
@@ -64,15 +73,15 @@
   </view>
   <!-- 省市区县乡 -->
   <view class="address-select-top">
-    <view class="address-four-one {{indexNow==0?'red-address':''}}" bindtap="changeCity" data-index="0">{{province}}</view>
-    <view class="address-four-one {{indexNow==1?'red-address':''}}" bindtap="changeCity" data-index="1">{{city}}</view>
-    <view class="address-four-one {{indexNow==2?'red-address':''}}" bindtap="changeCity" data-index="2">{{district}}</view>
-    <view class="address-four-one {{indexNow==3?'red-address':''}}" bindtap="changeCity" data-index="3">{{county}}</view>
+    <view class="address-four-one {{indexNow==0?'red-address':''}} {{province.name?'show':'noShow'}}" bindtap="changeCity" data-index="0">{{province.name}}</view>
+    <view class="address-four-one {{indexNow==1?'red-address':''}} {{city.name?'show':'noShow'}}" bindtap="changeCity" data-index="1">{{city.name}}</view>
+    <view class="address-four-one {{indexNow==2?'red-address':''}} {{district.name?'show':'noShow'}}" bindtap="changeCity" data-index="2">{{district.name}}</view>
+    <view class="address-four-one {{indexNow==3?'red-address':''}} {{county.name?'show':'noShow'}}" bindtap="changeCity" data-index="3">{{county.name}}</view>
   </view>
   <view class="all-select">
     <view class="one-select" wx:for="{{indexNow==0?provinceAll:indexNow==1?cityAll:indexNow==2?districtAll:countyAll}}" wx:key="index" bindtap="selectAllCity" data-id="{{item}}" data-name="{{index}}">
       <text>{{index}}</text>
-      <view class="iconfont icon-dui" style="font-size:32rpx;color:#E7260A" hidden="{{indexNow==0?index!=province:indexNow==1?index!=city:indexNow==2?index!=district:index!=county}}"></view>
+      <view class="iconfont icon-dui" style="font-size:32rpx;color:#E7260A" hidden="{{indexNow==0?index!=province.name:indexNow==1?index!=city.name:indexNow==2?index!=district.name:index!=county.name}}"></view>
     </view>
   </view>
 </van-popup>

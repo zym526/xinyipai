@@ -215,7 +215,7 @@
       <view class="popup-minus" bindtap="increase" style="color:{{increaseColor}}">+</view>
     </view>
     <!-- <view class="popup-top-text">您将出价{{nowBidToPopup}}元</view> -->
-    <view class="popup-top-btn" bindtap="toOfferPrice">立即出价{{minimum==shotdetail.goods_promotion_price?'(成交)':''}}</view>
+    <view class="popup-top-btn" bindtap="toOfferPrice">立即出价{{nowBidToPopup==shotdetail.goods_promotion_price?'(成交)':''}}</view>
   </view>
   <!-- 出价人信息 -->
   <view class="forPeo-outer">
@@ -233,8 +233,8 @@
         </view>
       </view>
       <view class="rightJL">
-        <text class="text1">￥{{minimum}}</text>
-        <view class="xianchu guding">{{minimum!=shotdetail.goods_promotion_price?'当前':'成交'}}</view>
+        <text class="text1">￥{{nowBidToPopup}}</text>
+        <view class="xianchu guding">{{nowBidToPopup!=shotdetail.goods_promotion_price?'当前':'成交'}}</view>
       </view>
     </view>
     <!-- 出价人信息 -->

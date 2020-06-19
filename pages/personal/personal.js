@@ -19,6 +19,18 @@ Page({
       url: '/pages/address/address',
     })
   },
+  // 跳转参拍页面
+  toCompete(){
+    wx.navigateTo({
+      url: '/pages/compete/compete',
+    })
+  },
+  // 跳转赚钱页面
+  toCleanUp(){
+    wx.navigateTo({
+      url: '/pages/cleanUp/cleanUp',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

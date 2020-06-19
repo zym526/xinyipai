@@ -6,11 +6,11 @@
     <view class="address-left-text">
       <view class="address-left-text-one" hidden="{{isAddress}}">请添加收获地址</view>
       <view class="address-left-text-two" hidden="{{!isAddress}}">
-        <view class="address-name">张仙仙</view>
-        <view class="address-phone">15555555555</view>
+        <view class="address-name">{{nowAddress.address_realname}}</view>
+        <view class="address-phone">{{nowAddress.address_mob_phone}}</view>
       </view>
       <view class="address-left-text-three" hidden="{{!isAddress}}">
-        浙江省杭州市西湖区云栖小镇六合金座五栋501浙江省杭州市西湖区云栖小镇六合金座五栋501浙江省杭州市西湖区云栖小镇六合金座五栋501浙江省杭州市西湖区云栖小镇六合金座五栋501
+        {{nowAddress.provice}}{{nowAddress.city}}{{nowAddress.area}}{{nowAddress.area_info}}{{nowAddress.address_detail}}
       </view>
     </view>
   </view>
@@ -24,21 +24,24 @@
   </view>
   <!-- 商品 -->
   <view class="info-center">
-    <image src="../../images/baozhengjin.png" mode="widthFix"></image>
+    <image src="{{imgurl}}" mode="widthFix"></image>
     <view class="info-center-right">
-      <view class="info-center-text">商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名名</view>
-      <view class="info-center-money">成交价：￥201</view>
+      <view class="info-center-text">{{goods_name}}</view>
+      <view class="info-center-money">{{justAndAuction==1?'直购价：':'成交价：'}}￥{{parice}}</view>
     </view>
   </view>
   <!-- 购买数量 -->
   <view class="info-number">
     <view class="info-number-left">购买数量</view>
-    <van-stepper value="{{ number }}" integer bind:change="onChange" input-width="57rpx" button-size="57rpx" min="1" max="15"/>
+    <view class="info-number-right" hidden="{{justAndAuction!=1}}">
+      <van-stepper value="{{ number }}" integer bind:change="onChange" input-width="57rpx" button-size="57rpx" min="1" max="{{maxNumber}}"/>
+    </view>
+    <view hidden="{{justAndAuction==1}}">1件</view>
   </view>
   <!-- 运费 -->
   <view class="info-freight">
     <view class="info-freight-left">运费</view>
-    <view class="info-freight-right">免运费</view>
+    <view class="info-freight-right">{{goods_freight}}</view>
   </view>
   <!-- 备注 -->
   <view class="info-remark">
@@ -47,15 +50,15 @@
   </view>
   <!-- 小计 -->
   <view class="info-subtotal">
-    <text class="info-subtotal-left">共1件</text>
-    <text class="info-subtotal-right">小计：￥201</text>
+    <text class="info-subtotal-left">共{{number}}件</text>
+    <text class="info-subtotal-right">小计：￥{{allMoney}}</text>
   </view>
 </view>
 <!-- 提交订单 -->
 <view class="sub-bottom">
   <view class="sub-bottom-left">
-    <text class="sub-bottom-gray">共1件</text>
-    <text class="sub-bottom-red">小计：￥201</text>
+    <text class="sub-bottom-gray">共{{number}}件</text>
+    <text class="sub-bottom-red">小计：￥{{allMoney}}</text>
   </view>
-  <view class="sub-bottom-btn">提交订单</view>
+  <view class="sub-bottom-btn" bindtap="toBuy">提交订单</view>
 </view>

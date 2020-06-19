@@ -100,8 +100,18 @@
       </view>
       <view>意见反馈</view>
     </view>
-		<view class="weui-flex__item"></view>
-		<view class="weui-flex__item"></view>
+		<view class="weui-flex__item" bindtap="toCompete">
+      <view>
+        <image src="../../images/yijianfankui.png" mode="widthFix"></image>
+      </view>
+      <view>参拍</view>
+    </view>
+		<view class="weui-flex__item" bindtap="toCleanUp">
+      <view>
+        <image src="../../images/yijianfankui.png" mode="widthFix"></image>
+      </view>
+      <view>赚钱</view>
+    </view>
 	</view>
 	<!-- 图片 -->
 	<view class="bottomImg">

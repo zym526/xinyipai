@@ -15,10 +15,10 @@ Page({
     addressAll:"",//弹出层具体位置
     isShowCity:false,//地址选择弹出层
     // selectAll:["请选择","","",""],//省市区县
-    province:"请选择",//省
-    city:"",//市
-    district:"",//区
-    county:"",//县
+    province:{name:"请选择",id:""},//省
+    city:{name:"",id:""},//市
+    district:{name:"",id:""},//区
+    county:{name:"",id:""},//县
     provinceAll:[],//所有省份
     cityAll:[],//所有市
     districtAll:[],//所有区
@@ -92,22 +92,22 @@ Page({
     if(that.data.indexNow==1){//为1时省份名字
       url="jdaddress/getcity"
       that.setData({
-        province:name,
+        province:{name,id},
       })
     }else if(that.data.indexNow==2){//为2时市的名字
       url="jdaddress/gettowon",
       that.setData({
-        city:name,
+        city:{name,id},
       })
     }else if(that.data.indexNow==3){//为3时区的名字
       url="jdaddress/street"
       that.setData({
-        district:name,
+        district:{name,id},
       })
     }else{
       that.setData({
-        county:name,
-        youAddress:that.data.province+that.data.city+that.data.district+name,
+        county:{name,id},
+        youAddress:that.data.province.name+that.data.city.name+that.data.district.name+name,
         isShowCity:false
       })
     }
@@ -121,42 +121,49 @@ Page({
         }
       }).then(res=>{
         if(res.data.code==200){
+          console.log(that.data.indexNow)
           // 判断是否有数据
           if(res.data.data){
             // 当当前下标为1，2，3时分别对应城市，区，镇
             if(that.data.indexNow==1){
               that.setData({
                 cityAll:res.data.data,
-                city:"请选择",
-                district:"",
-                county:""
+                city:{name:"请选择",id:""},
+                district:{name:"",id:""},
+                county:{name:"",id:""}
               })
               console.log(that.data.city)
             }else if(that.data.indexNow==2){
               that.setData({
                 districtAll:res.data.data,
-                district:"请选择",
-                county:""
+                district:{name:"请选择",id:""},
+                county:{name:"",id:""}
               })
             }else if(that.data.indexNow==3){
               that.setData({
                 countyAll:res.data.data,
-                county:"请选择"
+                county:{name:"请选择",id:""}
               })
             }
           }else{
             // 如果没有数据则判断当前为第几区
             if(that.data.indexNow==1){
               that.setData({
-                youAddress:that.data.province
+                youAddress:that.data.province.name,
+                city:{name:"",id:""},
+                district:{name:"",id:""},
+                county:{name:"",id:""}
               })
             }else if(that.data.indexNow==2){
               that.setData({
-                youAddress:that.data.province+that.data.city
+                youAddress:that.data.province.name+that.data.city.name,
+                district:{name:"",id:""},
+                county:{name:"",id:""}
               })
             }else if(that.data.indexNow==3){
               that.setData({
-                youAddress:that.data.province+that.data.city+that.data.district
+                youAddress:that.data.province.name+that.data.city.name+that.data.district.name,
+                county:{name:"",id:""}
               })
             }
             // 没有数据则关闭
@@ -179,23 +186,73 @@ Page({
       indexNow:Number(e.currentTarget.dataset.index)
     })
   },
-
-
   // 编辑地址
   editData(e){
     console.log(e)
     var that=this
     var item=e.currentTarget.dataset.item
+    console.log(item)
     that.setData({
       addOrEdit:"编辑地址",
       username:item.address_realname,
       youPhone:item.address_mob_phone,
-      province:item.provice,
-      city:item.city,
-      county:item.area,
+      province:{name:item.provice,id:item.provinceid},
+      city:{name:item.city,id:item.cityid},
+      district:{name:item.area,id:item.areaid},
+      county:{name:item.area_info,id:item.area_infoid},
       addressAll:item.address_detail,
       editId:item.address_id,
+      youAddress:item.provice+item.city+item.area+item.area_info,
+      indexNow:1,
       show:true
+    })
+    // 获取市
+    app.http({
+      url:"jdaddress/getcity",
+      method:"POST",
+      param:{
+        id:item.provinceid
+      }
+    }).then(res=>{
+      if(res.data.code==200){
+        that.setData({
+          cityAll:res.data.data
+        })
+      }
+    }).catch(err=>{
+      app.showToast(err.data.msg)
+    })
+    // 获取区
+    app.http({
+      url:"jdaddress/gettowon",
+      method:"POST",
+      param:{
+        id:item.cityid
+      }
+    }).then(res=>{
+      if(res.data.code==200){
+        that.setData({
+          districtAll:res.data.data
+        })
+      }
+    }).catch(err=>{
+      app.showToast(err.data.msg)
+    })
+    // 获取县
+    app.http({
+      url:"jdaddress/street",
+      method:"POST",
+      param:{
+        id:item.areaid
+      }
+    }).then(res=>{
+      if(res.data.code==200){
+        that.setData({
+          countyAll:res.data.data
+        })
+      }
+    }).catch(err=>{
+      app.showToast(err.data.msg)
     })
   },
   // 保存或编辑地址
@@ -212,29 +269,26 @@ Page({
       app.showToast("请输入详细地址")
     }else{
       var nowUrl,param
+      param={
+        member_id:wx.getStorageSync('userId'),
+        address_realname:that.data.username,
+        provice:that.data.province.name,
+        city:that.data.city.name,
+        area:that.data.district.name,
+        area_info:that.data.county.name,
+        provinceid:that.data.province.id,
+        cityid:that.data.city.id,
+        areaid:that.data.district.id,
+        area_infoid:that.data.county.id,
+        address_detail:that.data.addressAll,
+        address_mob_phone:that.data.youPhone,
+        address_is_default:""
+      }
       if(that.data.addOrEdit=="添加地址"){
         nowUrl="wxuser/useraddersscreate"
-        param={
-          member_id:wx.getStorageSync('userId'),
-          address_realname:that.data.username,
-          provice:that.data.province,
-          city:that.data.city,
-          area:that.data.county,
-          address_detail:that.data.addressAll,
-          address_mob_phone:that.data.youPhone,
-          address_is_default:""
-        }
       }else{
         nowUrl="wxuser/useraddedit"
-        param={
-          id:that.data.editId,
-          address_realname:that.data.username,
-          provice:that.data.province,
-          city:that.data.city,
-          area:that.data.county,
-          address_detail:that.data.addressAll,
-          address_mob_phone:that.data.youPhone,
-        }
+        param.id=that.data.editId
       }
       app.http({
         url:nowUrl,
@@ -242,7 +296,7 @@ Page({
         param
       }).then(res=>{
         that.onClose();
-        that.onLoad()
+        that.onShow()
       }).catch(err=>{
         app.showToast(err.data.msg)
       })
@@ -268,7 +322,7 @@ Page({
       }
     }).then(res=>{
       console.log(res)
-      that.onLoad()
+      that.onShow()
     }).catch(err=>{
       app.showToast(err.data.msg)
     })
@@ -276,18 +330,28 @@ Page({
   // 删除地址
   delData(e){
     var that=this
-    app.http({
-      url:"wxuser/useradddel",
-      method:"POST",
-      param:{
-        id:e.currentTarget.dataset.item.address_id
+    wx.showModal({
+      content: '您确定要删除该地址吗？',
+      confirmColor:"#E7260A",
+      success: function (res) {
+        if (res.confirm){
+          app.http({
+            url:"wxuser/useradddel",
+            method:"POST",
+            param:{
+              id:e.currentTarget.dataset.item.address_id
+            }
+          }).then(res=>{
+            console.log(res)
+            that.onShow()
+          }).catch(err=>{
+            console.log(err)
+            app.showToast(err.data.msg)
+          })
+        }else{
+
+        }
       }
-    }).then(res=>{
-      console.log(res)
-      that.onLoad()
-    }).catch(err=>{
-      console.log(err)
-      app.showToast(err.data.msg)
     })
   },
   // 关闭弹出层
@@ -297,6 +361,13 @@ Page({
   onClose2(){
     var that=this
     that.setData({ isShowCity:false,indexNow:that.data.indexNow+1 });
+  },
+  // 跳转到订单页面
+  toConfirmAnOrder(e){
+    app.globalData.address_id=e.currentTarget.dataset.item.address_id
+    wx.redirectTo({
+      url: '/pages/confirmAnOrder/confirmAnOrder',
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -322,15 +393,16 @@ Page({
       url:"wxuser/useradderss",
       method:"POST",
     }).then(res=>{
-      if(res.data.data.length===0){
-        app.showToast("暂无地址数据")
+      if(res.data.code==204){
         that.setData({
-          messages:[]
+          messages:[],
+          isAddress:true
         })
-      }else{
+      }else if(res.data.code==200){
         that.setData({
           messages:res.data.data,
-          radio:""
+          radio:"",
+          isAddress:false
         })
         that.data.messages.forEach(item=>{
           if(item.address_is_default=="1"){
@@ -339,6 +411,8 @@ Page({
             })
           }
         })
+      }else{
+        app.showToast(res.data.msg)
       }
     }).catch(err=>{
       app.showToast(err.data.msg)

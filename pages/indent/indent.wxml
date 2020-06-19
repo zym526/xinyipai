@@ -1,82 +1,42 @@
-<view>
-  <!-- 上导航 -->
-  <view class="topDH">
-    <!-- <van-icon name="search" size="43rpx" /> -->
-    <!-- <view class="rightDH"> -->
-      <text wx:for="{{topDH}}" wx:key="index" bindtap="changeText" data-index="{{index}}" class="{{nowItem===item?'redText':''}}">{{item}}</text>
-    <!-- </view> -->
+<view class="top-tab">
+  <view class="one-tab-outer" wx:for="{{topTab}}" wx:key="index" bindtap="changeTab" data-index="{{index}}" style="width:calc(100% / {{topTab.length}})">
+    <view class="one-tab {{nowTab==item?'active-tab':''}}">{{item}}</view>
   </view>
-  <!-- 当前订单 -->
-  <view class="bottomAll" hidden="{{ false }}">
-    <!-- 单个商品 -->
-    <view class="bottomOne" wx:for="{{allCom}}" wx:key="index">
-      <!-- 商店 -->
-      <van-cell>
-        <view slot="title" style="display:flex" bindtap="toShop">
-          <van-icon name="shop-o" color="#333333" size="30rpx" style="margin-right:6rpx"/>
-          <view class="van-cell-text" style="font-size:30rpx;font-weight:bold;">
-            {{item.shop}}
-            <van-icon name="arrow" size="22rpx"/>
-          </view>
-        </view>
-        <view class="success">交易成功</view>
-      </van-cell>
-      <!-- 商品 -->
-      <view class="weui-panel__bd outerA" bindtap="toOrderDetail">
-        <a class="weui-media-box weui-media-box_appmsg outerAll">
-          <view class="weui-media-box__hd outerImg">
-            <image class="weui-media-box__thumb" src="../../images/{{item.img}}" mode="widthFix"></image>
-          </view>
-          <view class="weui-media-box__bd rightText">
-            <view class="weui-media-box__title topText">{{item.title}}</view>
-            <view class="weui-media-box__desc bottomText">
-              共{{item.num}}件商品  合计：¥{{item.money}}
-            </view>
-          </view>
-        </a>
-      </view>
-      <!-- 删除订单/查看/评价 -->
-      <view class="bottomThree">
-        <van-icon name="ellipsis" size="29rpx" bindtap="changeHidden" data-index="{{index}}"/>
-        <!-- 气泡 -->
-        <view class='invite' hidden="{{ nowIndex!==index }}">
-          删除订单
-        </view>
-        <view class="btnAll">
-          <button class="leftBtn" bindtap="toLogistics">查看物流</button>
-          <button class="rightBtn">评价</button>
-        </view>
-      </view>
+</view>
+<!-- 订单信息 -->
+<view class="order">
+  <!-- 顶部商店信息和订单状态 -->
+  <view class="order-top">
+    <view class="order-top-left">
+      <view class="iconfont icon-dianpu"></view>
+      <view class="order-shop-name">店铺名称</view>
+      <view class="iconfont icon-youjiantou"></view>
+    </view>
+    <view class="order-top-right">待付款</view>
+  </view>
+  <!-- 中间商品信息 -->
+  <view class="order-center">
+    <view class="order-center-left">
+      <image src="/images/baozhengjin.png" mode="widthFix"></image>
+    </view>
+    <view class="order-center-right">
+      <view class="order-center-text1">商品名称，超出两行省略</view>
+      <view class="order-center-text2">共1件商品  合计：<text>￥500</text></view>
     </view>
   </view>
-  <!-- 没有订单 -->
-  <view class="bottomTwo" hidden="{{ true }}">
-    <!-- 没有订单图片 -->
-    <view class="bottomTopImg">
-      <image src="../../images/dingdanImg.png" mode="widthFix" style="width:364rpx"></image>
-      <image src="../../images/dingdantitle.png" mode="widthFix" style="width:268rpx"></image>
+  <!-- 底部直购或拍卖，支付取消等 -->
+  <view class="order-bottom">
+    <view class="order-bottom-left">
+      <view class="order-bottom-left-yuan"></view>
+      <text>直购</text>
     </view>
-    <!-- 为您推荐 -->
-    <view class="centerTJ">
-      <image src="../../images/tuijian1.png" mode="widthFix"></image>
-      <text>为您推荐</text>
-      <image src="../../images/tuijian2.png" mode="widthFix"></image>
-    </view>
-    <!-- 推荐商品 -->
-    <view class="paipinOuter">
-      <view class="paipin" wx:for="{{anyCom}}" wx:key="index" bindtap="toInfo">
-        <view class="paipinImg">
-          <image src="../../images/{{item.img}}" mode="widthFix"></image>
-        </view>
-        <view class="paipinTitle">{{item.title}}</view>
-        <view class="paipinTitle2">
-          <view class="nowMoney">
-            <text class="dangqianjia">当前价：</text>
-            <text class="jiage">¥{{item.money}}</text>
-          </view>
-          <view class="zhaoxiangsi">找相似</view>
-        </view>
-      </view>
+    <view class="order-bottom-right">
+      <view class="order-bottom-cancel">取消订单</view>
+      <view class="order-bottom-pay">立即支付</view>
+      <!-- <view class="order-bottom-look">查看物流</view>
+      <view class="order-bottom-confirm">确认收获</view>
+      <view class="order-bottom-shop">联系商家</view>
+      <view class="order-bottom-del">删除订单</view> -->
     </view>
   </view>
 </view>

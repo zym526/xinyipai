@@ -41,8 +41,9 @@ App({
   },
   globalData: {
     userInfo: null,
-    gid:"",
+    gid:"7",
     justAndAuction:"",//1为直购，0为拍卖
+    address_id:"",//收获地址id
   },
   // 时间戳转时分秒
   formatDuring: function(mss) {

@@ -27,7 +27,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // 获取参拍数据
+    app.http({
+      url:"wxuser/auction_log",
+      method:"POST",
+      param:{
+        uid:wx.getStorageSync('userId')
+      }
+    }).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      app.showToast("请求失败，请稍后重试~")
+    })
   },
 
   /**

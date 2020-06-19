@@ -61,23 +61,9 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/profit/profit",
-					"pathName": "pages/profit/profit",
+					"name": "pages/indent/indent",
+					"pathName": "pages/indent/indent",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/info/info",
-					"pathName": "pages/info/info",
-					"query": "id=7",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages address/address",
-					"pathName": "pages/address/address",
-					"query": "id=7",
 					"scene": null
 				}
 			]
