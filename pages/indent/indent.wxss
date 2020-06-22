@@ -119,12 +119,18 @@ page{
   line-height: 26rpx;
   color: #333333;
   border-radius: 10rpx;
-}
-.order-bottom-cancel,.order-bottom-look,.rder-bottom-shop.rder-bottom-del{
   border: 1rpx solid #333333;
 }
 .order-bottom-pay,.order-bottom-confirm{
+  border: none;
   background-color: #E7260A;
   color: white;
   margin-left: 10rpx;
+}
+/* 直购和拍卖的颜色更改 */
+.direct-purchasing{
+  color: #EB6100;
+}
+.direct-purchasing-bg{
+  background-color: #EB6100;
 }

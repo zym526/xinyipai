@@ -12,10 +12,25 @@
         <view class="top-bottom-left-money">200.00</view>
       </view>
       <view class="line-center"></view>
-      <view class="top-bottom-right">
+      <view class="top-bottom-right" bindtap="toProfit">
         <view class="top-bottom-right-text">总盈利 (元)</view>
         <view class="top-bottom-right-money">200.00</view>
       </view>
     </view>
   </view>
 </view>
+<!-- 提现 -->
+<view class="extract">
+  <view class="extract-text">提现金额</view>
+  <view class="extract-center">
+    <view class="extract-left">
+      <text class="extract-icon">￥</text>
+      <input class="extract-input" type="number" />
+    </view>
+    <text class="extract-all">全部</text>
+  </view>
+  <view class="extract-bottom">可提现余额500.00元</view>
+</view>
+<!-- 提示 -->
+<view class="desc">注: 微信提现需要扣除0.6%手续费</view>
+<view class="bottom-btn">立即提现</view>

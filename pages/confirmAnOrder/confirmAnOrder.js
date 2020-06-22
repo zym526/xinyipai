@@ -9,6 +9,7 @@ Page({
     number:1,//商品数量
     maxNumber:1,//最大的商品数量
     isAddress:true,//有地址
+    remark:"",//备注信息
   },
 
   /**
@@ -40,6 +41,12 @@ Page({
       url: '/pages/address/address',
     })
   },
+  // 备注信息
+  onChangeRemark(e){
+    this.setData({
+      remark:e.detail.value
+    })
+  },
   // 下订单
   toBuy(){
     var that=this
@@ -63,6 +70,7 @@ Page({
         reciver_city_id:that.data.nowAddress.cityid,//城市id
         reciver_town_id:that.data.nowAddress.areaid,//县id
         reciver_count_id:that.data.nowAddress.area_infoid,//街道id
+        remark:that.data.remark,//备注
       }
     }).then(res=>{
       console.log(res)

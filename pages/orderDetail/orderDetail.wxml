@@ -1,10 +1,10 @@
 <!-- 顶部状态 -->
-<view class="order-outer">
+<view class="order-outer {{goods.order_type==1?'order-outer-org':''}}">
   <view class="order-top-left">
-    <view class="order-top-left-one">已完成</view>
-    <view class="order-top-left-two">订单已完成，期待您的再次购买</view>
+    <view class="order-top-left-one {{goods.order_type==1?'text-org':''}}">{{goods.order_state_text}}</view>
+    <view class="order-top-left-two">{{goods.order_state_text_bottom}}</view>
   </view>
-  <view class="order-top-right">拍卖</view>
+  <view class="order-top-right {{goods.order_type==1?'text-org':''}}">{{goods.order_type_text}}</view>
 </view>
 <!-- 地址和物流信息 -->
 <view class="address-log">
@@ -15,16 +15,16 @@
     </view>
     <view class="address-left-text">
       <view class="address-left-text-two">
-        <view class="address-name">张仙仙</view>
-        <view class="address-phone">15555555555</view>
+        <view class="address-name">{{address.address_realname}}</view>
+        <view class="address-phone">{{address.address_mob_phone}}</view>
       </view>
       <view class="address-left-text-three">
-        浙江省杭州市西湖区云栖小镇六合金座五栋501浙江省杭州市西湖区云栖小镇六合金座五栋501
+        {{address.provice}}{{address.city}}{{address.area}}{{address.area_info}}{{address.address_detail}}
       </view>
     </view>
   </view>
   <!-- 物流 -->
-  <view class="logistics">
+  <view class="logistics" hidden="{{logistics==''}}">
     <view class="logistics-left">
       <view class="logistics-image">
         <view class="iconfont icon-swticonkuaidi2"></view>
@@ -42,69 +42,82 @@
   <!-- 店铺名称 -->
   <view class="info-top">
     <image src="/images/baozhengjin.png" mode="widthFix"></image>
-    <view class="info-top-text">店铺名称店铺名称</view>
+    <view class="info-top-text">{{goods.store_name}}</view>
   </view>
   <!-- 商品信息 -->
   <view class="info-content">
-    <image src="/images/baozhengjin.png" mode="widthFix"></image>
+    <image src="{{goods.goods_image}}" mode="widthFix"></image>
     <view class="info-content-right">
-      <view class="info-content-right-top">寓意《招财进宝》和田玉碧玉玉把件重250g和田玉和田玉和田玉</view>
+      <view class="info-content-right-top">{{goods.goods_name}}</view>
       <view class="info-content-right-bottom">
-        <view class="info-text-left">成交价：￥201</view>
-        <view class="info-text-right">x2</view>
+        <view class="info-text-left {{goods.order_type==1?'text-org':''}}"> {{goods.order_type==1?'直购价：':'成交价：'}}￥{{goods.goods_amount}}</view>
+        <view class="info-text-right">x{{goods.goods_num}}</view>
       </view>
     </view>
   </view>
   <!-- 运费 -->
   <view class="freight">
     <view class="freight-left">运费</view>
-    <view class="freight-right">￥17.00</view>
+    <view class="freight-right">{{goods.shipping_fee=='0.00'?'免运费':'￥'+goods.shipping_fee}}</view>
   </view>
   <!-- 备注 -->
   <view class="remark">
     <view class="remark-left">备注</view>
-    <view class="remark-right">尽快发货</view>
+    <view class="remark-right">{{goods.remark}}</view>
   </view>
   <!-- 小计 -->
-  <view class="subtotal">
-    <text>共1件</text>小计：￥201
+  <view class="subtotal {{goods.order_type==1?'text-org':''}}">
+    <text>共1件</text>小计：￥{{goods.goods_amount}}
   </view>
 </view>
 <!-- 订单数据 -->
 <view class="serial">
   <view class="serial-one">
     <view class="serial-left">订单编号</view>
-    <view class="serial-right">MYK121121212456</view>
+    <view class="serial-right">{{goods.order_sn}}</view>
   </view>
   <view class="serial-one">
     <view class="serial-left">下单时间</view>
-    <view class="serial-right">2020-05-26  13:00:00</view>
+    <view class="serial-right">{{goods.add_time}}</view>
   </view>
   <view class="serial-one">
     <view class="serial-left">支付时间</view>
-    <view class="serial-right">2020-05-26  13:00:00</view>
+    <view class="serial-right">{{goods.payment_time}}</view>
   </view>
   <view class="serial-one">
     <view class="serial-left">发货时间</view>
-    <view class="serial-right">2020-05-26  13:00:00</view>
+    <view class="serial-right">{{goods.send_time}}</view>
+  </view>
+  <view class="serial-one">
+    <view class="serial-left">收货时间</view>
+    <view class="serial-right">{{goods.finnshed_time}}</view>
+  </view>
+  <view class="serial-one">
+    <view class="serial-left">取消时间</view>
+    <view class="serial-right">{{goods.cancel_time}}</view>
   </view>
 </view>
 <!-- 保证金 -->
-<view class="serial">
+<view class="serial" hidden="{{goods.order_type==1}}">  <!--hidden="{{goods.order_type==1}}"-->
   <view class="serial-one">
     <view class="serial-left">保证金</view>
     <view class="serial-right">￥200.00</view>
   </view>
   <view class="serial-one">
     <view class="serial-left">开价时间</view>
-    <view class="serial-right">2020-05-26  13:00:00</view>
+    <view class="serial-right">{{goods.goods_startime}}</view>
   </view>
   <view class="serial-one">
     <view class="serial-left">竞拍成功</view>
-    <view class="serial-right">2020-05-26  13:00:00</view>
+    <view class="serial-right">{{goods.auction_time}}</view>
   </view>
 </view>
 <!-- 按钮 -->
 <view class="btn-bottom">
-  <view class="btn">联系商家</view>
+  <view class="cancel {{goods.order_type==1?'kong-org':''}}" hidden="{{goods.order_state!=10}}" bindtap="cancelOrder" data-ordersn="{{goods.order_sn}}">取消订单</view>
+  <view class="pay {{goods.order_type==1?'shi-org':''}}" hidden="{{goods.order_state!=10}}" bindtap="payOrder" data-ordersn="{{goods.order_sn}}">立即支付</view>
+  <view class="look {{goods.order_type==1?'kong-org':''}}" hidden="{{goods.order_state!=30}}" bindtap="lookLogistics" data-ordersn="{{goods.order_sn}}">查看物流</view>
+  <view class="confirm {{goods.order_type==1?'shi-org':''}}" hidden="{{goods.order_state!=30}}" bindtap="finish" data-ordersn="{{goods.order_sn}}">确认收获</view>
+  <view class="shop {{goods.order_type==1?'kong-org':''}}" hidden="{{goods.order_state!=20}}">联系客服</view>
+  <view class="del {{goods.order_type==1?'kong-org':''}}" hidden="{{goods.order_state!=0&&goods.order_state!=40}}" bindtap="delOrder" data-ordersn="{{goods.order_sn}}">删除订单</view>
 </view>

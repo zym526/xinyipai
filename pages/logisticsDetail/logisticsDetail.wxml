@@ -1,0 +1,13 @@
+<view class="order_sn">
+  订单编号: {{order_sn}}
+</view>
+<view class="logistics">
+  <van-steps
+    steps="{{ steps }}"
+    active="{{ active }}"
+    direction="vertical"
+    active-color="#E7260A"
+    custom-class="stepsText"
+    desc-class="timeDesc"
+  />
+</view>

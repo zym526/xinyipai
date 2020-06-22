@@ -1,0 +1,30 @@
+page{
+  background-color: #F0F2F5;
+}
+.order_sn{
+  padding: 30rpx 24rpx;
+  box-sizing: border-box;
+  margin: 10rpx 0rpx;
+  font-size: 30rpx;
+  color: #333333;
+  background-color: white;
+}
+.stepsText{
+  padding: 24rpx!important;
+}
+.stepsText .van-step{
+  padding-left: 20rpx;
+}
+.stepsText .van-step .van-step__title{
+  font-size: 28rpx!important;
+  line-height: 40rpx!important;
+}
+.stepsText .van-step:first-child .van-step__title{
+  color: #333333!important;
+}
+.timeDesc{
+  font-size: 24rpx;
+}
+.stepsText .van-step .van-icon-checked{
+  font-size: 40rpx;
+}

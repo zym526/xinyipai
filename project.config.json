@@ -65,6 +65,13 @@
 					"pathName": "pages/indent/indent",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/orderDetail/orderDetail",
+					"pathName": "pages/orderDetail/orderDetail",
+					"query": "orderId=193",
+					"scene": null
 				}
 			]
 		}

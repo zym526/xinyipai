@@ -80,6 +80,18 @@ App({
     // return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
     return year + '-' + month + '-' + day;
   },
+  // 时间戳转年月日时分秒
+  format: function(timestamp) {
+    var date = new Date(timestamp*1000);
+    var year = date.getFullYear();
+    var month = this.addZero(date.getMonth() + 1);
+    var day = this.addZero(date.getDate());
+    var hours = this.addZero(date.getHours());
+    var minutes = this.addZero(date.getMinutes());
+    var seconds = this.addZero(date.getSeconds());
+    return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+    // return year + '-' + month + '-' + day;
+  },
   addZero: function(num) {
     return num < 10 ? '0' + num : num;
   },

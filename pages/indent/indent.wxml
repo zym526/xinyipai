@@ -1,42 +1,43 @@
 <view class="top-tab">
   <view class="one-tab-outer" wx:for="{{topTab}}" wx:key="index" bindtap="changeTab" data-index="{{index}}" style="width:calc(100% / {{topTab.length}})">
-    <view class="one-tab {{nowTab==item?'active-tab':''}}">{{item}}</view>
+    <view class="one-tab {{nowTab.text==item.text?'active-tab':''}}">{{item.text}}</view>
   </view>
 </view>
 <!-- 订单信息 -->
-<view class="order">
+<view class="order" wx:for="{{allOrder}}" wx:key="index">
   <!-- 顶部商店信息和订单状态 -->
   <view class="order-top">
     <view class="order-top-left">
       <view class="iconfont icon-dianpu"></view>
-      <view class="order-shop-name">店铺名称</view>
+      <view class="order-shop-name">{{item.store_name}}</view>
       <view class="iconfont icon-youjiantou"></view>
     </view>
-    <view class="order-top-right">待付款</view>
+    <view class="order-top-right {{item.order_type==1?'direct-purchasing':''}}">{{item.order_state_text}}</view>
   </view>
   <!-- 中间商品信息 -->
-  <view class="order-center">
+  <view class="order-center" bindtap="toOrderDetail" data-orderid="{{item.order_id}}">
     <view class="order-center-left">
-      <image src="/images/baozhengjin.png" mode="widthFix"></image>
+      <image src="{{item.goods_image}}" mode="widthFix"></image>
     </view>
     <view class="order-center-right">
-      <view class="order-center-text1">商品名称，超出两行省略</view>
-      <view class="order-center-text2">共1件商品  合计：<text>￥500</text></view>
+      <view class="order-center-text1">{{item.goods_name}}</view>
+      <view class="order-center-text2">共{{item.goods_num}}件商品  合计：<text>￥{{item.goods_amount}}</text></view>
     </view>
   </view>
   <!-- 底部直购或拍卖，支付取消等 -->
   <view class="order-bottom">
     <view class="order-bottom-left">
-      <view class="order-bottom-left-yuan"></view>
-      <text>直购</text>
+      <view class="order-bottom-left-yuan {{item.order_type==1?'direct-purchasing-bg':''}}"></view>
+      <text class="{{item.order_type==1?'direct-purchasing':''}}">{{item.order_type_text}}</text>
     </view>
     <view class="order-bottom-right">
-      <view class="order-bottom-cancel">取消订单</view>
-      <view class="order-bottom-pay">立即支付</view>
-      <!-- <view class="order-bottom-look">查看物流</view>
-      <view class="order-bottom-confirm">确认收获</view>
-      <view class="order-bottom-shop">联系商家</view>
-      <view class="order-bottom-del">删除订单</view> -->
+      <view class="order-bottom-cancel" hidden="{{item.order_state!=10}}" bindtap="cancelOrder" data-ordersn="{{item.order_sn}}">取消订单</view>
+      <view class="order-bottom-pay {{item.order_type==1?'direct-purchasing-bg':''}}" hidden="{{item.order_state!=10}}" bindtap="payOrder" data-ordersn="{{item.order_sn}}">立即支付</view>
+      <view class="order-bottom-look" hidden="{{item.order_state!=30}}" bindtap="lookLogistics" data-ordersn="{{item.order_sn}}">查看物流</view>
+      <!-- <view class="order-bottom-look" bindtap="lookLogistics" data-ordersn="{{item.order_sn}}">查看物流</view> -->
+      <view class="order-bottom-confirm {{item.order_type==1?'direct-purchasing-bg':''}}" hidden="{{item.order_state!=30}}" bindtap="finish" data-ordersn="{{item.order_sn}}">确认收获</view>
+      <view class="order-bottom-shop" hidden="{{item.order_state!=20}}">联系商家</view>
+      <view class="order-bottom-del" hidden="{{item.order_state!=0&&item.order_state!=40}}" bindtap="delOrder" data-ordersn="{{item.order_sn}}">删除订单</view>
     </view>
   </view>
 </view>

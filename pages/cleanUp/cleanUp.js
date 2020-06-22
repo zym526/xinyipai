@@ -22,7 +22,12 @@ Page({
   onReady: function () {
 
   },
-
+  // 跳转总盈利页面
+  toProfit(){
+    wx.navigateTo({
+      url: '/pages/profit/profit',
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

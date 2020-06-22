@@ -55,3 +55,67 @@ page{
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
 }
+/* 提现 */
+.extract{
+  margin: 21rpx 24rpx 30rpx;
+  background-color: white;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+}
+.extract-text{
+  font-size: 30rpx;
+  color: #333333;
+}
+.extract-center{
+  padding: 20rpx 0rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3rpx solid #E1E1E1;
+}
+.extract-left{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 60rpx;
+  line-height: 60rpx;
+  color: #333333;
+  width: calc(100% - 70rpx);
+}
+.extract-input{
+  width: calc(100% - 80rpx);
+  height: 100%;
+}
+.extract-all{
+  font-size: 26rpx;
+  color: #E7280C;
+  height: 70rpx;
+  display: flex;
+  align-items: flex-end;
+}
+.extract-bottom{
+  font-size: 26rpx;
+  color: #666666;
+  margin-top: 20rpx;
+}
+.desc{
+  margin: 0rpx 24rpx;
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 140rpx;
+}
+.bottom-btn{
+  position: fixed;
+  bottom: 25rpx;
+  left: 24rpx;
+  right: 24rpx;
+  height: 90rpx;
+  background-color: #E7260A;
+  font-size: 30rpx;
+  color: white;
+  text-align: center;
+  line-height: 90rpx;
+  border-radius: 10rpx;
+}

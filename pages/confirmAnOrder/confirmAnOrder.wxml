@@ -46,7 +46,7 @@
   <!-- 备注 -->
   <view class="info-remark">
     <view class="info-remark-left">备注</view>
-    <input type="text" class="info-remark-right" placeholder="选填" />
+    <input type="text" class="info-remark-right" placeholder="选填" value="{{remark}}" bind:input="onChangeRemark" />
   </view>
   <!-- 小计 -->
   <view class="info-subtotal">

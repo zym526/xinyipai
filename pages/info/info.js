@@ -121,11 +121,13 @@ Page({
           depositPayment:"已结束"
         })
         // 时间结束如果自己出价最高则跳转到订单页面
-        if(that.data.allAuctionporce[0].member_id==wx.getStorageSync("userId")){
-          app.globalData.justAndAuction=0
-          wx.navigateTo({
-            url: '/pages/confirmAnOrder/confirmAnOrder',
-          })
+        if(that.data.allAuctionporce.length!=0){
+          if(that.data.allAuctionporce[0].member_id==wx.getStorageSync("userId")){
+            app.globalData.justAndAuction=0
+            wx.navigateTo({
+              url: '/pages/confirmAnOrder/confirmAnOrder',
+            })
+          }
         }
         // 清除轮询
         clearInterval(that.data.setInter)
@@ -721,6 +723,7 @@ Page({
    */
   onHide: function () {
     var that=this
+    console.log("清除计时器")
     clearInterval(that.data.setInter)
     // wx.closeSocket();
     // clearInterval(that.data.circulation)//清除计时器
@@ -730,7 +733,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log("清除计时器")
+    var that=this
+    clearInterval(that.data.setInter)
   },
 
   /**

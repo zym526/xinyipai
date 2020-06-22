@@ -13,6 +13,7 @@
     "pages/binding/binding",
     "pages/address/address",
     "pages/logistics/logistics",
+    "pages/logisticsDetail/logisticsDetail",
     "pages/indent/indent",
     "pages/orderDetail/orderDetail",
     "pages/confirmAnOrder/confirmAnOrder",
@@ -52,7 +53,8 @@
     "van-radio-group": "dist/radio-group/index",
     "van-search": "dist/search/index",
     "van-stepper": "dist/stepper/index",
-    "van-dialog": "dist/dialog/index"
+    "van-dialog": "dist/dialog/index",
+    "van-steps": "dist/steps/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
