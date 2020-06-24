@@ -53,7 +53,7 @@ Page({
                 delta: 1
               })
             }).catch(err=>{
-              app.showToast(err.data.msg)
+              app.showToast("请求失败，请稍后重试~")
             })
           } else {
             console.log('登录失败！' + res.errMsg)

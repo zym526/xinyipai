@@ -37,12 +37,16 @@ Page({
             fav_type:"store"
           }
         }).then(res=>{
-          that.setData({
-            attention:"已关注"
-          })
-          app.showToast("关注成功")
+          if(res.data.code==200){
+            that.setData({
+              attention:"已关注"
+            })
+            app.showToast("关注成功")
+          }else{
+            app.showToast("关注失败")
+          }
         }).catch(err=>{
-          app.showToast("关注失败")
+          app.showToast("请求失败，请稍后重试~")
         })
       }else{
         app.http({
@@ -54,11 +58,15 @@ Page({
             fav_type:"store"
           }
         }).then(res=>{
-          that.setData({
-            attention:"关注"
-          })
+          if(res.data.code==200){
+            that.setData({
+              attention:"关注"
+            })
+          }else{
+            app.showToast("取消关注失败")
+          } 
         }).catch(err=>{
-          app.showToast("取消关注失败")
+          app.showToast("请求失败，请稍后重试~")
         })
       }
     }else{
@@ -164,13 +172,17 @@ Page({
           fav_type:"store"
         }
       }).then(res=>{
-        that.setData({
-          attention:"已关注"
-        })
+        if(res.data.code==200){
+          that.setData({
+            attention:"已关注"
+          })
+        }else{
+          that.setData({
+            attention:"关注"
+          })
+        }
       }).catch(err=>{
-        that.setData({
-          attention:"关注"
-        })
+        app.showToast("请求失败，请稍后重试~")
       })
       // 未登录则显示未收藏
     }else{
@@ -199,7 +211,7 @@ Page({
         haopinglv:((res.data.data.store_desccredit/5)*100).toFixed(2)
       })
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
     // 获取首页数据
     that.getIndexInfo();
@@ -279,7 +291,7 @@ Page({
         allData:allData
       })
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
   // 获取数据（商品/推荐/新品/价格）
@@ -316,7 +328,7 @@ Page({
           })
         }
       }).catch(err=>{
-        app.showToast(err.data.msg)
+        app.showToast("请求失败，请稍后重试~")
       })
     }else{
       app.showToast("暂无更多数据~")

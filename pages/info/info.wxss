@@ -192,6 +192,7 @@ page{
   justify-content: space-between;
   font-size: 24rpx;
   color: #666666;
+  margin-bottom: 10rpx;
 }
 .imagesAll{
   display: inline-block;
@@ -223,7 +224,6 @@ page{
   padding: 24rpx;
   box-sizing: border-box;
   background-color: white;
-  margin-top: 10rpx;
 }
 .noPeople{
   background-color: white;
@@ -355,6 +355,9 @@ page{
 /* 查看更多 */
 .more{
   text-align: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+  background-color: white;
 }
 .moreInside{
   border: 2rpx solid #999999;
@@ -691,11 +694,11 @@ page{
   border-radius: 10rpx;
 }
 /* 分享 */
-.share{
-  position: fixed;
-  right: 17rpx;
-  bottom: 150rpx;
-  width: 80rpx;
+/* .share{
+  position: fixed; */
+  /* right: 17rpx;
+  bottom: 150rpx; */
+  /* width: 80rpx;
   height: 80rpx;
   border-radius: 80rpx;
   display: flex;
@@ -704,4 +707,22 @@ page{
   background-color: rgba(240, 242, 245, 0.7);
   border: 4rpx solid rgba(153, 153, 153, 1);
   z-index: 999;
+} */
+movable-area{
+  position: fixed;
+  width: 100%;
+  height: 25%;
+  left: 0rpx;
+  top: 60%;
+  z-index: 999;
+}
+movable-view{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(240, 242, 245, 0.7);
+  border: 4rpx solid rgba(153, 153, 153, 1);
 }

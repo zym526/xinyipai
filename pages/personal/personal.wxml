@@ -28,19 +28,19 @@
 		<view class="weui-cell__ft" style="font-size:26rpx">全部订单<van-icon name="arrow" size="22rpx"/></view>
 	</view>
   <view class="weui-flex">
-		<view class="weui-flex__item" bindtap="toDingdan">
+		<view class="weui-flex__item" bindtap="toDingdan" data-index="10">
       <view>
         <image src="../../images/daifukuan.png" mode="widthFix"></image>
       </view>
       <view>待付款</view>
     </view>
-		<view class="weui-flex__item" bindtap="toDingdan">
+		<view class="weui-flex__item" bindtap="toDingdan" data-index="20">
       <view>
         <image src="../../images/fahuo.png" mode="widthFix"></image>
       </view>
       <view>待发货</view>
     </view>
-		<view class="weui-flex__item" bindtap="toDingdan">
+		<view class="weui-flex__item" bindtap="toDingdan" data-index="30">
       <view>
         <image src="../../images/shouhuo.png" mode="widthFix"></image>
       </view>
@@ -68,7 +68,7 @@
       </view>
       <view>收货地址</view>
     </view>
-		<view class="weui-flex__item">
+		<view class="weui-flex__item" bindtap="toCashDeposit">
       <view>
         <image src="../../images/baozhengjin.png" mode="widthFix"></image>
       </view>

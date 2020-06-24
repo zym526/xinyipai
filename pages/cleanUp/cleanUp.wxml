@@ -4,17 +4,17 @@
     <view class="iconfont icon-wenhao" style="font-size:36rpx;color:#999999"></view>
     <view class="top-all-money">
       <view class="top-all-text">可提现余额 (元)</view>
-      <view class="top-all-money-number">500.00</view>
+      <view class="top-all-money-number">0</view>
     </view>
     <view class="top-bottom">
       <view class="top-bottom-left">
         <view class="top-bottom-left-text">累计提现 (元)</view>
-        <view class="top-bottom-left-money">200.00</view>
+        <view class="top-bottom-left-money">0</view>
       </view>
       <view class="line-center"></view>
       <view class="top-bottom-right" bindtap="toProfit">
         <view class="top-bottom-right-text">总盈利 (元)</view>
-        <view class="top-bottom-right-money">200.00</view>
+        <view class="top-bottom-right-money">{{totalEarnings}}</view>
       </view>
     </view>
   </view>

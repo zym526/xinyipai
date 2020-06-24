@@ -24,6 +24,7 @@ page{
 .one-image image{
   width: 100%;
   height: auto;
+  border-radius: 10rpx;
 }
 .one-image-text{
   position: absolute;
@@ -71,4 +72,18 @@ page{
 }
 .one-bottom-right-gry{
   color: #999999;
+}
+/* 暂无数据 */
+.empty{
+  text-align: center;
+}
+.empty image{
+  width: 331rpx;
+  height: auto;
+  margin-top: 120rpx;
+}
+.no-text{
+  font-size: 28rpx;
+  color: #999999;
+  margin-top: 30rpx;
 }

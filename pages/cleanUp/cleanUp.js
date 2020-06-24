@@ -32,7 +32,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that=this
+    app.http({
+      url:"wxuser/balance",
+      method:"POST",
+      param:{
+        uid:wx.getStorageSync('userId')
+      }
+    }).then(res=>{
+      if(res.data.code==200){
+        that.setData({
+          totalEarnings:res.data.data,//总盈利
+        })
+      }else{
+        app.showToast(res.data.msg)
+      }
+    }).catch(err=>{
+      app.showToast("请求失败，请稍后重试~")
+    })
   },
 
   /**

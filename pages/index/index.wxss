@@ -162,7 +162,7 @@ page {
   transform: translateX(-50%) translateY(-50%);
 }
 .time{
-  font-size: 22rpx;
+  font-size: 20rpx;
   line-height: 40rpx;
   position: absolute;
   left: 0rpx;
@@ -263,4 +263,6 @@ page {
   height: 90rpx;
   opacity: 0.5;
 }
-/* 暂无数据 */
+.red-bg{
+  background-color: rgba(235, 97, 0, 0.15);
+}

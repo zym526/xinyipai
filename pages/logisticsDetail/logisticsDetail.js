@@ -53,7 +53,9 @@ Page({
       }else{
         app.showToast(res.data.msg)
       }
-    }).catch(err=>{})
+    }).catch(err=>{
+      app.showToast("请求失败，请稍后重试~")
+    })
   },
 
   /**

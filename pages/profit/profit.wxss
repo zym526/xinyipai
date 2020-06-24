@@ -108,3 +108,17 @@ page{
   font-size: 26rpx;
   color: #666666;
 }
+/* 暂无数据 */
+.no-empty{
+
+  text-align: center;
+}
+.no-empty image{
+  width: 331rpx;
+  height: auto;
+  margin-top: 120rpx;
+}
+.no-text{
+  font-size: 28rpx;
+  color: #999999;
+}

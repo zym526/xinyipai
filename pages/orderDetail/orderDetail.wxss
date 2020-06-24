@@ -250,6 +250,9 @@ page{
   color: #E7260A;
   border: 2rpx solid #E7260A;
 }
+.shop,.del{
+  width: 100%;
+}
 .pay,.confirm{
   background-color: #E7260A;
   color: white;

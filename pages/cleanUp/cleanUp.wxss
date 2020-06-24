@@ -41,6 +41,7 @@ page{
 .top-bottom-left,.top-bottom-right{
   font-size: 26rpx;
   color: #666666;
+  text-align: center;
 }
 .top-bottom-left-money,.top-bottom-right-money{
   font-size: 40rpx;

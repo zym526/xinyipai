@@ -7,10 +7,7 @@
     "pages/ShopFront/ShopFront",
     "pages/shopDetails/shopDetails",
     "pages/info/info", 
-    "pages/cashier/cashier",
     "pages/result/result",
-    "pages/lineitem/lineitem",  
-    "pages/binding/binding",
     "pages/address/address",
     "pages/logistics/logistics",
     "pages/logisticsDetail/logisticsDetail",
@@ -20,6 +17,7 @@
     "pages/indentPage/indentPage",
     "pages/footprint/footprint",
     "pages/compete/compete",
+    "pages/cashDeposit/cashDeposit",
     "pages/cleanUp/cleanUp",
     "pages/profit/profit",
     "pages/allPJ/allPJ",
@@ -72,11 +70,6 @@
       "iconPath": "images/classify.png",
       "selectedIconPath": "images/classify1.png",
       "text": "分类"
-    },{
-      "pagePath": "pages/message/message",
-      "iconPath": "images/message.png",
-      "selectedIconPath": "images/message1.png",
-      "text": "消息"
     },{
       "pagePath": "pages/personal/personal",
       "iconPath": "images/personal.png",

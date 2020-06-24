@@ -67,7 +67,7 @@ Page({
         rightAll:res.data[0].gc_parent_id,//当前选中分类的所有
       })
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
 

@@ -41,7 +41,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    gid:"7",
+    gid:"",//商品id
     justAndAuction:"",//1为直购，0为拍卖
     address_id:"",//收获地址id
   },
@@ -64,6 +64,28 @@ App({
           //     var day = parseInt( parseInt( parseInt(mss / 60) /60 ) / 24 );  //获得天
           //     time = day + "天" + hour + "小时" + min + "分" + second + "秒";  
           // }  
+      }       
+    }
+    return time;
+  },
+  // 时间戳转为天时分秒
+  formatDuring2: function(mss) {
+    var time = parseInt(mss) + "秒";
+    if( parseInt(mss )> 60){
+      var second = parseInt(mss) % 60;  //取余获得秒数
+      var min = parseInt(mss / 60);  //当剩余分钟数不大于60分钟时，取整获得分数
+      time = min + "分" + second + "秒";  
+      // 如果大于60分钟则判断小时
+      if( min > 60 ){  
+          min = parseInt(mss / 60) % 60;  //获得分钟数
+          var hour = parseInt( parseInt(mss / 60) /60 ); //获得小时 
+          time = hour + "小时" + min + "分" + second + "秒";  
+          // 如果大于24小时则判断天数
+          if( hour > 24 ){  
+              hour = parseInt( parseInt(mss / 60) /60 ) % 24; //获得小时 
+              var day = parseInt( parseInt( parseInt(mss / 60) /60 ) / 24 );  //获得天
+              time = day + "天" + hour + "小时" + min + "分" + second + "秒";  
+          }  
       }       
     }
     return time;

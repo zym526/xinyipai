@@ -16,6 +16,9 @@ Page({
     radio:"1",//竞拍协议同意
     reduceColor:"#999999",
     onceLock:true,//是否是初次进入
+    // 位置
+    x:0,
+    y:0,
   },
   // 进入店铺首页,并将店铺id传过去
   toShop: function(){
@@ -67,7 +70,7 @@ Page({
             app.showToast(res.data.msg)
           }  
         }).catch(err=>{
-          app.showToast(err.data.msg)
+          app.showToast("请求失败，请稍后重试~")
         })
       }else{
         app.http({
@@ -88,7 +91,7 @@ Page({
             app.showToast(res.data.msg)
           }    
         }).catch(err=>{
-          app.showToast(err.data.msg)
+          app.showToast("请求失败，请稍后重试~")
         })
       }
     }else{
@@ -106,32 +109,43 @@ Page({
     var now=parseInt(date.getTime()/1000);
     // 结束时间
     var endTime=that.data.endTime;
+    // 开始时间
+    var startime=that.data.startime;
     that.data.circulation = setTimeout(function(){
       // 如果结束时间大于现在时间则拍卖进行中
-      if(endTime-now>0){
+      if(endTime>now&&startime<now){
         that.setData({
-          time:app.formatDuring(endTime-now)
+          time:app.formatDuring2(endTime-now)
         })
-        that.changeTime(that.data.endTime)
+        that.changeTime()
       // 否则拍卖结束
       }else{
-        that.setData({
-          time:"拍卖已结束",
-          isPat:false,//不能抢拍了
-          depositPayment:"已结束"
-        })
-        // 时间结束如果自己出价最高则跳转到订单页面
-        if(that.data.allAuctionporce.length!=0){
-          if(that.data.allAuctionporce[0].member_id==wx.getStorageSync("userId")){
-            app.globalData.justAndAuction=0
-            wx.navigateTo({
-              url: '/pages/confirmAnOrder/confirmAnOrder',
-            })
-          }
+        if(startime>now){
+          that.setData({
+            time:"拍卖未开始",
+            isPat:false,//不能抢拍了
+            depositPayment:"未开始"
+          })
+          that.changeTime()
+        }else{
+          that.setData({
+            time:"拍卖已结束",
+            isPat:false,//不能抢拍了
+            depositPayment:"已结束"
+          })
+          // 清除轮询
+          clearInterval(that.data.setInter)
         }
-        // 清除轮询
-        clearInterval(that.data.setInter)
-        console.log("计时器结束")
+        // 时间结束如果自己出价最高则跳转到订单页面
+        // if(that.data.allAuctionporce.length!=0){
+        //   if(that.data.allAuctionporce[0].member_id==wx.getStorageSync("userId")){
+        //     app.globalData.justAndAuction=0
+        //     wx.navigateTo({
+        //       url: '/pages/confirmAnOrder/confirmAnOrder',
+        //     })
+        //   }
+        // }
+        // console.log("计时器结束")
       }
     },1000)
   },
@@ -197,7 +211,7 @@ Page({
       // 判断当前是否可以抢拍,isPat判断是否在时间内
       if(that.data.isPat){
         // 如果为立即参拍则该商品需要缴纳保证金并且该用户未缴纳
-        console.log(that.data.depositPayment)
+        // console.log(that.data.depositPayment)
         if(that.data.depositPayment=="立即参拍"){
           that.setData({
             isCash:true
@@ -242,7 +256,7 @@ Page({
           gid:that.data.id
         }
       }).then(res=>{
-        console.log(res)
+        // console.log(res)
         if(res.data.code==200){
           // 发起微信支付请求
           var data=res.data.data
@@ -267,14 +281,14 @@ Page({
                     uid:wx.getStorageSync("userId")
                   }
                 }).then(res=>{
-                  console.log(res)
+                  // console.log(res)
                   if(res.data.code==200){
                     that.lookPledge()
                   }else{
                     app.showToast(res.data.msg)
                   }
                 }).catch(err=>{
-                  console.log(err)
+                  app.showToast("请求失败，请稍后重试~")
                 })
               } else {
                 app.showToast("支付失败")
@@ -290,7 +304,7 @@ Page({
           app.showToast(res.data.msg)
         }
       }).catch(err=>{
-        app.showToast(err.data.msg)
+        app.showToast("请求失败，请稍后重试~")
       })
     }else{
       app.showToast("请先同意拍卖协议")
@@ -363,23 +377,23 @@ Page({
                 price:that.data.nowBidToPopup
               }
             }).then(res=>{
-              console.log(res)
+              // console.log(res)
               if(res.data.code==200){
-                console.log("出价成功")
+                // console.log("出价成功")
                 that.setData({
                   isBid:false
                 })
                 if(that.data.nowBidToPopup==that.data.shotdetail.goods_promotion_price){
                   app.globalData.justAndAuction=0
-                    wx.navigateTo({
-                      url: '/pages/confirmAnOrder/confirmAnOrder',
-                    })
+                  wx.navigateTo({
+                    url: '/pages/confirmAnOrder/confirmAnOrder',
+                  })
                 }
               }else{
                 app.showToast(res.data.msg)
               }
             }).catch(err=>{
-              app.showToast(err.data.msg)
+              app.showToast("请求失败，请稍后重试~")
             })
           }else{
 
@@ -390,7 +404,7 @@ Page({
   },
   // 关闭弹窗
   onClose() {
-    console.log(13456)
+    // console.log(13456)
     this.setData({ isBid: false,isCash:false });
   },
   // 判断自己是否缴纳过保证金
@@ -414,7 +428,7 @@ Page({
         })
       }
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
   // 获取商品信息并判断
@@ -431,7 +445,7 @@ Page({
       // 深拷贝两个数据，data进行剪切展现，data2进行必要的数据循环
       var data=JSON.parse(JSON.stringify(res.data.data));
       var data2=JSON.parse(JSON.stringify(res.data.data));
-      console.log("data,data2:",data,data2)
+      // console.log("data,data2:",data,data2)
       // 全部出价人员信息
       that.setData({
         allAuctionporce:data2.auctionporce
@@ -468,18 +482,19 @@ Page({
         store:data.store,//店铺信息
         add_bond_price:Number(data.shotdetail.add_bond_price),//加价金额
         endTime:data.shotdetail.goods_endtime,//商品拍卖结束时间
+        startime:data.shotdetail.goods_startime//商品开始时间
         // nowBidToPopup:auctionporce[0].price?auctionporce[0].price+add_bond_price:shotdetail.goods_price+add_bond_price,//当前最低出价金额
         // nowBidToPopup:data.auctionporce.length!=0?Number(data.auctionporce[0].price)+Number(data.shotdetail.add_bond_price):data.shotdetail.goods_price+Number(data.shotdetail.add_bond_price)//当前最低出价金额
       })
       var nowMoney=data.auctionporce.length!=0?Number(data.auctionporce[0].price)+Number(data.shotdetail.add_bond_price):data.shotdetail.goods_price+Number(data.shotdetail.add_bond_price)
       if(that.data.minimum!=nowMoney){
-        console.log("前后两次不同")
+        // console.log("前后两次不同")
         that.setData({
           nowBidToPopup:nowMoney,
           minimum:nowMoney
         })
       }else{
-        console.log("两次相同")
+        // console.log("两次相同")
       }
       // 每次进来判断是否可以直接购买,库存达到上线则不能购买
       if(that.data.inventory==that.data.shotdetail.goods_storage){
@@ -527,20 +542,18 @@ Page({
       if(dataLength==0){//如果没有人出价则第二个为大锤子
         chuiziAll[1]="/images/chuizi.png"
       }else{
-        for(var i=0;i<chuiziAll.length;i++){
-          if((i-1)==dataLength){
+        for(let i=0;i<chuiziAll.length;i++){
+          if((i-1)==dataLength||chuiziAll.length-1==i){
             // 判断用户是否登录
             if(wx.getStorageSync('userId')){
               // 如果下一次出价没有超过最高价
-              if(that.data.minimum<=that.data.shotdetail.goods_promotion_price){
+              // if(that.data.minimum<=that.data.shotdetail.goods_promotion_price){
                 // 判断自己是否已经出过价格，并出价几次
                 var allJia=[]
-                var oncJia
                 for(var j=0;j<that.data.allAuctionporce.length;j++){
                   // 如果出过价格
                   if(that.data.allAuctionporce[j].member_id==wx.getStorageSync('userId')){
                     allJia.push(that.data.allAuctionporce[j])
-                    oncJia=j//如果只有一次出价则这个为当前出价人位置
                   }
                 }
                 // 判断是否只能出价一次
@@ -558,7 +571,7 @@ Page({
                       isPat:false
                     })
                     // 判断自己头像的位置
-                    chuiziAll[i-(oncJia+1)]=wx.getStorageSync('userInfo').avatarUrl
+                    chuiziAll[(Number(allJia[0].price)-data2.shotdetail.goods_price)/data2.shotdetail.add_bond_price]=wx.getStorageSync('userInfo').avatarUrl
                   }
                 }else{
                   // 如果可以多次出价，并且自己出了一次或以上
@@ -567,13 +580,17 @@ Page({
                     that.setData({
                       depositPayment:"再出价",
                     })
+                    for(let k=0;k<allJia.length;k++){
+                      chuiziAll[(Number(allJia[k].price)-data2.shotdetail.goods_price)/data2.shotdetail.add_bond_price]=wx.getStorageSync('userInfo').avatarUrl
+                      // console.log(i,k)
+                    }
                   }else{
                     that.setData({
                       depositPayment:"去出价",
                     })
                   }
                   chuiziAll[i]=wx.getStorageSync('userInfo').avatarUrl
-                }
+                // }
               }
             }else{
               chuiziAll[i]="/images/chuizi.png"
@@ -618,7 +635,7 @@ Page({
         }
       }     
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
   // 没隔5秒请求一次数据
@@ -648,6 +665,15 @@ Page({
    */
   onShow: function () {
     var that=this
+    // 获取屏幕
+    wx.getSystemInfo({
+      success (res) {
+        // 设置悬浮框的位置
+        that.setData({
+          x:res.windowHeight
+        })
+      }
+    })
     app.globalData.address_id=""//清空地址id
     that.setData({
       user_id:wx.getStorageSync('userId')?wx.getStorageSync('userId'):'',
@@ -662,7 +688,7 @@ Page({
     , 3000); 
     // 判断用户是否登录请求数据判断是否收藏
     if(wx.getStorageSync('userInfo')&&wx.getStorageSync('openId')){
-      console.log("需要发起请求")
+      // console.log("需要发起请求")
       app.http({
         url:"wxstore/storeisfollow",
         method:"POST",
@@ -686,7 +712,7 @@ Page({
           app.showToast(res.data.msg)
         }
       }).catch(err=>{
-        app.showToast(err.data.msg)
+        app.showToast("请求失败，请稍后重试~")
       })
     }else{
       // 未登录则显示关注
@@ -723,7 +749,7 @@ Page({
    */
   onHide: function () {
     var that=this
-    console.log("清除计时器")
+    // console.log("清除计时器")
     clearInterval(that.data.setInter)
     // wx.closeSocket();
     // clearInterval(that.data.circulation)//清除计时器
@@ -733,7 +759,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log("清除计时器")
+    // console.log("清除计时器")
     var that=this
     clearInterval(that.data.setInter)
   },

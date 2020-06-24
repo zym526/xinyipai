@@ -1,4 +1,5 @@
-// pages/lineitem/lineitem.js
+// pages/cashDeposit/cashDeposit.js
+const app=getApp()
 Page({
 
   /**
@@ -6,36 +7,6 @@ Page({
    */
   data: {
 
-  },
-  // 跳转商城
-  toShop: function(){
-    wx.switchTab({
-      url: '/pages/index/index',
-    })
-  },
-  // 跳转地址
-  toAddress: function(){
-    wx.navigateTo({
-      url: '/pages/address/address',
-    })
-  },
-  // 跳转商品详情
-  toInfo: function(){
-    wx.navigateTo({
-      url: '/pages/info/info',
-    })
-  },
-  // 跳转所有订单
-  toIndent: function(){
-    wx.navigateTo({
-      url: '/pages/indent/indent',
-    })
-  },
-  // 跳转物流信息
-  toLogistics: function(){
-    wx.navigateTo({
-      url: '/pages/logistics/logistics',
-    })
   },
 
   /**

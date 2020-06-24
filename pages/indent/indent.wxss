@@ -134,3 +134,18 @@ page{
 .direct-purchasing-bg{
   background-color: #EB6100;
 }
+/* 暂无数据 */
+.noMessage{
+  padding: 120rpx;
+  box-sizing: border-box;
+  text-align: center;
+}
+.noMessage image{
+  width: 331rpx;
+  height: auto;
+}
+.no-text{
+  font-size: 28rpx;
+  color: #999999;
+  margin-top: 30rpx;
+}

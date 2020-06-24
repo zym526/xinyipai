@@ -4,7 +4,7 @@
     <swiper class='lunbo' autoplay='true' interval='4000' style='height:{{Hei}}'>
       <swiper-item wx:for="{{shotdetail.imgarr}}" wx:key="index"> <image src='{{item}}' mode="widthFix" bindload='imgH'></image> <view class="page"><text>{{index+1}}</text>/4</view></swiper-item>
     </swiper>  
-    <view class="lunboBottom">{{time=='拍卖已结束'?'':'距离拍卖结束：'}}{{time}}</view>
+    <view class="lunboBottom">{{time=='拍卖已结束'||time=='拍卖未开始'?'':'距离拍卖结束：'}}{{time}}</view>
   </view>
   <!-- 商品信息/介绍/竞价 -->
   <view class="threeInfo">
@@ -77,10 +77,10 @@
       </view>
     </view>
     <!-- 查看更多 -->
-    <view class="more" hidden="{{auctionporce.length<=2}}">
+    <view class="more" hidden="{{allAuctionporce.length<=2}}">
       <button class="moreInside" bindtap="lookAllCJ">{{isShow?'查看更多':'点击收起'}}</button>
     </view>
-    <view class="noPeople" hidden="{{auctionporce.length!=0}}">暂无人出价</view>
+    <view class="noPeople" hidden="{{allAuctionporce.length!=0}}">暂无人出价</view>
   </view>
   <!-- 拍卖评价/拍卖流程 -->
   <view class="evaluationProcedure" style="background:white;margin-top:24rpx">
@@ -296,8 +296,13 @@
   <view class="yesAndBuy" bindtap="yesAndBuy">同意并支付</view>
 </van-popup>
 <!-- 分享悬浮框 -->
-<view class="share">
+<!-- <view class="share" bindtouchmove="viewTouchMove" style="right:{{right}}rpx;bottom:{{bottom}}rpx;">
   <view class="iconfont icon-fenxiang" style="color:#333333;font-size:42rpx"></view>
-</view>
+</view> -->
+<movable-area>
+  <movable-view x="{{x}}" y="{{y}}" direction="all">
+    <view class="iconfont icon-fenxiang" style="color:#333333;font-size:42rpx"></view>
+  </movable-view>
+</movable-area>
 <!-- 提示弹框 -->
 <van-dialog id="van-dialog" />

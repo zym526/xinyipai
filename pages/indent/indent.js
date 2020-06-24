@@ -11,13 +11,17 @@ Page({
     pages:1,//页数
     lock:true,//请求锁
     allOrder:[],//所有商品数据
+    isNoMessage:true,//暂无数据
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this
+    that.setData({
+      date:options.date
+    })
   },
 
   /**
@@ -43,6 +47,9 @@ Page({
   getOrder(pages,order_state){
     var that=this
     if(that.data.lock){
+      that.setData({
+        isNoMessage:true
+      })
       // 获取买家订单
       app.http({
         url:"wxorder/userorder",
@@ -89,10 +96,16 @@ Page({
           that.setData({
             lock:false
           })
+          // 如果为第一页并且没有数据
+          if(that.data.pages==1){
+            that.setData({
+              isNoMessage:false
+            })
+          }
           app.showToast("没有了~")
         }
       }).catch(err=>{
-        app.showToast(err.data.msg)
+        app.showToast("请求失败，请稍后重试~")
       })
     }
   },
@@ -100,8 +113,15 @@ Page({
   cancelOrder(e){
     var that=this
     var order_sn=e.currentTarget.dataset.ordersn//订单号
+    //是直购还是拍卖
+    var contentText=""
+    if(e.currentTarget.dataset.ordertype==0){
+      contentText="取消拍卖订单后，保证金将不予返还，您确定要取消订单吗？"
+    }else{
+      contentText="您确定要取消订单吗？"
+    }
     wx.showModal({
-      content: '您确定要取消订单吗？',
+      content: contentText,
       success: function (res) {
         if (res.confirm){
           app.http({
@@ -121,7 +141,9 @@ Page({
             }else{
               app.showToast(res.data.msg)
             }
-          }).catch(err=>{})
+          }).catch(err=>{
+            app.showToast("请求失败，请稍后重试~")
+          })
         }
       }
     })
@@ -151,7 +173,9 @@ Page({
             }else{
               app.showToast(res.data.msg)
             }
-          }).catch(err=>{})
+          }).catch(err=>{
+            app.showToast("请求失败，请稍后重试~")
+          })
         }
       }
     })
@@ -202,10 +226,12 @@ Page({
                     allOrder:[],//所有商品重置
                   })
                   that.getOrder(that.data.pages,that.data.nowTab.state)
-                }).catch(err=>{})
+                }).catch(err=>{
+                  app.showToast("请求失败，请稍后重试~")
+                })
               }
             }).catch(err=>{
-              app.showToast(err.data.msg)
+              app.showToast("请求失败，请稍后重试~")
             })
           },
           fail(error){
@@ -216,7 +242,9 @@ Page({
       }else{
         app.showToast(res.data.msg)
       }
-    }).catch(err=>{})
+    }).catch(err=>{
+      app.showToast("请求失败，请稍后重试~")
+    })
   },
   // 查看物流
   lookLogistics(e){
@@ -251,7 +279,9 @@ Page({
             }else{
               app.showToast(res.data.msg)
             }
-          }).catch(err=>{})
+          }).catch(err=>{
+            app.showToast("请求失败，请稍后重试~")
+          })
         }
       }
     })
@@ -269,8 +299,27 @@ Page({
    */
   onShow: function () {
     var that=this
+    console.log(that.data.date)
     if(wx.getStorageSync('userInfo')&&wx.getStorageSync('openId')){
-      that.getOrder(that.data.pages,100)//获取全部用户订单信息
+      if(that.data.date){
+        that.getOrder(that.data.pages,that.data.date)//如果有传参则根据传参获取
+        // 根据传参的不同修改对应的tab
+        if(that.data.date==10){
+          that.setData({
+            nowTab:{text:"待付款",state:10}
+          })
+        }else if(that.data.date==20){
+          that.setData({
+            nowTab:{text:"待发货",state:20}
+          })
+        }else if(that.data.date==30){
+          that.setData({
+            nowTab:{text:"待收货",state:30}
+          })
+        }
+      }else{
+        that.getOrder(that.data.pages,100)//获取全部用户订单信息
+      }
     }else{
       wx.navigateTo({
         url: '/pages/login/login',

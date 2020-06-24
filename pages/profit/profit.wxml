@@ -5,62 +5,33 @@
 </view>
 <!-- 三个分类 -->
 <view class="classify">
-  <view class="one-classify" wx:for="{{classify}}" wx:key="index" style="width:calc(100% / {{classify.length}})">
-    <view class="classify-text {{index==0?'classify-text-active':''}}">{{item}}</view>
-    <text class="classify-bottom {{index!=0?'classify-bottom-active':''}}"></text>
+  <view class="one-classify" wx:for="{{classify}}" wx:key="index" style="width:calc(100% / {{classify.length}})" bindtap="changeTab" data-index="{{index}}">
+    <view class="classify-text {{index==nowTab?'classify-text-active':''}}">{{item}}</view>
+    <text class="classify-bottom {{index!=nowTab?'classify-bottom-active':''}}"></text>
   </view>
 </view>
 <!-- 详情 -->
-<view class="outer-all">
-  <view class="one-outer">
+<view class="outer-all" hidden="{{!isShow}}">
+  <view class="one-outer" wx:for="{{message}}" wx:key="index">
     <!-- 顶部状态 -->
     <view class="one-top">
-      <view class="one-top-left">拍卖订单已完成</view>
-      <view class="one-top-right">+65.00</view>
+      <view class="one-top-left {{nowTab==2?'one-top-left-org':''}}">{{textTop}}</view>
+      <view class="one-top-right" hidden="{{nowTab==2}}">+{{item.price}}</view>
     </view>
     <!-- 中间商品 -->
     <view class="one-center">
       <image src="/images/baozhengjin.png" mode="widthFix"></image>
-      <view class="one-center-text">招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝</view>
+      <view class="one-center-text">{{item.goods_name}}</view>
     </view>
     <!-- 底部时间价格 -->
     <view class="one-bottom">
-      <view class="one-bottom-time">2020-02-02  11:00:00</view>
-      <view class="one-bottom-money">出价:￥310</view>
+      <view class="one-bottom-time">{{item.create_time_new}}</view>
+      <view class="one-bottom-money">出价:￥{{item.order_price}}</view>
     </view>
   </view>
-  <view class="one-outer">
-    <!-- 顶部状态 -->
-    <view class="one-top">
-      <view class="one-top-left">拍卖订单已取消，对应分佣已入账</view>
-      <view class="one-top-right">+65.00</view>
-    </view>
-    <!-- 中间商品 -->
-    <view class="one-center">
-      <image src="/images/baozhengjin.png" mode="widthFix"></image>
-      <view class="one-center-text">招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝</view>
-    </view>
-    <!-- 底部时间价格 -->
-    <view class="one-bottom">
-      <view class="one-bottom-time">2020-02-02  11:00:00</view>
-      <view class="one-bottom-money">出价:￥310</view>
-    </view>
-  </view>
-  <view class="one-outer">
-    <!-- 顶部状态 -->
-    <view class="one-top">
-      <view class="one-top-left one-top-left-org">拍卖订单进行中，订单完成后入账</view>
-      <view class="one-top-right" hidden="{{true}}">+65.00</view>
-    </view>
-    <!-- 中间商品 -->
-    <view class="one-center">
-      <image src="/images/baozhengjin.png" mode="widthFix"></image>
-      <view class="one-center-text">招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝招财进宝</view>
-    </view>
-    <!-- 底部时间价格 -->
-    <view class="one-bottom">
-      <view class="one-bottom-time">2020-02-02  11:00:00</view>
-      <view class="one-bottom-money">出价:￥310</view>
-    </view>
-  </view>
+</view>
+<!-- 暂无数据 -->
+<view class="no-empty" hidden="{{isShow}}">
+  <image src="/images/noAddress.png" mode="widthFix"></image>
+  <view class="no-text">暂无数据</view>
 </view>

@@ -31,7 +31,7 @@
       <text class="{{item.order_type==1?'direct-purchasing':''}}">{{item.order_type_text}}</text>
     </view>
     <view class="order-bottom-right">
-      <view class="order-bottom-cancel" hidden="{{item.order_state!=10}}" bindtap="cancelOrder" data-ordersn="{{item.order_sn}}">取消订单</view>
+      <view class="order-bottom-cancel" hidden="{{item.order_state!=10}}" bindtap="cancelOrder" data-ordersn="{{item.order_sn}}" data-ordertype="{{item.order_type}}">取消订单</view>
       <view class="order-bottom-pay {{item.order_type==1?'direct-purchasing-bg':''}}" hidden="{{item.order_state!=10}}" bindtap="payOrder" data-ordersn="{{item.order_sn}}">立即支付</view>
       <view class="order-bottom-look" hidden="{{item.order_state!=30}}" bindtap="lookLogistics" data-ordersn="{{item.order_sn}}">查看物流</view>
       <!-- <view class="order-bottom-look" bindtap="lookLogistics" data-ordersn="{{item.order_sn}}">查看物流</view> -->
@@ -40,4 +40,9 @@
       <view class="order-bottom-del" hidden="{{item.order_state!=0&&item.order_state!=40}}" bindtap="delOrder" data-ordersn="{{item.order_sn}}">删除订单</view>
     </view>
   </view>
+</view>
+<!-- 暂无数据 -->
+<view class="noMessage" hidden="{{isNoMessage}}">
+  <image src="/images/noAddress.png" mode="widthFix"></image>
+  <view class="no-text">暂无数据</view>
 </view>

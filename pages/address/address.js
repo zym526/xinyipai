@@ -77,7 +77,7 @@ Page({
         app.showToast(res.data.msg)
       }
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
   // 选择省市区县
@@ -175,7 +175,7 @@ Page({
           app.showToast(res.data.msg)
         } 
       }).catch(err=>{
-        app.showToast(err.data.msg)
+        app.showToast("请求失败，请稍后重试~")
       })
     }
   },
@@ -220,7 +220,7 @@ Page({
         })
       }
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
     // 获取区
     app.http({
@@ -236,7 +236,7 @@ Page({
         })
       }
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
     // 获取县
     app.http({
@@ -252,7 +252,7 @@ Page({
         })
       }
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
   // 保存或编辑地址
@@ -298,7 +298,7 @@ Page({
         that.onClose();
         that.onShow()
       }).catch(err=>{
-        app.showToast(err.data.msg)
+        app.showToast("请求失败，请稍后重试~")
       })
     }   
   },
@@ -324,7 +324,7 @@ Page({
       console.log(res)
       that.onShow()
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
   // 删除地址
@@ -346,7 +346,7 @@ Page({
             that.onShow()
           }).catch(err=>{
             console.log(err)
-            app.showToast(err.data.msg)
+            app.showToast("请求失败，请稍后重试~")
           })
         }else{
 
@@ -364,10 +364,12 @@ Page({
   },
   // 跳转到订单页面
   toConfirmAnOrder(e){
-    app.globalData.address_id=e.currentTarget.dataset.item.address_id
-    wx.redirectTo({
-      url: '/pages/confirmAnOrder/confirmAnOrder',
-    })
+    if(app.globalData.personal==""){
+      app.globalData.address_id=e.currentTarget.dataset.item.address_id
+      wx.redirectTo({
+        url: '/pages/confirmAnOrder/confirmAnOrder',
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -415,7 +417,7 @@ Page({
         app.showToast(res.data.msg)
       }
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
 

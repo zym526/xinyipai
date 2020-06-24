@@ -46,7 +46,7 @@
         <view class="commodity">
           <image src="{{item.goods_image}}" mode="widthFix"></image>
           <image src="../../images/lunbo.png" mode="widthFix" class="logo" hidden="{{item.goods_image}}"></image>
-          <view class="time">剩余时间：{{item.time}}</view>
+          <view class="time {{item.time=='未开始'?'red-bg':''}}">{{item.time}}</view>
         </view>
         <view class="money">当前价：<text class="yuan">{{item.goods_price}}元</text></view>
       </view>
@@ -62,7 +62,7 @@
         <view class="commodity">
           <image src="{{item.goods_image}}" mode="widthFix"></image>
           <image src="../../images/lunbo.png" mode="widthFix" class="logo" hidden="{{item.goods_image}}"></image>
-          <view class="time">剩余时间：{{item.time}}</view>
+          <view class="time {{item.time=='未开始'?'red-bg':''}}">{{item.time}}</view>
         </view>
         <view class="money">当前价：<text class="yuan">{{item.goods_price}}元</text></view>
       </view>

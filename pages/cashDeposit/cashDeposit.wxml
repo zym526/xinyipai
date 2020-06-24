@@ -1,0 +1,60 @@
+<view class="one">
+  <view class="one-top">
+    <view class="one-top-left">您已成功缴纳保证金，可前往出价</view>
+    <view class="iconfont icon-wenhao"></view>
+  </view>
+  <view class="one-center">
+    <view class="one-shop">
+      <image src="/images/noAddress.png" mode="widthFix"></image>
+      <view class="one-center-text">商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名</view>
+    </view>
+    <view class="one-time">
+      <view class="one-left-time">2020-02-02  11:00:00</view>
+      <view class="one-right-money">￥300.00</view>
+    </view>
+  </view>
+  <view class="one-bottom">
+    <view class="one-btn-kong">查看详情</view>
+    <view class="one-btn-shi">去出价</view>
+  </view>
+</view>
+<view class="one">
+  <view class="one-top">
+    <view class="one-top-left">您已成功缴纳保证金，可前往出价</view>
+    <view class="iconfont icon-wenhao"></view>
+  </view>
+  <view class="one-center">
+    <view class="one-shop">
+      <image src="/images/noAddress.png" mode="widthFix"></image>
+      <view class="one-center-text">商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名</view>
+    </view>
+    <view class="one-time">
+      <view class="one-left-time">2020-02-02  11:00:00</view>
+      <view class="one-right-money">￥300.00</view>
+    </view>
+  </view>
+  <view class="one-bottom">
+    <view class="one-btn-kong">查看详情</view>
+    <view class="one-btn-shi">去出价</view>
+  </view>
+</view>
+<view class="one">
+  <view class="one-top">
+    <view class="one-top-left">您已成功缴纳保证金，可前往出价</view>
+    <view class="iconfont icon-wenhao"></view>
+  </view>
+  <view class="one-center">
+    <view class="one-shop">
+      <image src="/images/noAddress.png" mode="widthFix"></image>
+      <view class="one-center-text">商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名</view>
+    </view>
+    <view class="one-time">
+      <view class="one-left-time">2020-02-02  11:00:00</view>
+      <view class="one-right-money">￥300.00</view>
+    </view>
+  </view>
+  <view class="one-bottom">
+    <view class="one-btn-kong">查看详情</view>
+    <view class="one-btn-shi">去出价</view>
+  </view>
+</view>

@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    order_state_text_bottom:""
   },
 
   /**
@@ -36,8 +36,14 @@ Page({
   cancelOrder(e){
     var that=this
     var order_sn=e.currentTarget.dataset.ordersn//订单号
+    var contentText=""
+    if(that.data.goods.order_type==0){
+      contentText="取消拍卖订单后，保证金将不予返还，您确定要取消订单吗？"
+    }else{
+      contentText="您确定要取消订单吗？"
+    }
     wx.showModal({
-      content: '您确定要取消订单吗？',
+      content: contentText,
       success: function (res) {
         if (res.confirm){
           app.http({
@@ -55,7 +61,9 @@ Page({
             }else{
               app.showToast(res.data.msg)
             }
-          }).catch(err=>{})
+          }).catch(err=>{
+            app.showToast("请求失败，请稍后重试~")
+          })
         }
       }
     })
@@ -103,10 +111,12 @@ Page({
                   wx.redirectTo({
                     url: '/pages/indent/indent',
                   })
-                }).catch(err=>{})
+                }).catch(err=>{
+                  app.showToast("请求失败，请稍后重试~")
+                })
               }
             }).catch(err=>{
-              app.showToast(err.data.msg)
+              app.showToast("请求失败，请稍后重试~")
             })
           },
           fail(error){
@@ -117,7 +127,9 @@ Page({
       }else{
         app.showToast(res.data.msg)
       }
-    }).catch(err=>{})
+    }).catch(err=>{
+      app.showToast("请求失败，请稍后重试~")
+    })
   },
   // 查看物流
   lookLogistics(e){
@@ -150,7 +162,9 @@ Page({
             }else{
               app.showToast(res.data.msg)
             }
-          }).catch(err=>{})
+          }).catch(err=>{
+            app.showToast("请求失败，请稍后重试~")
+          })
         }
       }
     })
@@ -177,7 +191,9 @@ Page({
             }else{
               app.showToast(res.data.msg)
             }
-          }).catch(err=>{})
+          }).catch(err=>{
+            app.showToast("请求失败，请稍后重试~")
+          })
         }
       }
     })
@@ -192,7 +208,8 @@ Page({
       url:"wxorder/orderdetail",
       method:"POST",
       param:{
-        id:that.data.orderId
+        id:that.data.orderId,
+        uid:wx.getStorageSync('userId')
       }
     }).then(res=>{
       console.log(res)
@@ -207,28 +224,54 @@ Page({
         // 判断当前订单状态
         if(allMessage.data.order_state==0){
           allMessage.data.order_state_text="订单已取消"
-          allMessage.data.order_state_text_bottom="订单已取消"
+          that.setData({
+            order_state_text_bottom:"订单已取消"
+          })
         }else if(allMessage.data.order_state==10){
           allMessage.data.order_state_text="等待您的付款"
-          allMessage.data.order_state_text_bottom="剩余23小时59分自动关闭"
+          // 一天后结束
+          var endTime=(allMessage.data.add_time+(24*60*60))*1000
+          that.data.time=setInterval(function(){
+            // 当前时间
+            var nowTime=new Date().getTime()
+            if(nowTime>=endTime){
+              // 跳转订单列表
+              wx.redirectTo({
+                url: '/pages/indent/indent',
+              })
+            }else{
+              that.setData({
+                order_state_text_bottom:"剩余"+app.formatDuring(parseInt((endTime-nowTime)/1000))+"自动取消"
+              })
+            }
+          },1000);
         }else if(allMessage.data.order_state==20){
           allMessage.data.order_state_text="待发货"
-          allMessage.data.order_state_text_bottom="请耐心等待商家发货..."
+          that.setData({
+            order_state_text_bottom:"请耐心等待商家发货..."
+          })
         }else if(allMessage.data.order_state==30){
           allMessage.data.order_state_text="待收货"
-          allMessage.data.order_state_text_bottom="商家已发货，宝贝正向你赶来..."
+          that.setData({
+            order_state_text_bottom:"商家已发货，宝贝正向你赶来..."
+          })
         }else if(allMessage.data.order_state==40){
           allMessage.data.order_state_text="已完成"
-          allMessage.data.order_state_text_bottom="订单已完成，期待您的下次购买"
-        }
+          that.setData({
+            order_state_text_bottom:"订单已完成，期待您的下次购买"
+          })
+        }   
+
         allMessage.data.add_time=app.format(allMessage.data.add_time)//创建时间
         allMessage.data.payment_time=allMessage.data.payment_time?app.format(allMessage.data.payment_time):""//支付时间
         allMessage.data.send_time=allMessage.data.send_time?app.format(allMessage.data.send_time):""//发货时间
         allMessage.data.finnshed_time=allMessage.data.finnshed_time?app.format(allMessage.data.finnshed_time):""//收货时间
         allMessage.data.cancel_time=allMessage.data.cancel_time?app.format(allMessage.data.cancel_time):""//取消时间
 
-        allMessage.data.goods_startime=allMessage.data.goods_startime?app.format(allMessage.data.goods_startime):""//起拍时间
-        allMessage.data.auction_time=allMessage.data.auction_time?app.format(allMessage.data.auction_time):""//竞拍成功时间
+        allMessage.data.goods_startime=allMessage.goods_startime?app.format(allMessage.goods_startime):""//起拍时间
+        allMessage.data.auction_time=allMessage.auction_time?app.format(allMessage.auction_time):""//竞拍成功时间
+        allMessage.data.auction_price=allMessage.auction_price?allMessage.auction_price:"免保证金"//保证金额
+
         that.setData({
           address:allMessage.address,//地址信息
           goods:allMessage.data,//商品
@@ -237,21 +280,23 @@ Page({
       }else{
         app.showToast(res.data.msg)
       }
-    }).catch(err=>{})
+    }).catch(err=>{
+      app.showToast("请求失败，请稍后重试~")
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    clearInterval(this.data.time)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(this.data.time)
   },
 
   /**

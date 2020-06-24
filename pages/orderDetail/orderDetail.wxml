@@ -2,7 +2,7 @@
 <view class="order-outer {{goods.order_type==1?'order-outer-org':''}}">
   <view class="order-top-left">
     <view class="order-top-left-one {{goods.order_type==1?'text-org':''}}">{{goods.order_state_text}}</view>
-    <view class="order-top-left-two">{{goods.order_state_text_bottom}}</view>
+    <view class="order-top-left-two">{{order_state_text_bottom}}</view>
   </view>
   <view class="order-top-right {{goods.order_type==1?'text-org':''}}">{{goods.order_type_text}}</view>
 </view>
@@ -76,23 +76,23 @@
     <view class="serial-left">订单编号</view>
     <view class="serial-right">{{goods.order_sn}}</view>
   </view>
-  <view class="serial-one">
+  <view class="serial-one" hidden="{{goods.add_time==''}}">
     <view class="serial-left">下单时间</view>
     <view class="serial-right">{{goods.add_time}}</view>
   </view>
-  <view class="serial-one">
+  <view class="serial-one" hidden="{{goods.payment_time==''}}">
     <view class="serial-left">支付时间</view>
     <view class="serial-right">{{goods.payment_time}}</view>
   </view>
-  <view class="serial-one">
+  <view class="serial-one" hidden="{{goods.send_time==''}}">
     <view class="serial-left">发货时间</view>
     <view class="serial-right">{{goods.send_time}}</view>
   </view>
-  <view class="serial-one">
+  <view class="serial-one" hidden="{{goods.finnshed_time==''}}">
     <view class="serial-left">收货时间</view>
     <view class="serial-right">{{goods.finnshed_time}}</view>
   </view>
-  <view class="serial-one">
+  <view class="serial-one" hidden="{{goods.cancel_time==''}}">
     <view class="serial-left">取消时间</view>
     <view class="serial-right">{{goods.cancel_time}}</view>
   </view>
@@ -101,13 +101,13 @@
 <view class="serial" hidden="{{goods.order_type==1}}">  <!--hidden="{{goods.order_type==1}}"-->
   <view class="serial-one">
     <view class="serial-left">保证金</view>
-    <view class="serial-right">￥200.00</view>
+    <view class="serial-right">{{goods.auction_price}}</view>
   </view>
-  <view class="serial-one">
+  <view class="serial-one" hidden="{{goods.goods_startime==''}}">
     <view class="serial-left">开价时间</view>
     <view class="serial-right">{{goods.goods_startime}}</view>
   </view>
-  <view class="serial-one">
+  <view class="serial-one" hidden="{{goods.auction_time==''}}">
     <view class="serial-left">竞拍成功</view>
     <view class="serial-right">{{goods.auction_time}}</view>
   </view>

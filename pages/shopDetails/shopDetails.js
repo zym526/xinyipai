@@ -52,7 +52,7 @@ Page({
         haopinglv:((res.data.data.store_desccredit/5)*100).toFixed(2)
       })
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
 

@@ -60,7 +60,7 @@ Page({
         lunboImages:res.data.data
       })
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
   // 极限秒拍请求
@@ -80,7 +80,7 @@ Page({
       })
       that.changeTime(that.data.secondBeats,"secondBeats")
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
   // 品牌秒拍请求
@@ -100,7 +100,7 @@ Page({
       })
       that.changeTime(that.data.secondBeats2,"secondBeats2")
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
   // 推荐拍品请求/全部拍品请求
@@ -139,7 +139,7 @@ Page({
           })
         }
       }).catch(err=>{
-        app.showToast(err.data.msg)
+        app.showToast("请求失败，请稍后重试~")
       })
     }else{
       app.showToast("没有更多数据了~")
@@ -170,37 +170,58 @@ Page({
     var one=(second[0].goods_endtime);
     var two=(second[1].goods_endtime);
     var three=(second[2].goods_endtime);
+    var startOne=(second[0].goods_startime)
+    var startTwo=(second[1].goods_startime)
+    var startThree=(second[2].goods_startime)
     // 倒计时
     var goods1=texts+"["+0+"].time"
     var goods2=texts+"["+1+"].time"
     var goods3=texts+"["+2+"].time"
     // 获取三个商品结束时间
-    setTimeout(function(){
-      if(one-now>0){
-        that.setData({
-          [goods1]:app.formatDuring(one-now)
-        })
+    that.data.time=setTimeout(function(){
+      if(one>now){
+        if(startOne>now){
+          that.setData({
+            [goods1]:"未开始"
+          })
+        }else{
+          that.setData({
+            [goods1]:app.formatDuring2(one-now)
+          })
+        }
       }else{
         that.setData({
-          [goods1]:"00:00:00"
+          [goods1]:"拍卖结束"
         })
       }
-      if(two-now>0){
-        that.setData({
-          [goods2]:app.formatDuring(two-now)
-        })
+      if(two>now){
+        if(startTwo>now){
+          that.setData({
+            [goods2]:"未开始"
+          })
+        }else{
+          that.setData({
+            [goods2]:app.formatDuring2(two-now)
+          })
+        }
       }else{
         that.setData({
-          [goods2]:"00:00:00"
+          [goods2]:"拍卖结束"
         })
       }
-      if(three-now>0){
-        that.setData({
-          [goods3]:app.formatDuring(three-now)
-        })
+      if(three>now){
+        if(startThree>now){
+          that.setData({
+            [goods3]:"未开始"
+          })
+        }else{
+          that.setData({
+            [goods3]:app.formatDuring2(three-now)
+          })
+        }
       }else{
         that.setData({
-          [goods3]:"00:00:00"
+          [goods3]:"拍卖结束"
         })
       }
       that.changeTime(second,texts)

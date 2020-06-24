@@ -37,6 +37,7 @@ Page({
   },
   // 跳转地址页面
   toAddress(){
+    app.globalData.personal=""
     wx.navigateTo({
       url: '/pages/address/address',
     })
@@ -97,6 +98,9 @@ Page({
               console.log("支付成功后状态查询：",res)
               if(res.data.data.result_code=="SUCCESS"){
                 app.showToast("支付成功")
+                wx.redirectTo({
+                  url: '/pages/indent/indent',
+                })
                 // 支付成功后回调
                 app.http({
                   url:"wxorder/uporder",
@@ -104,10 +108,10 @@ Page({
                   param:{
                     order_sn:order_sn,//订单号
                   }
-                }).then(res=>{}).catch(err=>{})
+                }).then(res=>{}).catch(err=>{app.showToast("请求失败，请稍后重试~")})
               }
             }).catch(err=>{
-              app.showToast(err.data.msg)
+              app.showToast("请求失败，请稍后重试~")
             })
           },
           fail(error){
@@ -120,7 +124,7 @@ Page({
       }
     }).catch(err=>{
       wx.hideLoading()
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
   /**
@@ -171,7 +175,7 @@ Page({
         app.showToast(res.data.msg)
       }
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
     // 获取商品信息
     app.http({
@@ -207,7 +211,7 @@ Page({
         app.showToast(res.data.msg)
       }
     }).catch(err=>{
-      app.showToast(err.data.msg)
+      app.showToast("请求失败，请稍后重试~")
     })
   },
 
