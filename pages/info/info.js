@@ -18,7 +18,7 @@ Page({
     onceLock:true,//是否是初次进入
     // 位置
     x:0,
-    y:0,
+    y:200,
   },
   // 进入店铺首页,并将店铺id传过去
   toShop: function(){
@@ -315,9 +315,9 @@ Page({
     var that=this
     // 如果最低出价小于当前出价则可以往下减
     var lowPrice=that.data.auctionporce[0]?Number(that.data.auctionporce[0].price):that.data.shotdetail.goods_price
-    if((lowPrice+that.data.add_bond_price)<that.data.nowBidToPopup){
+    if(app.changeTwoDecimal_f(app.help().Add(lowPrice,that.data.add_bond_price))<that.data.nowBidToPopup){
       that.setData({
-        nowBidToPopup:that.data.nowBidToPopup-that.data.add_bond_price,
+        nowBidToPopup:app.changeTwoDecimal_f(app.help().Sub(that.data.nowBidToPopup,that.data.add_bond_price)),
         reduceColoe:"#333333",//可以减时为深色
         increaseColor:"#333333"//减时+为深色
       })
@@ -338,9 +338,10 @@ Page({
   increase(){
     var that=this
     // 如果最高价格大于当前出价则可以往上出
+    console.log(that.data.shotdetail.goods_promotion_price,that.data.nowBidToPopup)
     if(that.data.shotdetail.goods_promotion_price>that.data.nowBidToPopup){
       that.setData({
-        nowBidToPopup:that.data.nowBidToPopup+that.data.add_bond_price,
+        nowBidToPopup:app.changeTwoDecimal_f(app.help().Add(that.data.nowBidToPopup,that.data.add_bond_price)),
         reduceColor:"#333333",//可以加时-为深色
         increaseColor:"#333333",//可以加时+为深色
       })
@@ -467,8 +468,8 @@ Page({
       // 好评率
       // data.store.store_desccredit=((data.store.store_desccredit/5)*100).toFixed(2)
       // 将商品起拍价和成交价转为数字
-      data.shotdetail.goods_price=Number(data.shotdetail.goods_price)
-      data.shotdetail.goods_promotion_price=Number(data.shotdetail.goods_promotion_price)
+      data.shotdetail.goods_price=app.changeTwoDecimal_f(data.shotdetail.goods_price)
+      data.shotdetail.goods_promotion_price=app.changeTwoDecimal_f(data.shotdetail.goods_promotion_price)
       that.setData({
         auctionporce:data.auctionporce,//用户拍卖记录，出价人信息
         broeseavatars:data.broeseavatars,//浏览人头像
@@ -486,12 +487,12 @@ Page({
         // nowBidToPopup:auctionporce[0].price?auctionporce[0].price+add_bond_price:shotdetail.goods_price+add_bond_price,//当前最低出价金额
         // nowBidToPopup:data.auctionporce.length!=0?Number(data.auctionporce[0].price)+Number(data.shotdetail.add_bond_price):data.shotdetail.goods_price+Number(data.shotdetail.add_bond_price)//当前最低出价金额
       })
-      var nowMoney=data.auctionporce.length!=0?Number(data.auctionporce[0].price)+Number(data.shotdetail.add_bond_price):data.shotdetail.goods_price+Number(data.shotdetail.add_bond_price)
+      var nowMoney=data.auctionporce.length!=0?app.changeTwoDecimal_f(app.help().Add(data.auctionporce[0].price,data.shotdetail.add_bond_price)):app.changeTwoDecimal_f(app.help().Add(data.shotdetail.goods_price,data.shotdetail.add_bond_price))
       if(that.data.minimum!=nowMoney){
-        // console.log("前后两次不同")
+        console.log("前后两次不同",that.data.minimum,nowMoney)
         that.setData({
-          nowBidToPopup:nowMoney,
-          minimum:nowMoney
+          nowBidToPopup:app.changeTwoDecimal_f(nowMoney),
+          minimum:app.changeTwoDecimal_f(nowMoney)
         })
       }else{
         // console.log("两次相同")
@@ -542,58 +543,69 @@ Page({
       if(dataLength==0){//如果没有人出价则第二个为大锤子
         chuiziAll[1]="/images/chuizi.png"
       }else{
-        for(let i=0;i<chuiziAll.length;i++){
-          if((i-1)==dataLength||chuiziAll.length-1==i){
+        for(let i=0;i<chuiziAll.length+1;i++){
+          if((i-1)==dataLength){
             // 判断用户是否登录
             if(wx.getStorageSync('userId')){
               // 如果下一次出价没有超过最高价
               // if(that.data.minimum<=that.data.shotdetail.goods_promotion_price){
-                // 判断自己是否已经出过价格，并出价几次
-                var allJia=[]
-                for(var j=0;j<that.data.allAuctionporce.length;j++){
-                  // 如果出过价格
-                  if(that.data.allAuctionporce[j].member_id==wx.getStorageSync('userId')){
-                    allJia.push(that.data.allAuctionporce[j])
-                  }
+              // 判断自己是否已经出过价格，并出价几次
+              var allJia=[]
+              for(var j=0;j<that.data.allAuctionporce.length;j++){
+                // 如果出过价格
+                if(that.data.allAuctionporce[j].member_id==wx.getStorageSync('userId')){
+                  allJia.push(that.data.allAuctionporce[j])
                 }
-                // 判断是否只能出价一次
-                if(that.data.shotdetail.is_user==0){
+              }
+              // 判断是否只能出价一次
+              if(that.data.shotdetail.is_user==0){
+                that.setData({
+                  depositPayment:"去出价",
+                })
+                // 如果数组长为0则有人出价自己未出价
+                if(allJia.length==0){        
+                  if(i!=chuiziAll.length){
+                    chuiziAll[i]=wx.getStorageSync('userInfo').avatarUrl
+                  }        
+                }else{
+                  if(i!=chuiziAll.length){
+                    chuiziAll[i]="/images/chuizi.png"
+                  }
+                  // 不能再次出价
+                  that.setData({
+                    isPat:false
+                  })
+                  // 判断自己头像的位置
+                  chuiziAll[(Number(allJia[0].price)-data2.shotdetail.goods_price)/data2.shotdetail.add_bond_price]=wx.getStorageSync('userInfo').avatarUrl
+                }
+              }else{
+                // 如果可以多次出价，并且自己出了一次或以上
+                if(allJia.length>=1){
+                  // 不能再次出价
+                  that.setData({
+                    depositPayment:"再出价",
+                  })
+                  for(let k=0;k<allJia.length;k++){
+                    chuiziAll[(Number(allJia[k].price)-data2.shotdetail.goods_price)/data2.shotdetail.add_bond_price]=wx.getStorageSync('userInfo').avatarUrl
+                    // console.log(i,k)
+                  }
+                }else{
                   that.setData({
                     depositPayment:"去出价",
                   })
-                  // 如果数组长为0则有人出价自己未出价
-                  if(allJia.length==0){
-                    chuiziAll[i]=wx.getStorageSync('userInfo').avatarUrl
-                  }else{
-                    chuiziAll[i]="/images/chuizi.png"
-                    // 不能再次出价
-                    that.setData({
-                      isPat:false
-                    })
-                    // 判断自己头像的位置
-                    chuiziAll[(Number(allJia[0].price)-data2.shotdetail.goods_price)/data2.shotdetail.add_bond_price]=wx.getStorageSync('userInfo').avatarUrl
-                  }
-                }else{
-                  // 如果可以多次出价，并且自己出了一次或以上
-                  if(allJia.length>=1){
-                    // 不能再次出价
-                    that.setData({
-                      depositPayment:"再出价",
-                    })
-                    for(let k=0;k<allJia.length;k++){
-                      chuiziAll[(Number(allJia[k].price)-data2.shotdetail.goods_price)/data2.shotdetail.add_bond_price]=wx.getStorageSync('userInfo').avatarUrl
-                      // console.log(i,k)
-                    }
-                  }else{
-                    that.setData({
-                      depositPayment:"去出价",
-                    })
-                  }
+                }
+                if(i!=chuiziAll.length){
                   chuiziAll[i]=wx.getStorageSync('userInfo').avatarUrl
+                }
                 // }
               }
             }else{
-              chuiziAll[i]="/images/chuizi.png"
+              if(i!=chuiziAll.length){
+                chuiziAll[i]="/images/chuizi.png"
+              }
+              that.setData({
+                depositPayment:"去出价",
+              })
             }
           }
         }

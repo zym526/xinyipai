@@ -37,11 +37,19 @@ van-radio-group{
   font-size: 28rpx;
   line-height: 40rpx;
 }
-.botRigLeft,.botRigRight{
-  display: inline-block;
+.insideBottom .van-radio__label{
+  margin-left: 0rpx;
 }
-.botRigLeft text,.botRigRight text{
-  vertical-align: -3rpx;
+.insideBotRig{
+  display: flex;
+}
+.botRigLeft,.botRigRight{
+  color: #999999;
+  display: flex;
+  align-items: center;
+}
+.botRigLeft van-icon,.botRigRight van-icon{
+  margin-right: 5rpx;
 }
 .botRigLeft{
   margin-right: 29rpx;
@@ -59,9 +67,11 @@ van-radio-group{
   padding: 0rpx;
   font-weight: 300;
   margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 van-icon{
-  vertical-align: -5rpx;
   margin-right: 13rpx;
 }
 /* 编辑地址 */

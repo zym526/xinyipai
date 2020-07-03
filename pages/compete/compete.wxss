@@ -10,7 +10,7 @@ page{
 .one-compete{
   background-color: white;
   border-radius: 10rpx;
-  width: calc(50% - 10.5rpx);
+  width: calc(50% - 11rpx);
   margin-bottom: 24rpx;
 }
 .one-compete:nth-child(2n-1){

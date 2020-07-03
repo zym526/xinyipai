@@ -1,3 +1,4 @@
+import util from './utils/util.js';
 //app.js
 App({
   data:{
@@ -116,6 +117,26 @@ App({
   },
   addZero: function(num) {
     return num < 10 ? '0' + num : num;
+  },
+  // 保留两位小数，不足零补全
+  changeTwoDecimal_f: function(x) { 
+　　var f_x = parseFloat(x); 
+　　if (isNaN(f_x)) { return 0; } 
+　　var f_x = Math.round(x*100)/100; 
+　　var s_x = f_x.toString(); 
+　　var pos_decimal = s_x.indexOf('.'); 
+　　if (pos_decimal < 0) { 
+　　　pos_decimal = s_x.length; 
+　　  s_x += '.'; 
+　　} 
+　　while (s_x.length <= pos_decimal + 2) { 
+　　　s_x += '0'; 
+　　} 
+　　return s_x; 
+  },
+  help:function()
+  {
+    return util.$h;
   },
   // 轮播图尺寸
   widthLB:function(e,number){

@@ -29,26 +29,30 @@
 	</view>
   <view class="weui-flex">
 		<view class="weui-flex__item" bindtap="toDingdan" data-index="10">
-      <view>
+      <view class="item-image-outer">
         <image src="../../images/daifukuan.png" mode="widthFix"></image>
+        <view class="right-top-text" hidden="{{allNum.nopay==0}}">{{allNum.nopay}}</view>
       </view>
       <view>待付款</view>
     </view>
 		<view class="weui-flex__item" bindtap="toDingdan" data-index="20">
-      <view>
+      <view class="item-image-outer">
         <image src="../../images/fahuo.png" mode="widthFix"></image>
+        <view class="right-top-text" hidden="{{allNum.nosend==0}}">{{allNum.nosend}}</view>
       </view>
       <view>待发货</view>
     </view>
 		<view class="weui-flex__item" bindtap="toDingdan" data-index="30">
-      <view>
+      <view class="item-image-outer">
         <image src="../../images/shouhuo.png" mode="widthFix"></image>
+        <view class="right-top-text" hidden="{{allNum.pay==0}}">{{allNum.pay}}</view>
       </view>
       <view>待收货</view>
     </view>
 		<view class="weui-flex__item" bindtap="toDingdan">
-      <view>
+      <view class="item-image-outer">
         <image src="../../images/pingjia.png" mode="widthFix"></image>
+        <view class="right-top-text" hidden="{{allNum.finish==0}}">{{allNum.finish}}</view>
       </view>
       <view>待评价</view>
     </view>
@@ -63,52 +67,52 @@
 	</view>
 	<view class="weui-flex">
 		<view class="weui-flex__item" bindtap="toAddress">
-      <view>
-        <image src="../../images/shouhuodizhi1.png" mode="widthFix"></image>
+      <view class="item-image-outer" style="background:#4675e6;">
+        <view class="iconfont icon-shouhuodizhi"></view>
       </view>
       <view>收货地址</view>
     </view>
 		<view class="weui-flex__item" bindtap="toCashDeposit">
-      <view>
-        <image src="../../images/baozhengjin.png" mode="widthFix"></image>
+      <view class="item-image-outer" style="background:#f5af19;">
+        <view class="iconfont icon-baozhengjin1"></view>
       </view>
       <view>保证金</view>
     </view>
 		<view class="weui-flex__item">
-      <view>
-        <image src="../../images/shouhuodizhi.png" mode="widthFix"></image>
+      <view class="item-image-outer" style="background:#32c5ff;">
+        <view class="iconfont icon-xinxi"></view>
       </view>
       <view>个人信息</view>
     </view>
 		<view class="weui-flex__item">
-      <view>
-        <image src="../../images/jiangpinjilu.png" mode="widthFix"></image>
+      <view class="item-image-outer" style="background:#f01800;">
+        <view class="iconfont icon-jiangpin"></view>
       </view>
       <view>奖品记录</view>
     </view>
 	</view>
 	<view class="weui-flex" style="margin: 40rpx 0rpx">
 		<view class="weui-flex__item">
-      <view>
-        <image src="../../images/shouhuodizhi2.png" mode="widthFix"></image>
+      <view class="item-image-outer" style="background:#8e54e9;">
+        <view class="iconfont icon-guanyu"></view>
       </view>
       <view>关于我们</view>
     </view>
 		<view class="weui-flex__item">
-      <view>
-        <image src="../../images/yijianfankui.png" mode="widthFix"></image>
+      <view class="item-image-outer" style="background:#3fd444;">
+        <view class="iconfont icon-yijianfankui"></view>
       </view>
       <view>意见反馈</view>
     </view>
 		<view class="weui-flex__item" bindtap="toCompete">
-      <view>
-        <image src="../../images/yijianfankui.png" mode="widthFix"></image>
+      <view class="item-image-outer" style="background:#f5af19;">
+        <view class="iconfont icon-canpai"></view>
       </view>
       <view>参拍</view>
     </view>
 		<view class="weui-flex__item" bindtap="toCleanUp">
-      <view>
-        <image src="../../images/yijianfankui.png" mode="widthFix"></image>
+      <view class="item-image-outer" style="background:#32c5ff;">
+        <view class="iconfont icon-zhuanqian"></view>
       </view>
       <view>赚钱</view>
     </view>

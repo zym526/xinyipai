@@ -28,8 +28,10 @@
       <!-- <image src="../../images/chuizi.png" mode='widthFix'></image> -->
       <view class="chuiAll">
         <view class="one-chui" wx:for="{{chuiziAll}}" wx:key="index">
-          <view class="now-money" hidden="{{index!=(dataLength+1)}}">￥{{minimum}}</view>
-          <image src="{{item}}" mode="widthFix" class="{{item!='/images/chuizi3.png'&&item!='/images/chuizi2.png'?'bigImage':''}} {{item!='/images/chuizi.png'&&item!='/images/chuizi1.png'&&item!='/images/chuizi2.png'&&item!='/images/chuizi3.png'&&item!='/images/chuizi4.png'?'youImage':''}}"></image>
+          <view class="now-money" hidden="{{index!=(dataLength+1)}}">{{minimum}}</view>
+          <view class="{{item!='/images/chuizi.png'&&item!='/images/chuizi1.png'&&item!='/images/chuizi2.png'&&item!='/images/chuizi3.png'&&item!='/images/chuizi4.png'?'outer-iamge-border':''}}">
+            <image src="{{item}}" mode="widthFix" class="{{item!='/images/chuizi3.png'&&item!='/images/chuizi2.png'?'bigImage':''}} {{item!='/images/chuizi.png'&&item!='/images/chuizi1.png'&&item!='/images/chuizi2.png'&&item!='/images/chuizi3.png'&&item!='/images/chuizi4.png'?'youImage':''}}"></image>
+          </view> 
         </view>
       </view>
       <view class="bottomBidding">
@@ -70,20 +72,23 @@
       <view class="rightJL">
         <view class="JG">
           <!-- <image src="../../images/{{index==0?'dui.png':'duihui.png'}}" mode="widthFix"></image> -->
-          <view class="iconfont icon-gerenzhongxin-duihuanzhongxin" style="font-size:26rpx;color:{{index==0?'#E7260A':'#999999'}}"></view>
-          <text class="{{index==0?'text1':'text2'}}">{{item.price}}</text>
+          <!-- <view class="iconfont icon-gerenzhongxin-duihuanzhongxin" style="font-size:26rpx;color:{{index==0?'#E7260A':'#999999'}}"></view> -->
+          <view class="{{index==0?'text1':'text2'}}"><text>￥</text>{{item.price}}</view>
         </view>
-        <view class="xianchu {{index==0?'lingxian':'chuju'}}">{{index===0?'领先':'出局'}}</view>
+        <view class="xianchu {{index==0?'lingxian':'chuju'}}">{{index!==0?'出局':item.price==shotdetail.goods_promotion_price?'成交':'领先'}}</view>
       </view>
     </view>
     <!-- 查看更多 -->
     <view class="more" hidden="{{allAuctionporce.length<=2}}">
       <button class="moreInside" bindtap="lookAllCJ">{{isShow?'查看更多':'点击收起'}}</button>
     </view>
-    <view class="noPeople" hidden="{{allAuctionporce.length!=0}}">暂无人出价</view>
+    <view class="noPeople" hidden="{{allAuctionporce.length!=0}}">
+      <view class="iconfont icon-xiaolian" style="color:#dbdbdb;font-size:80rpx;line-height:100rpx"></view>
+      <view class="no-people-text">等你来出价哦</view>
+    </view>
   </view>
   <!-- 拍卖评价/拍卖流程 -->
-  <view class="evaluationProcedure" style="background:white;margin-top:24rpx">
+  <view class="evaluationProcedure" style="background:white;margin-top:10rpx">
     <!-- 评价 -->
     <!-- <view class="evaluation">
       <view class="weui-cells weui-cells_after-title" style="margin-top:0px">
@@ -110,11 +115,7 @@
     </view> -->
     <!-- 流程 -->
     <view class="procedure">
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell">
-          <view class="weui-cell__bd" style="font-size:28rpx;color:#333333">拍买流程</view>
-        </view>
-      </view>
+      <view class="procedure-title" style="font-size:28rpx;color:#333333">拍买流程</view>
       <!-- 流程图 -->
       <view class="outerRow">
         <view class="one-flow">
@@ -177,7 +178,12 @@
   <!-- 产品描述 -->
   <view class="endTitle">
     <view class="endTop">
-      <image src="../../images/endtitle.png" mode="widthFix"></image>
+      <!-- <image src="../../images/endtitle.png" mode="widthFix"></image> -->
+      <view class="round-four"></view>
+      <view class="round-four"></view>
+      <view>商品描述</view>
+      <view class="round-four"></view>
+      <view class="round-four"></view>
     </view>
     <view class="endBot" hidden="{{!shotbody.goods_body}}">
       <image src="{{shotbody.goods_body}}" mode="widthFix"></image>
@@ -205,14 +211,18 @@
 </view>
 
 <!-- 出价弹窗 -->
-<van-popup show="{{ isBid }}" position="bottom" bind:close="onClose" custom-style="height:60%;" round ><!-- isBid -->
+<van-popup show="{{ isBid }}" position="bottom" bind:close="onClose" custom-style="background:#F0F2F5;padding:0rpx" round ><!-- isBid -->
   <view class="iconfont icon-fork" bindtap="onClose"></view>
   <!-- 出价 -->
   <view class="popup-top">
     <view class="popup-minus-add">
-      <view class="popup-add" bindtap="reduce" style="color:{{reduceColor}}">-</view>
+      <view class="popup-add" bindtap="reduce" style="color:{{reduceColor}};opacity:{{reduceColor=='#999999'?0:1}}">
+        <view class="iconfont icon-jianhao"></view>
+      </view>
       <view class="popup-number">{{nowBidToPopup}}</view>
-      <view class="popup-minus" bindtap="increase" style="color:{{increaseColor}}">+</view>
+      <view class="popup-minus" bindtap="increase" style="color:{{increaseColor}};opacity:{{increaseColor=='#999999'?0:1}}">
+        <view class="iconfont icon-tianjia"></view>
+      </view>
     </view>
     <!-- <view class="popup-top-text">您将出价{{nowBidToPopup}}元</view> -->
     <view class="popup-top-btn" bindtap="toOfferPrice">立即出价{{nowBidToPopup==shotdetail.goods_promotion_price?'(成交)':''}}</view>
@@ -233,7 +243,7 @@
         </view>
       </view>
       <view class="rightJL">
-        <text class="text1">￥{{nowBidToPopup}}</text>
+        <text class="text1" style="font-size:28rpx">￥{{nowBidToPopup}}</text>
         <view class="xianchu guding">{{nowBidToPopup!=shotdetail.goods_promotion_price?'当前':'成交'}}</view>
       </view>
     </view>
@@ -274,14 +284,14 @@
         </view>
       </view>
       <view class="rightJL">
-        <text class="text2">￥{{shotdetail.goods_price}}</text>
+        <text class="text2" style="font-size:28rpx">￥{{shotdetail.goods_price}}</text>
         <view class="xianchu guding">起拍</view>
       </view>
     </view>
   </view>
 </van-popup>
 <!-- 保证金弹窗 -->
-<van-popup show="{{ isCash }}" position="bottom" bind:close="onClose" custom-style="height:500rpx" round><!-- isCash -->
+<van-popup show="{{ isCash }}" position="bottom" bind:close="onClose" round><!-- isCash -->
   <view class="cash-top">
     <view class="iconfont icon-jinggao"></view>
     <text>竞拍不成功，缴纳保证金将退回原支付渠道</text>
@@ -301,7 +311,7 @@
 </view> -->
 <movable-area>
   <movable-view x="{{x}}" y="{{y}}" direction="all">
-    <view class="iconfont icon-fenxiang" style="color:#333333;font-size:42rpx"></view>
+    <view class="iconfont icon-fenxiang1" style="color:#333333;font-size:50rpx"></view>
   </movable-view>
 </movable-area>
 <!-- 提示弹框 -->

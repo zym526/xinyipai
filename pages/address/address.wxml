@@ -19,11 +19,11 @@
           <!-- 编辑和删除 -->
           <view class="insideBotRig">
             <view class="botRigLeft" catchtap="editData" data-item="{{item}}">
-              <van-icon name="edit" color="#999999" size="24rpx"/> 
+              <van-icon name="edit" color="#999999" size="28rpx"/> 
               <text class="bianji">编辑</text>
             </view>
             <view class="botRigRight" catchtap="delData" data-item="{{item}}">
-              <van-icon name="delete" color="#999999" size="24rpx"/> 
+              <van-icon name="delete" color="#999999" size="28rpx"/> 
               <text>删除</text>
             </view>
           </view>

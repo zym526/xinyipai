@@ -1,5 +1,6 @@
 page{
   background-color: #F0F2F5;
+  width: 100%;
 }
 /* 轮播图 */
 .outerLunbo{
@@ -83,7 +84,7 @@ page{
 .introduce-zhan{
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  /* align-items: flex-end; */
   margin: 30rpx 0rpx 0rpx;
 }
 .introduceDuan{
@@ -106,6 +107,7 @@ page{
   border-radius: 40rpx;
   border: 2rpx solid #333333;
   text-align: center;
+  align-self: flex-end;
 }
 /* 竞价 */
 /* .bidding{
@@ -117,7 +119,7 @@ page{
 } */
 .plan{
   background-color: white;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   padding: 50rpx 26rpx 26rpx;
   box-sizing: border-box;
 }
@@ -139,15 +141,11 @@ page{
 }
 .now-money{
   position: absolute;
-  font-size: 26rpx;
+  font-size: 28rpx;
   color: #FF3300;
   left: 50%;
   top: -40rpx;
   transform: translateX(-50%);
-}
-.youImage{
-  border: 4rpx solid #E7260A;
-  border-radius: 57rpx;
 }
 .chuiAll::before{
   content: "";
@@ -164,10 +162,20 @@ page{
   width: 36rpx;
   height: auto;
 }
+.outer-iamge-border{
+  border: 4rpx solid #E7260A;
+  border-radius: 53rpx;
+}
+.youImage{
+  width: 45rpx!important;
+  height: auto;
+  border: 4rpx solid white;
+  border-radius: 57rpx;
+}
 .bottomBidding{
   display: flex;
   justify-content: space-between;
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #666666;
   margin-top: 21rpx;
 }
@@ -228,14 +236,21 @@ page{
 .noPeople{
   background-color: white;
   margin-top: 10rpx;
+  text-align: center;
 }
-/* .forPeo-popup{
-  margin: 24rpx;
-} */
+.no-people-text{
+  font-size: 22rpx;
+  line-height: 45rpx;
+  color: #999999;
+}
+.forPeo-popup{
+  position: relative;
+}
 .forPeo-outer{
-  height: calc(100% - 370rpx);
+  height: 450rpx;
   overflow-x: hidden;
   overflow-y: scroll;
+  background-color: white;
 }
 .forPeo-left-outer{
   width: 50%;
@@ -255,13 +270,13 @@ page{
   width: 40rpx;
   height: 40rpx;
 }
-.forPeo-outer{
+/* .forPeo-outer{
   position: relative;
-}
+} */
 /* 弹窗加价人线条 */
 .line-left-long{
   position: absolute;
-  left: 44rpx;
+  left: 42.5rpx;
   top: -12rpx;
   bottom: -12rpx;
   width: 3rpx;
@@ -280,15 +295,19 @@ page{
   display: flex;
   align-items: center;
   justify-content: center;
+  /* border: 1px solid red; */
+  box-sizing: border-box;
 }
 .left-hui-yuan{
   width: 16rpx;
   height: 16rpx;
   border-radius: 16rpx;
   background-color: #999999;
+  z-index: 100;
 }
 .left-org-yuan{
   background-color: #EB6100;
+  z-index: 100;
 }
 .forPeo-left-text{
   margin-left: 20rpx;
@@ -321,9 +340,9 @@ page{
   width: 24rpx;
   height: auto;
 } */
-.JG text{
+.JG{
   font-size: 28rpx;
-  margin-left: 10rpx;
+  /* margin-left: 10rpx; */
 }
 .text1{
   color: #E7260A;
@@ -417,7 +436,7 @@ page{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #CCCCCC;
+  background-color: rgba(204, 204, 204, 0.3);
 }
 .next{
   width: 11rpx;
@@ -429,6 +448,9 @@ page{
 }
 .procedure{
   border-top: 2rpx solid var(--weui-BG-3);
+}
+.procedure-title{
+  padding: 20rpx 24rpx 0rpx 24rpx;
 }
 /* 商店 */
 .shop{
@@ -511,12 +533,29 @@ page{
 }
 /* 产品描述 */
 .endTitle{
-  margin-bottom: 100rpx;
+  padding-bottom: 100rpx;
+  background-color: white;
+  margin-top: 10rpx;
 }
 .endTop{
   width: 100%;
-  text-align: center;
-  padding: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  padding: 20rpx 0rpx;
+  box-sizing: border-box;
+}
+.round-four{
+  display: inline-block;
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 6rpx;
+  background-color: #999;
+}
+.round-four:nth-child(2),.round-four:nth-child(4){
+  margin: 0rpx 8rpx;
 }
 .endTop image{
   width: 216rpx;
@@ -590,11 +629,13 @@ page{
   color: #666666;
 }
 .popup-top{
-  padding: 55rpx;
+  padding: 30rpx 20rpx;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10rpx;
+  background-color: white;
 }
 .icon-fork{
   font-size: 28rpx;
@@ -616,12 +657,15 @@ page{
   border-radius: 60rpx;
   background-color: #F0F0F0;
   border: 2rpx solid #DBDBDB;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: text-top;
 }
 .popup-number{
   width: 225rpx;
   line-height: 80rpx;
-  border: 1rpx solid #DBDBDB;
+  border: 1.5rpx solid #DBDBDB;
   background-color: #F0F0F0;
   text-align: center;
   font-size: 50rpx;
@@ -649,12 +693,13 @@ page{
 }
 /* 保证金弹窗 */
 .cash-top{
-  background-color: rgba(231, 38, 10, 0.2);
+  background-color: rgba(231, 38, 10, 0.05);
   width: 100%;
   line-height: 80rpx;
-  font-size: 24rpx;
+  font-size: 26rpx;
   display: flex;
   padding: 0rpx 24rpx;
+  box-sizing: border-box;
 }
 .cash-top .icon-jinggao{
   color: #E7260A;
@@ -711,10 +756,12 @@ page{
 movable-area{
   position: fixed;
   width: 100%;
-  height: 25%;
+  height: calc(100% - 100rpx);
+  width: 100%;
   left: 0rpx;
-  top: 60%;
-  z-index: 999;
+  top: 0rpx;
+  z-index: 99;
+  pointer-events: none;
 }
 movable-view{
   width: 80rpx;
@@ -724,5 +771,6 @@ movable-view{
   align-items: center;
   justify-content: center;
   background-color: rgba(240, 242, 245, 0.7);
-  border: 4rpx solid rgba(153, 153, 153, 1);
+  pointer-events: auto;
+  box-shadow: 0rpx 0rpx 10rpx rgba(0, 0, 0, 0.5);
 }

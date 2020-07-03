@@ -33,6 +33,9 @@ Page({
     // 获取推荐拍品商品
     that.tuijianpaipin(1);
   },
+  onShow: function(){
+    this.onLoad()
+  },
   // 设置轮播图高度
   imgH:function(e){
     this.setData({

@@ -4,22 +4,24 @@
   position: absolute;
   top: 0px;
 }
-page{
+/* page{
   height: 100%;
   border: 2rpx solid rgba(0,0,0,0);
   box-sizing: border-box;
-}
+} */
 /* 开通vip */
 .vip{
   background-color: #333333;
   position: absolute;
-  width: calc(100% - 224rpx);
-  margin-left: 84rpx;
+  width: calc(100% - 108rpx);
+  margin-left: 54rpx;
   border-radius: 20rpx;
   display: flex;
   top: 240rpx;
   justify-content: space-between;
+  align-items: center;
   padding: 20rpx 32rpx 50rpx;
+  box-sizing: border-box;
 }
 .vipLeft{
   color: #DFC191;
@@ -37,10 +39,12 @@ page{
   color: #333;
   display: inline-block;
   border-radius: 40rpx;
-  padding: 6rpx 12rpx;
+  /* padding: 6rpx 12rpx; */
   font-size: 20rpx;
   line-height: 40rpx;
   height: 40rpx;
+  width: 84rpx;
+  text-align: center;
 }
 /* 订单 */
 .indent{
@@ -50,7 +54,49 @@ page{
   background-color: white;
   border-radius: 20rpx 20rpx 0rpx 0rpx;
 }
-.weui-flex__item image{
+.weui-flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+.weui-flex__item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #333333;
+}
+.item-image-outer{
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  position: relative;
+}
+.right-top-text{
+  position: absolute;
+  right: -11rpx;
+  top: -11rpx;
+  color: #FF0000;
+  width: 22rpx;
+  height: 22rpx;
+  background-color: white;
+  border: 2rpx solid #FF0000;
+  border-radius: 22rpx;
+  font-size: 18rpx;
+  line-height: 22rpx;
+  text-align: center;
+}
+.item-image-outer .iconfont{
+  font-size: 30rpx;
+  color: white;
+  line-height: 48rpx;
+}
+.item-image-outer image{
+  width: 48rpx;
+  height: auto;
+}
+/* .weui-flex__item image{
   width: 48rpx;
   height: auto;
 }
@@ -58,7 +104,15 @@ page{
   text-align: center;
   font-size: 24rpx;
   color: #333;
+  display: flex;
+  align-items: center;
+  border: 1px solid blue;
 }
+.item-image-outer{
+  border: 1px solid red;
+  width: 48rpx;
+  height: 48rpx;
+} */
 /* 图片 */
 .bottomImg{
   width: calc(100% - 48rpx);
